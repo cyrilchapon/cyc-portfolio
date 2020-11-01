@@ -1,4 +1,4 @@
-import { FONTS } from 'styles/font'
+import { FONTS } from '$styles/font'
 
 const SansSerifFontLink = () => (
   <link
