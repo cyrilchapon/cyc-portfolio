@@ -1,3 +1,7 @@
 export * from './theme'
 export * from './global-styles'
 export * from './font'
+export * from './styled'
+export * from './snap-child'
+export * from './snap-parent'
+export * from './breakpoints'

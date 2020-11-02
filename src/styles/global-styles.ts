@@ -2,6 +2,7 @@ import { Theme } from './theme'
 import emotionNormalize from 'emotion-normalize'
 import emotionReset from 'emotion-reset'
 import { css } from '@emotion/core'
+import { snapParent } from './snap-parent'
 
 export const reset = (theme: Theme) => emotionReset
 export const normalize = (theme: Theme) => emotionNormalize
@@ -28,5 +29,11 @@ export const globalStyles = (theme: Theme) => css`
     font-family: ${theme.fontStack.default};
     font-weight: ${theme.fontWeight.regular};
     font-size: ${theme.typography.text.kilo.fontSize};
+  }
+`
+
+export const snapBody = (theme: Theme) => css`
+  html {
+    scroll-snap-type: y mandatory;
   }
 `

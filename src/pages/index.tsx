@@ -1,5 +1,11 @@
 import Head from 'next/head'
-import { Button, Hamburger, Header } from '@sumup/circuit-ui'
+import { Button, Hamburger, Spacing } from '@sumup/circuit-ui'
+import { Hero } from '$components/hero'
+import { Header } from '$components/header'
+import { Main } from '$components/main'
+import { Global } from '@emotion/core'
+import { Container } from '$components/container'
+import { snapBody } from '$styles'
 
 export default function Home() {
   return (
@@ -9,12 +15,36 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header title='' mobileOnly={false}>
-      </Header>
+      <Global styles={snapBody} />
 
-      <div>
-        
-      </div>
+      <Main>
+        <Header title='' mobileOnly={false} snapChild>
+        </Header>
+
+        <Hero color='header' escapeHeader>
+          <Spacing>
+            <Container>
+              Classic
+            </Container>
+          </Spacing>
+
+          <Spacing top bottom>
+            <Container fluid>
+              Fluid
+            </Container>
+          </Spacing>
+
+          <Spacing>
+            <Container fullWidth>
+              Full width
+            </Container>
+          </Spacing>
+        </Hero>
+
+        <Hero color='b500' snapChild>
+          Hello
+        </Hero>
+      </Main>
     </>
   )
 }
