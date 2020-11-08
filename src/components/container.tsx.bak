@@ -1,0 +1,55 @@
+import {
+  generateContainerStyles,
+  generateFluidContainerStyles
+} from '$styles'
+import styled from 'styled-components'
+
+type ContainerVariants =
+  | 'classic'
+  | 'fluid'
+  | 'fullWidth'
+
+interface ContainerProps {
+  variant?: ContainerVariants
+  fluid?: boolean
+  fullWidth?: boolean
+}
+
+const getVariant = (props: ContainerProps): ContainerVariants => (
+  props.variant ??
+  (props.fluid ? 'fluid' : null) ??
+  (props.fullWidth ? 'fullWidth' : null) ??
+  'classic'
+)
+
+// export const Container = styled('div')<ContainerProps>`
+//   ${props => {
+//     const variant = getVariant(props)
+
+//     return ({
+//       classic: generateContainerStyles([
+//         { space: props.theme.spacings.zetta },
+//         { space: props.theme.spacings.zetta, breakpoint: props.theme.breakpoints.kilo as number },
+//         { space: 100, breakpoint: props.theme.breakpoints.mega as number },
+//         { space: 150, breakpoint: props.theme.breakpoints.giga as number },
+//         { space: 200, breakpoint: props.theme.breakpoints.tera as number }
+//       ], 2),
+//       fluid: generateFluidContainerStyles([
+//         { space: props.theme.spacings.zetta },
+//         { space: props.theme.spacings.zetta, breakpoint: props.theme.breakpoints.kilo as number },
+//         { space: 100, breakpoint: props.theme.breakpoints.mega as number },
+//         { space: 150, breakpoint: props.theme.breakpoints.giga as number },
+//         { space: 200, breakpoint: props.theme.breakpoints.tera as number }
+//       ]),
+//       fullWidth: generateFluidContainerStyles([
+//         { space: props.theme.spacings.zetta },
+//         { space: props.theme.spacings.zetta, breakpoint: props.theme.breakpoints.kilo as number },
+//         { space: props.theme.spacings.zetta, breakpoint: props.theme.breakpoints.mega as number },
+//         { space: props.theme.spacings.zetta, breakpoint: props.theme.breakpoints.giga as number },
+//         { space: props.theme.spacings.zetta, breakpoint: props.theme.breakpoints.tera as number }
+//       ])
+//     })[variant]
+//   }}
+
+//   label: container-${props => getVariant(props)};
+// `

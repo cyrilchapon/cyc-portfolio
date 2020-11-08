@@ -1,11 +1,13 @@
+import * as React from 'react'
 import Head from 'next/head'
-import { Button, Hamburger, Spacing } from '@sumup/circuit-ui'
+// import { Button, Hamburger, Spacing } from '@sumup/circuit-ui'
 import { Hero } from '$components/hero'
 import { Header } from '$components/header'
 import { Main } from '$components/main'
-import { Global } from '@emotion/core'
-import { Container } from '$components/container'
-import { snapBody } from '$styles'
+// import { Container } from '$components/container'
+// import { SnapBody } from '$styles'
+import { IntroHero } from '$components/heroes/intro-hero'
+import { TypographyTesterHero } from '$components/heroes/typography-tester-hero'
 
 export default function Home() {
   return (
@@ -15,35 +17,20 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Global styles={snapBody} />
+      {/* <SnapBody /> */}
 
       <Main>
-        <Header title='' mobileOnly={false} snapChild>
+        <Header position='fixed' elevation={0}>
+          hey
         </Header>
 
-        <Hero color='header' escapeHeader>
-          <Spacing>
-            <Container>
-              Classic
-            </Container>
-          </Spacing>
+        <IntroHero escapeHeader />
 
-          <Spacing top bottom>
-            <Container fluid>
-              Fluid
-            </Container>
-          </Spacing>
-
-          <Spacing>
-            <Container fullWidth>
-              Full width
-            </Container>
-          </Spacing>
+        <Hero bgcolor='primary.main'>
+          test
         </Hero>
 
-        <Hero color='b500' snapChild>
-          Hello
-        </Hero>
+        <TypographyTesterHero />
       </Main>
     </>
   )

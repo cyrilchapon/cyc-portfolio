@@ -1,6 +1,6 @@
-import { styled } from '$styles'
-import { snapParent, SnapParentProps } from '$styles'
+// import styled from 'styled-components'
+// import { snapParent } from '$styles'
 
-export const Main = styled<'main', SnapParentProps>('main')`
-  ${props => snapParent(props)}
-`
+import { FunctionComponent } from "react";
+
+export const Main: FunctionComponent = ({children}) => <main>{children}</main>

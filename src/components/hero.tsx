@@ -1,33 +1,77 @@
-import {
-  styled,
-  Theme,
-  ThemeColorName,
-  snapChild,
-  SnapChildProps
-} from '$styles'
+// import {
+//   Theme,
+//   ThemeColorName,
+//   snapChild,
+//   SnapChildProps
+// } from '$styles'
 
-export interface HeroProps {
-  color?: ThemeColorName
+import { Box, BoxProps, makeStyles, StyleRules, Theme } from '@material-ui/core'
+import { CreateCSSProperties, CSSProperties } from '@material-ui/core/styles/withStyles'
+import { FunctionComponent } from 'react'
+import { mapValues, omit } from 'lodash'
+import type { PropsCssFunc, PropsFunc } from '$styles'
+
+export interface HeroProps extends BoxProps {
   escapeHeader?: boolean
 }
 
-const getColor = (theme: Theme) => (themeColorName?: ThemeColorName) => (
-  theme.colors[themeColorName ?? 'p400']
-)
+interface WithMinHeight {
+  minHeight: any
+}
 
-const getHeight = (theme: Theme) => (escapeHeader?: boolean) => (
+const getEscapeHeight = (theme: Theme): PropsCssFunc<HeroProps> => ({ escapeHeader }) => (
   (escapeHeader ?? false)
-    ? `calc(100vh - ${theme.spacings.header})`
-    : '100vh'
+    ? {
+      minHeight: `100vh`,
+      paddingTop: theme.mixins.toolbar.minHeight,
+      ...(mapValues(
+        omit(theme.mixins.toolbar, 'minHeight'),
+        (value: WithMinHeight) => ({
+          minHeight: `100vh`,
+          paddingTop: value.minHeight
+        })
+      ))
+    }
+    : {
+      minHeight: '100vh'
+    }
 )
 
-export const Hero = styled<'section', HeroProps & SnapChildProps>('section')`
-  background-color: ${props => getColor(props.theme)(props.color)};
-  height: ${props => getHeight(props.theme)(props.escapeHeader)};
+// export const Hero = styled('section')<HeroProps & SnapChildProps>`
+//   background-color: ${props => getColor(props.theme)(props.color)};
+//   height: ${props => getHeight(props.theme)(props.escapeHeader)};
 
-  ${props => snapChild(props)}
+//   ${snapChild}
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+// `
+
+const useStyles = makeStyles<Theme, HeroProps, 'hero'>((theme) => {
+  return {
+    hero: (props) => ({
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      paddingTop: theme.spacing(4),
+      paddingBottom: theme.spacing(4),
+      ...getEscapeHeight(theme)(props)
+    })
+  }
+})
+
+export const Hero: FunctionComponent<HeroProps> = (props) => {
+  const {
+    escapeHeader,
+    className,
+    ...restProps
+  } = props
+
+  const classes = useStyles({ escapeHeader })
+
+  return <Box
+    {...restProps}
+    className={`${classes.hero} ${className}`}
+  />
+}

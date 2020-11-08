@@ -7,6 +7,13 @@ const SansSerifFontLink = () => (
   />
 )
 
+const SerifFontLink = () => (
+  <link
+    rel='stylesheet'
+    href={FONTS.serif.link}
+  />
+)
+
 const MonoFontLink = () => (
   <link
     rel='stylesheet'
@@ -16,5 +23,6 @@ const MonoFontLink = () => (
 
 export {
   SansSerifFontLink,
+  SerifFontLink,
   MonoFontLink
 }

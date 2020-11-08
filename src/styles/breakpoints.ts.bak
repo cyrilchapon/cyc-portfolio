@@ -1,4 +1,4 @@
-import { css, Interpolation } from '@emotion/core'
+import { css, Interpolation } from 'styled-components'
 import { clamp, isString } from 'lodash'
 
 interface BreakpointDefinition {
@@ -21,7 +21,7 @@ const _stripPx = (px: string): number => parseInt(px.replace('px', ''), 10)
 
 const _generateMarginForBreakpoint = (
   currentBp: BreakpointDefinition
-): Interpolation => ({
+) => ({
   marginLeft: currentBp.space,
   marginRight: currentBp.space
 })
@@ -29,7 +29,7 @@ const _generateMarginForBreakpoint = (
 const _generateMaxWidthForBreakpoint = (
   currentBp: DefinedBreakpointDefinition,
   nextBp?: DefinedBreakpointDefinition | null
-): Interpolation => ({
+): Interpolation<{}> => ({
   width: currentBp.breakpoint - _cleanSpace(currentBp.space) * 2,
     // ? (prevBp ?? currentBp).breakpoint + _cleanSpace((prevBp ?? currentBp).space),
     // ? nextBp.breakpoint - _cleanSpace(currentBp.space) * 2
@@ -51,12 +51,12 @@ const generateContainerStyles = (
     ...definedBreakpointDefinitions
   ] = breakpointDefinitions
 
-  const mobileStyle: Interpolation = _generateMarginForBreakpoint(mobileBreakpointDefinition)
+  const mobileStyle: Interpolation<{}> = _generateMarginForBreakpoint(mobileBreakpointDefinition)
 
-  const definedStyles = definedBreakpointDefinitions.reduce(
+  const definedStyles: Interpolation<{}> = definedBreakpointDefinitions.reduce(
     (acc, breakpointDefinition, index) => {
       return {
-        ...acc as object,
+        ...acc,
         [mq(breakpointDefinition.breakpoint)]: index + 1 < cleanFluidThreshold
           ? _generateMarginForBreakpoint(
             breakpointDefinition
@@ -66,7 +66,7 @@ const generateContainerStyles = (
             definedBreakpointDefinitions[index + 1]
           )
       }
-    }, {} as Interpolation
+    }, {}
   )
 
   return css({
@@ -85,7 +85,7 @@ const generateFluidContainerStyles = (
     ...definedBreakpointDefinitions
   ] = breakpointDefinitions
 
-  const mobileStyle: Interpolation = _generateMarginForBreakpoint(mobileBreakpointDefinition)
+  const mobileStyle: Interpolation<{}> = _generateMarginForBreakpoint(mobileBreakpointDefinition)
 
   const definedStyles = definedBreakpointDefinitions.reduce(
     (acc, breakpointDefinition) => {
@@ -93,7 +93,7 @@ const generateFluidContainerStyles = (
         ...acc as object,
         [mq(breakpointDefinition.breakpoint)]: _generateMarginForBreakpoint(breakpointDefinition)
       }
-    }, {} as Interpolation
+    }, {} as Interpolation<{}>
   )
 
   return css({

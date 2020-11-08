@@ -2,20 +2,26 @@ import _Document, {
   Html,
   Head,
   Main,
-  NextScript
+  NextScript,
+  // DocumentContext,
+  DocumentInitialProps
 } from 'next/document'
 
 import {
   SansSerifFontLink,
-  MonoFontLink
-} from '$components/font'
+  SerifFontLink,
+  MonoFontLink,
+  ViewportMetaLink
+} from '$components/html-head'
 
-class Document extends _Document {
+class Document extends _Document<DocumentInitialProps> {
   render() {
     return (
       <Html>
         <Head>
+          <ViewportMetaLink />
           <SansSerifFontLink />
+          <SerifFontLink />
           <MonoFontLink />
         </Head>
 
