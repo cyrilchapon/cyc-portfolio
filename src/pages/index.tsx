@@ -20,9 +20,7 @@ export default function Home() {
       {/* <SnapBody /> */}
 
       <Main>
-        <Header position='fixed' elevation={0}>
-          hey
-        </Header>
+        <Header />
 
         <IntroHero escapeHeader />
 

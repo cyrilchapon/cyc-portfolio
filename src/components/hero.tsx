@@ -19,21 +19,28 @@ interface WithMinHeight {
   minHeight: any
 }
 
-const getEscapeHeight = (theme: Theme): PropsCssFunc<HeroProps> => ({ escapeHeader }) => (
+const maybePxToPx = (value?: number | string) => (
+  typeof value === 'number'
+    ? `${value}px`
+    : (value != null
+      ? value
+      : '0'
+    )
+)
+
+const getPaddingTop = (theme: Theme): PropsCssFunc<HeroProps> => ({ escapeHeader }) => (
   (escapeHeader ?? false)
     ? {
-      minHeight: `100vh`,
-      paddingTop: theme.mixins.toolbar.minHeight,
+      paddingTop: `calc(${theme.spacing(4)}px + ${maybePxToPx(theme.mixins.toolbar.minHeight)})`,
       ...(mapValues(
         omit(theme.mixins.toolbar, 'minHeight'),
         (value: WithMinHeight) => ({
-          minHeight: `100vh`,
-          paddingTop: value.minHeight
+          paddingTop: `calc(${theme.spacing(4)}px + ${maybePxToPx(value.minHeight)})`
         })
       ))
     }
     : {
-      minHeight: '100vh'
+      paddingTop: theme.spacing(4)
     }
 )
 
@@ -54,9 +61,9 @@ const useStyles = makeStyles<Theme, HeroProps, 'hero'>((theme) => {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
-      paddingTop: theme.spacing(4),
+      minHeight: `100vh`,
       paddingBottom: theme.spacing(4),
-      ...getEscapeHeight(theme)(props)
+      ...getPaddingTop(theme)(props)
     })
   }
 })
