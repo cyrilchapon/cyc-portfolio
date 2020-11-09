@@ -92,7 +92,7 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
               </Typography>
 
               <Typography variant='subtitle1' className={classes.semiDarkTypography} gutterBottom>
-                Discover
+                Découvrez mon profil
               </Typography>
 
               <Typography variant='body1' className={classes.bodyParagraph}>
