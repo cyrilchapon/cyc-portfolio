@@ -2,8 +2,9 @@ import { FontAwesomeSvgIcon } from '$components/icons/font-awesome-svg-icon'
 import { MaltSvgIcon } from '$components/icons/malt-svg-icon'
 import { ListItemLink } from '$components/lists/list-item-link'
 import { faGithub, faLinkedin, faMedium, faMediumM } from '@fortawesome/free-brands-svg-icons'
-import { faCalendarDay, faEnvelope, faPhoneAlt, faUser } from '@fortawesome/free-solid-svg-icons'
-import { Grid, Link, List, ListItem, ListItemIcon, ListItemText, makeStyles, Paper } from '@material-ui/core'
+import { faAt, faCalendarDay, faEnvelope, faPhoneAlt, faPlus, faUser } from '@fortawesome/free-solid-svg-icons'
+import { Grid, Icon, Link, List, ListItem, ListItemIcon, ListItemText, makeStyles, Paper } from '@material-ui/core'
+import clsx from 'clsx'
 
 const useStyles = makeStyles(theme => ({
   contactPaper: {
@@ -47,7 +48,7 @@ const ContactPaper = () => {
                 <FontAwesomeSvgIcon fontSize='small' icon={faEnvelope} />
               </ListItemIcon>
 
-              <ListItemText primary='cyril.chapon@live.com' />
+              <ListItemText primary='cyril&#x002E;chapon&#x0040;live&#x002E;com' />
             </ListItem>
 
             <ListItem>
@@ -55,7 +56,7 @@ const ContactPaper = () => {
                 <FontAwesomeSvgIcon fontSize='small' icon={faPhoneAlt} />
               </ListItemIcon>
 
-              <ListItemText primary='06 66 09 62 02' />
+              <ListItemText primary='&#x002B;33&#x0020;6&#x0020;66&#x0020;09&#x0020;62&#x0020;02' />
             </ListItem>
           </List>
         </Grid>
