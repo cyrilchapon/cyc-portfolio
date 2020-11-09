@@ -4,7 +4,7 @@ import { ContactPaper } from '$components/papers/contact-paper'
 import { useMediaQueryMatches, useMediaQueryValue } from '$styles/media-query'
 import { faMailchimp } from '@fortawesome/free-brands-svg-icons'
 import { faBlenderPhone, faEnvelope, faPhone, faPhoneAlt } from '@fortawesome/free-solid-svg-icons'
-import { Button, Card, CardMedia, Container, Grid, GridSpacing, Link, List, ListItem, ListItemIcon, ListItemText, makeStyles, Paper, Typography, useMediaQuery, useTheme } from '@material-ui/core'
+import { Button, Card, CardMedia, Container, Grid, GridSpacing, Link, List, ListItem, ListItemIcon, ListItemText, makeStyles, Paper, PaperProps, Typography, useMediaQuery, useTheme } from '@material-ui/core'
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import clsx from 'clsx'
 import { FunctionComponent } from 'react'
@@ -61,6 +61,10 @@ const breakpointGutterSpacings: Partial<Record<Breakpoint, GridSpacing>> = {
   lg: 8
 }
 
+const ImgPaper: FunctionComponent<PaperProps & { src: string }> = (props) => (
+  <Paper {...props} />
+)
+
 export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
   const classes = useStyles()
 
@@ -72,7 +76,7 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
       <Container>
         <Grid container direction='row' justify='center' spacing={mqSpacing}>
           <Grid item xs={12} lg={4} className={classes.imgGridItem}>
-            <Paper
+            <ImgPaper
               className={clsx(classes.paper, classes.img)}
               elevation={2}
               component='img'
