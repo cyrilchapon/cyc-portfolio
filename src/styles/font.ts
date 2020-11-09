@@ -18,7 +18,7 @@ interface FontDefinition {
     medium: number
     bold: number
   }
-  variant: FontGender
+  gender: FontGender
 }
 
 const fontDefinitions: {
@@ -37,7 +37,7 @@ const fontDefinitions: {
       medium: 550,
       bold: 650
     },
-    variant: 'serif'
+    gender: 'serif'
   },
   workSans: {
     link: 'https://fonts.googleapis.com/css2?family=Work+Sans:wght@280;350;450;600&display=swap',
@@ -49,19 +49,19 @@ const fontDefinitions: {
       medium: 450,
       bold: 600
     },
-    variant: 'sansSerif'
+    gender: 'sansSerif'
   },
   quicksand: {
-    link: 'https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap',
+    link: 'https://fonts.googleapis.com/css2?family=Quicksand:wght@300;450;550;700&display=swap',
     family: 'Quicksand',
     fallback: FONT_STACKS.Tahoma,
     weights: {
       light: 300,
-      regular: 400,
-      medium: 500,
-      bold: 600
+      regular: 450,
+      medium: 550,
+      bold: 700
     },
-    variant: 'sansSerif'
+    gender: 'sansSerif'
   },
   anonymousPro: {
     link: 'https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@300;400;500;700&display=swap',
@@ -73,7 +73,7 @@ const fontDefinitions: {
       medium: 500,
       bold: 700
     },
-    variant: 'mono'
+    gender: 'mono'
   }
 }
 

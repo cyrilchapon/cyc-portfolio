@@ -1,20 +1,12 @@
 // import { snapChild, SnapChildProps } from '$styles'
 import * as React from 'react'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
-import { faGithub, faLinkedin, faMedium, faMediumM } from '@fortawesome/free-brands-svg-icons'
-import { AppBar, AppBarProps, Button, fade, IconButton, IconButtonProps, makeStyles, Slide, Theme, Toolbar, Typography, useMediaQuery, useScrollTrigger, useTheme } from '@material-ui/core'
+import { faGithub, faLinkedin, faMediumM } from '@fortawesome/free-brands-svg-icons'
+import { AppBar, AppBarProps, IconButton, IconButtonProps, makeStyles, Slide, Theme, Toolbar, Typography, useScrollTrigger } from '@material-ui/core'
 import { FunctionComponent } from 'react'
 import { FontAwesomeSvgIcon } from './icons/font-awesome-svg-icon'
 import { MaltSvgIcon } from './icons/malt-svg-icon'
-import { omit } from 'lodash'
-import { CSSProperties } from '@material-ui/core/styles/withStyles'
-import { theme } from '$styles'
-
-// export const Header = styled(_Header)<SnapChildProps>`
-//   /* background-color: ${props => props.theme.colors.header};
-//   min-height: ${props => props.theme.spacings.header}; */
-//   ${snapChild}
-// `
+import { theme, useNavbarHeight } from '$styles'
 
 const useSocialButtonStyles = makeStyles((theme) => ({
   socialIcon: {
@@ -49,41 +41,20 @@ const useStyles = makeStyles<
 >((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: props => props.scrolled ? theme.palette.background.default : 'transparent',
-    color: theme.palette.getContrastText(theme.palette.background.default)
+    // backgroundColor: props => props.scrolled ? theme.palette.background.default : 'transparent',
+    // color: theme.palette.getContrastText(theme.palette.background.default)
+    backgroundColor: props => props.scrolled ? theme.palette.background.header : 'transparent',
+    // backdropFilter: props => props.scrolled ? 'blur(5px)' : 'initial'
   },
   menuButton: {
     marginRight: theme.spacing(2)
   },
   title: {
-    flexGrow: 1
+    flexGrow: 1,
+    fontFamily: theme.typography.variants.sansSerif.fontFamily,
+    fontWeight: theme.typography.variants.sansSerif.fontWeightMedium
   }
 }))
-
-const removePx = (value: number | string | null) => (
-  typeof value === 'string'
-    ? parseInt(value.replace('px', ''), 10)
-    : value
-)
-
-const useNavbarHeight = () => {
-  const theme = useTheme()
-
-  const defaultHeight = theme.mixins.toolbar.minHeight
-
-  const matchingHeight = Object
-    .entries(theme.mixins.toolbar as Record<string, CSSProperties>)
-    .filter(([k]) => k.startsWith('@media'))
-    .reduce((acc, [mq, styleObj]) => {
-      const matches = useMediaQuery(mq)
-      if (matches && 'minHeight' in styleObj) {
-        acc = styleObj.minHeight ?? null
-      }
-      return acc
-    }, null as string | number | null)
-
-  return removePx(matchingHeight ?? defaultHeight ?? null)
-}
 
 export const Header: FunctionComponent<AppBarProps> = (props) => {
   const navbarHeight = useNavbarHeight()
@@ -108,11 +79,11 @@ export const Header: FunctionComponent<AppBarProps> = (props) => {
       {...props}
     >
       <Toolbar>
-        <IconButton edge='start' className={classes.menuButton} color='inherit' aria-label='menu'>
+        {/* <IconButton edge='start' className={classes.menuButton} color='inherit' aria-label='menu'>
           <FontAwesomeSvgIcon icon={faBars} />
-        </IconButton>
-        <Typography variant='h6' className={classes.title}>
-          News
+        </IconButton> */}
+        <Typography variant='h5' component='div' className={classes.title}>
+          Cyril CHAPON
         </Typography>
 
         <SocialIconButton href='https://cyril-chpn.medium.com'>

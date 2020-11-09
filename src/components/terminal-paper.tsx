@@ -24,6 +24,7 @@ const TerminalPaper: FunctionComponent<TerminalPaperProps> = (props) => {
 
   const {
     className,
+    initialLines,
     ...restProps
   } = props
 

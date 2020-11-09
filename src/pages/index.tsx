@@ -7,6 +7,7 @@ import { Main } from '$components/main'
 // import { Container } from '$components/container'
 // import { SnapBody } from '$styles'
 import { IntroHero } from '$components/heroes/intro-hero'
+import { AboutMeHero } from '$components/heroes/about-me-hero'
 import { TypographyTesterHero } from '$components/heroes/typography-tester-hero'
 
 export default function Home() {
@@ -22,13 +23,11 @@ export default function Home() {
       <Main>
         <Header />
 
-        <IntroHero escapeHeader />
+        <IntroHero id='intro' escapeHeader />
 
-        <Hero bgcolor='primary.main'>
-          test
-        </Hero>
+        <AboutMeHero id='a-propos-de-moi' escapeHeader />
 
-        <TypographyTesterHero />
+        {/* <TypographyTesterHero /> */}
       </Main>
     </>
   )

@@ -1,15 +1,7 @@
-// import {
-//   Theme,
-//   ThemeColorName,
-//   snapChild,
-//   SnapChildProps
-// } from '$styles'
-
-import { Box, BoxProps, makeStyles, StyleRules, Theme } from '@material-ui/core'
-import { CreateCSSProperties, CSSProperties } from '@material-ui/core/styles/withStyles'
+import { Box, BoxProps, makeStyles, Theme } from '@material-ui/core'
 import { FunctionComponent } from 'react'
 import { mapValues, omit } from 'lodash'
-import type { PropsCssFunc, PropsFunc } from '$styles'
+import { maybePxToPx, PropsCssFunc } from '$styles'
 
 export interface HeroProps extends BoxProps {
   escapeHeader?: boolean
@@ -18,15 +10,6 @@ export interface HeroProps extends BoxProps {
 interface WithMinHeight {
   minHeight: any
 }
-
-const maybePxToPx = (value?: number | string) => (
-  typeof value === 'number'
-    ? `${value}px`
-    : (value != null
-      ? value
-      : '0'
-    )
-)
 
 const getPaddingTop = (theme: Theme): PropsCssFunc<HeroProps> => ({ escapeHeader }) => (
   (escapeHeader ?? false)
@@ -43,17 +26,6 @@ const getPaddingTop = (theme: Theme): PropsCssFunc<HeroProps> => ({ escapeHeader
       paddingTop: theme.spacing(4)
     }
 )
-
-// export const Hero = styled('section')<HeroProps & SnapChildProps>`
-//   background-color: ${props => getColor(props.theme)(props.color)};
-//   height: ${props => getHeight(props.theme)(props.escapeHeader)};
-
-//   ${snapChild}
-
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-// `
 
 const useStyles = makeStyles<Theme, HeroProps, 'hero'>((theme) => {
   return {
