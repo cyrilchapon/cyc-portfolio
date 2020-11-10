@@ -1,25 +1,13 @@
 import { Hero, HeroProps } from '$components/hero'
-import { FontAwesomeSvgIcon } from '$components/icons/font-awesome-svg-icon'
 import { ContactPaper } from '$components/papers/contact-paper'
-import { useMediaQueryMatches, useMediaQueryValue } from '$styles/media-query'
-import { faMailchimp } from '@fortawesome/free-brands-svg-icons'
-import { faBlenderPhone, faEnvelope, faPhone, faPhoneAlt } from '@fortawesome/free-solid-svg-icons'
-import { Button, Card, CardMedia, Container, Grid, GridSpacing, Link, List, ListItem, ListItemIcon, ListItemText, makeStyles, Paper, PaperProps, Typography, useMediaQuery, useTheme } from '@material-ui/core'
+import { ImgPaper } from '$components/papers/img-paper'
+import { useMediaQueryMatches, useResponsive } from '$styles/media-query'
+import { Button, Container, Grid, GridSpacing, makeStyles, Paper, PaperProps, Typography } from '@material-ui/core'
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
-import clsx from 'clsx'
 import { FunctionComponent } from 'react'
-import { DarkButton } from '../dark-button'
 
 const useStyles = makeStyles(theme => ({
-  paper: {
-    width: '100%',
-    height: '100%'
-  },
   imgGridItem: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
     [theme.breakpoints.up('lg')]: {
       alignItems: 'flex-start'
     }
@@ -28,9 +16,6 @@ const useStyles = makeStyles(theme => ({
     width: 'auto',
     maxWidth: '100%',
     height: 'auto'
-  },
-  titleGroup: {
-    paddingBottom: '0!important'
   },
   darkTypography: {
     color: theme.palette.text.dark.semi
@@ -46,9 +31,6 @@ const useStyles = makeStyles(theme => ({
     '& > p:last-of-type': {
       marginBottom: 0
     }
-  },
-  lightButton: {
-    // backgroundColor: theme.palette.primary.main
   }
 }))
 
@@ -61,31 +43,32 @@ const breakpointGutterSpacings: Partial<Record<Breakpoint, GridSpacing>> = {
   lg: 8
 }
 
-const ImgPaper: FunctionComponent<PaperProps & { src: string }> = (props) => (
-  <Paper {...props} />
-)
-
 export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
   const classes = useStyles()
 
-  const [ mqSpacing ] = useMediaQueryValue(breakpointGutterSpacings)!
-  const mqMatches = useMediaQueryMatches()
+  const r = useResponsive()
 
   return (
     <Hero bgcolor='primary.main' {...props}>
       <Container>
-        <Grid container direction='row' justify='center' spacing={mqSpacing}>
-          <Grid item xs={12} lg={4} className={classes.imgGridItem}>
+        <Grid container direction='row' justify='center' spacing={r(breakpointGutterSpacings)}>
+          <Grid
+            item xs={12} lg={4}
+            container direction='column' justify='center' alignItems='center'
+            className={classes.imgGridItem}
+          >
             <ImgPaper
-              className={clsx(classes.paper, classes.img)}
+              className={classes.img}
               elevation={2}
-              component='img'
-              src={mqMatches.lg ? mySelfHeightImg : mySelfWideImg}
+              src={r({xs: mySelfWideImg, lg: mySelfHeightImg})}
               square
             />
           </Grid>
 
-          <Grid item xs={12} lg={6} container direction='row' spacing={4} justify='center'>
+          <Grid
+            item xs={12} lg={6}
+            container direction='row' spacing={4} justify='center'
+          >
             <Grid item xs={12}>
               <Typography variant='h3' component='h2' className={classes.darkTypography}>
                 À propos de moi
@@ -95,7 +78,7 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
                 Découvrez mon profil
               </Typography>
 
-              <Typography variant='body1' className={classes.bodyParagraph}>
+              <Typography variant='body1' component='div' className={classes.bodyParagraph}>
                 <p>
                   Évoluant depuis presque 12 ans dans le milieu de la tech
                   et majoritairement en environnement Startup,
@@ -113,11 +96,13 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
               <ContactPaper />
             </Grid>
 
-            <Grid item xs={12} container direction='row' justify='center'>
+            <Grid
+              item xs={12}
+              container direction='row' justify='center'
+            >
               <Button
                 href='https://www.malt.fr/profile/cyrilchapon'
                 variant='contained'
-                className={classes.lightButton}
               >
                 Me contacter
               </Button>

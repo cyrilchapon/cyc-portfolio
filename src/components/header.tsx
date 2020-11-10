@@ -42,7 +42,7 @@ const useStyles = makeStyles<
   root: {
     flexGrow: 1,
     // backgroundColor: props => props.scrolled ? theme.palette.background.default : 'transparent',
-    // color: theme.palette.getContrastText(theme.palette.background.default)
+    color: theme.palette.getContrastText(theme.palette.background.header),
     backgroundColor: props => props.scrolled ? theme.palette.background.header : 'transparent',
     // backdropFilter: props => props.scrolled ? 'blur(5px)' : 'initial'
   },

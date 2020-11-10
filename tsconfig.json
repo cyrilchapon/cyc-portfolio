@@ -23,7 +23,9 @@
       "$styles": ["styles"],
       "$styles/*": ["styles/*"],
       "$components": ["components"],
-      "$components/*": ["components/*"]
+      "$components/*": ["components/*"],
+      "$constants": ["constants"],
+      "$constants/*": ["constants/*"],
     }
   },
   "include": [

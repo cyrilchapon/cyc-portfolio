@@ -35,10 +35,8 @@ const theme: Theme = responsiveFontSizes(createMuiCustomTheme({
   palette: {
     type: 'dark',
     primary: {
-      // main: '#FF3679'
-      // main: '#DB2E4E'
       main: '#E02F58'
-      // main: '#E30B5D'
+      // main: '#1BB16D'
     },
     secondary: {
       main: '#545EF0'

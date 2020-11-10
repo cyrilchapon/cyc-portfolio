@@ -2,11 +2,11 @@ import { fade, makeStyles, Paper, PaperProps, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import { FunctionComponent } from 'react'
 
-interface TerminalPaperProps extends PaperProps {
+interface TerminalPaperBaseProps extends PaperProps {
   initialLines?: number
 }
 
-const useStyles = makeStyles<Theme, TerminalPaperProps, 'paper'>((theme) => ({
+const useStyles = makeStyles<Theme, TerminalPaperBaseProps, 'paper'>((theme) => ({
   paper: {
     padding: theme.spacing(1),
     height: props => (
@@ -19,7 +19,7 @@ const useStyles = makeStyles<Theme, TerminalPaperProps, 'paper'>((theme) => ({
 }))
 
 
-const TerminalPaper: FunctionComponent<TerminalPaperProps> = (props) => {
+const TerminalPaperBase: FunctionComponent<TerminalPaperBaseProps> = (props) => {
   const classes = useStyles(props)
 
   const {
@@ -37,5 +37,5 @@ const TerminalPaper: FunctionComponent<TerminalPaperProps> = (props) => {
   )
 }
 
-export { TerminalPaper }
-export type { TerminalPaperProps }
+export { TerminalPaperBase }
+export type { TerminalPaperBaseProps }

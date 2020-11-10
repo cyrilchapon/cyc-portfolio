@@ -1,61 +1,44 @@
 import { useMediaQuery, useTheme } from "@material-ui/core"
 import { Breakpoint } from "@material-ui/core/styles/createBreakpoints"
+import { findLast } from "lodash"
 
 type MediaQueryMatches = Record<Breakpoint, boolean>
 const useMediaQueryMatches = () => {
   const theme = useTheme()
 
-  const mediaQueryMatchesEntries = (Object.entries(theme.breakpoints.values) as [Breakpoint, number][])
-    .map(([bp, bpx]) => {
-      const match = bpx === 0 || useMediaQuery(theme.breakpoints.up(bp))
-      return [bp, match]
-    }) as [Breakpoint, boolean][]
+  const matches = theme.breakpoints.keys
+    .reduce((acc, bp) => {
+      return {
+        ...acc,
+        [bp]: useMediaQuery(theme.breakpoints.up(bp))
+      }
+    }, {} as MediaQueryMatches)
 
-  const mediaQueryMatches = Object.fromEntries(mediaQueryMatchesEntries)
-
-  return mediaQueryMatches as MediaQueryMatches
+  return matches
 }
 
-type MediaQueryValueMatch<T extends number | string> = [T, Breakpoint]
-const useMediaQueryValue = <T extends number | string>(values: Partial<Record<Breakpoint, T | null>>): MediaQueryValueMatch<T> | null => {
+type ResponsiveValues<ValueT> = Partial<Record<Breakpoint, ValueT>>
+const useResponsive = () => {
   const theme = useTheme()
 
-  const lastMatchingBreakpoint = (Object.entries(theme.breakpoints.values) as [Breakpoint, number][])
-    .reduce((acc, [bp, bpx]) => {
-      const match = (bpx === 0) || useMediaQuery(theme.breakpoints.up(bp))
-      const valueDeclared = bp in values && values[bp] != null
+  const matches = useMediaQueryMatches()
 
-      if (match && valueDeclared) {
-        acc = bp
-      }
+    return <P, DefaultT = typeof undefined>(responsiveValues: ResponsiveValues<P>, defaultValue?: DefaultT ) => {
+      const match = findLast(
+        theme.breakpoints.keys,
+        bp => matches[bp] && responsiveValues[bp] != null,
+      )
 
-      return acc
-    }, null as Breakpoint | null)
-
-  const lastMatchingValue = (lastMatchingBreakpoint != null)
-    ? [values[lastMatchingBreakpoint]!, lastMatchingBreakpoint[0]] as MediaQueryValueMatch<T>
-    : null
-
-  // const lastMatchingMqValue = (Object.entries(theme.breakpoints.values) as unknown as [Breakpoint, number][]).reduce((acc, [bp, bpx]) => {
-  //   const match = (bpx === 0) || useMediaQuery(theme.breakpoints.up(bp))
-  //   const valueDeclared = bp in values && values[bp] != null
-
-  //   if (match && valueDeclared) {
-  //     acc = [values[bp] as T, bp] as MediaQueryValueMatch<T>
-  //   }
-
-  //   return acc
-  // }, null as MediaQueryValueMatch<T> | null)
-
-  return lastMatchingValue
+      return match ? responsiveValues[match] : defaultValue
+    }
 }
 
 export {
   useMediaQueryMatches,
-  useMediaQueryValue
+  useResponsive
 }
 
 export type {
   MediaQueryMatches,
-  MediaQueryValueMatch
+  ResponsiveValues
 }
