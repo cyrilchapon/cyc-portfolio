@@ -1,10 +1,10 @@
 import { Hero, HeroProps } from '$components/hero'
-import { TerminalPaper } from '$components/papers/terminal-paper'
 import { terminalStrings } from '$constants'
 import { Container, Grid } from '@material-ui/core'
 import { FunctionComponent } from 'react'
 import { IntroAvatar } from './intro-avatar'
 import { IntroSubtitle } from './intro-subtitle'
+import { TerminalPaper } from './intro-terminal-paper'
 import { IntroTitle } from './intro-title'
 
 export const IntroHero: FunctionComponent<HeroProps> = (props) => {

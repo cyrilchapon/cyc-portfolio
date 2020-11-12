@@ -86,19 +86,19 @@ export const Header: FunctionComponent<AppBarProps> = (props) => {
           Cyril CHAPON
         </Typography>
 
-        <SocialIconButton href='https://cyril-chpn.medium.com'>
+        <SocialIconButton href='https://cyril-chpn.medium.com' target='_blank'>
           <FontAwesomeSvgIcon icon={faMediumM} />
         </SocialIconButton>
 
-        <SocialIconButton href='https://github.com/cyrilchapon'>
+        <SocialIconButton href='https://github.com/cyrilchapon' target='_blank'>
           <FontAwesomeSvgIcon icon={faGithub} />
         </SocialIconButton>
 
-        <SocialIconButton href='https://www.linkedin.com/in/cchapon'>
+        <SocialIconButton href='https://www.linkedin.com/in/cchapon' target='_blank'>
           <FontAwesomeSvgIcon icon={faLinkedin} />
         </SocialIconButton>
 
-        <SocialIconButton href='https://www.malt.fr/profile/cyrilchapon'>
+        <SocialIconButton href='https://www.malt.fr/profile/cyrilchapon' target='_blank'>
           <MaltSvgIcon />
         </SocialIconButton>
       </Toolbar>

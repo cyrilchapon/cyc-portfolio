@@ -12,7 +12,7 @@ interface CustomColors {
   header: string
 }
 
-const defaultMapping: Record<PaletteType, CustomColors> = {
+const defaultAdditionalBackgroundMapping: Record<PaletteType, CustomColors> = {
   light: {
     terminal: colors.common.white,
     intro: colors.grey[50],
@@ -72,6 +72,14 @@ const defaultMappings: Record<Variant, FontGender> = {
   overline: 'sansSerif'
 }
 
+export const customDark = {
+  background: defaultAdditionalBackgroundMapping.dark
+}
+
+export const customLight = {
+  background: defaultAdditionalBackgroundMapping.light
+}
+
 export const createMuiCustomTheme = (options: ThemeOptions) => {
   const darkOrLight = options.palette?.type ?? 'light'
 
@@ -84,8 +92,20 @@ export const createMuiCustomTheme = (options: ThemeOptions) => {
     palette: {
       ...options.palette,
       background: {
-        ...defaultMapping[darkOrLight],
-        ...options.palette?.background
+        ...defaultAdditionalBackgroundMapping[darkOrLight],
+        ...options.palette?.background,
+        light: {
+          ...defaultAdditionalBackgroundMapping.light,
+          default: light.background.default,
+          paper: light.background.paper,
+          ...options.palette?.background?.light
+        },
+        dark: {
+          ...defaultAdditionalBackgroundMapping.dark,
+          default: dark.background.default,
+          paper: dark.background.paper,
+          ...options.palette?.background?.dark
+        }
       }
     },
     typography: (palette: Palette) => {

@@ -1,50 +1,41 @@
-import { makeStyles, Typography } from '@material-ui/core'
-import { TerminalPaperBase, TerminalPaperBaseProps } from './_terminal-paper-base'
-import Typed from 'react-typed'
+import { makeStyles, Paper, PaperProps, Theme } from '@material-ui/core'
+import clsx from 'clsx'
 import { FunctionComponent } from 'react'
 
-const useStyles = makeStyles((theme) => ({
-  terminalTypo: {
-    color: theme.palette.text.secondary,
-    fontWeight: theme.typography.variants.mono.fontWeightMedium,
-    fontFamily: theme.typography.variants.mono.fontFamily,
-    fontSize: theme.typography.variants.mono.fontSize
+interface TerminalPaperBaseProps extends PaperProps {
+  initialLines?: number
+}
+
+const useStyles = makeStyles<Theme, TerminalPaperBaseProps, 'paper'>((theme) => ({
+  paper: {
+    padding: theme.spacing(1),
+    height: props => (
+      theme.spacing(
+        (theme.typography.subtitle1.lineHeight as number) * (props.initialLines ?? 1) * 2
+      ) + theme.spacing(2)
+    ),
+    backgroundColor: theme.palette.background.terminal
   }
 }))
 
-interface TerminalPaperProps extends TerminalPaperBaseProps {
-  strings: string[]
-}
 
-export const TerminalPaper: FunctionComponent<TerminalPaperProps> = (props) => {
-  const classes = useStyles()
+const TerminalPaperBase: FunctionComponent<TerminalPaperBaseProps> = (props) => {
+  const classes = useStyles(props)
 
   const {
-    strings,
-    ...terminalPaperBaseProps
+    className,
+    initialLines,
+    ...restProps
   } = props
 
   return (
-    <TerminalPaperBase initialLines={2} {...terminalPaperBaseProps}>
-      <Typography component='div' className={classes.terminalTypo}>
-        &gt;{' '}
-          {strings.length > 0 && (
-            <Typography
-              variant='srOnly'
-            >
-              {strings[0]}
-            </Typography>
-          )}
-
-          <Typed
-            contentType='html'
-            strings={strings}
-            backDelay={2000}
-            backSpeed={10}
-            typeSpeed={40}
-            loop
-          />
-      </Typography>
-    </TerminalPaperBase>
+    <Paper
+      variant='outlined'
+      className={clsx(className, classes.paper)}
+      {...restProps}
+    />
   )
 }
+
+export { TerminalPaperBase }
+export type { TerminalPaperBaseProps }

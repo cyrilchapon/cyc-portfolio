@@ -1,10 +1,11 @@
 import { FontAwesomeSvgIcon } from '$components/icons/font-awesome-svg-icon'
 import { MaltSvgIcon } from '$components/icons/malt-svg-icon'
 import { ListItemLink } from '$components/lists/list-item-link'
-import { faGithub, faLinkedin, faMedium, faMediumM } from '@fortawesome/free-brands-svg-icons'
-import { faAt, faCalendarDay, faEnvelope, faPhoneAlt, faPlus, faUser } from '@fortawesome/free-solid-svg-icons'
-import { Grid, Icon, Link, List, ListItem, ListItemIcon, ListItemText, makeStyles, Paper } from '@material-ui/core'
+import { faGithub, faLinkedin, faMediumM } from '@fortawesome/free-brands-svg-icons'
+import { faCalendarDay, faEnvelope, faPhoneAlt, faUser } from '@fortawesome/free-solid-svg-icons'
+import { Grid, Link, List, ListItem, ListItemIcon, ListItemText, makeStyles, Paper, PaperProps } from '@material-ui/core'
 import clsx from 'clsx'
+import { FunctionComponent } from 'react'
 
 const useStyles = makeStyles(theme => ({
   contactPaper: {
@@ -19,11 +20,19 @@ const getAge = (birthday: Date) => {
 
 const birthDay = new Date(Date.parse('1991-01-04T00:00:00+01:00'))
 
-const ContactPaper = () => { 
+const ContactPaper: FunctionComponent<PaperProps> = (props) => { 
   const classes = useStyles()
 
+  const {
+    className,
+    ...paperProps
+  } = props
+
   return (
-    <Paper className={classes.contactPaper}>
+    <Paper
+      {...paperProps}
+      className={clsx(className, classes.contactPaper)}
+    >
       <Grid container direction='row' spacing={0}>
         <Grid item xs={12} sm={6}>
           <List>
@@ -32,7 +41,7 @@ const ContactPaper = () => {
                 <FontAwesomeSvgIcon fontSize='small' icon={faUser} />
               </ListItemIcon>
 
-              <ListItemText primary='Cyril CHAPON' />
+              <ListItemText secondary='Nom' primary={<strong>Cyril CHAPON</strong>} />
             </ListItem>
 
             <ListItem>
@@ -40,7 +49,7 @@ const ContactPaper = () => {
                 <FontAwesomeSvgIcon fontSize='small' icon={faCalendarDay} />
               </ListItemIcon>
 
-              <ListItemText primary={`${getAge(birthDay)} ans`} />
+              <ListItemText secondary='Age' primary={<strong>{getAge(birthDay)} ans</strong>} />
             </ListItem>
 
             <ListItem>
@@ -48,7 +57,7 @@ const ContactPaper = () => {
                 <FontAwesomeSvgIcon fontSize='small' icon={faEnvelope} />
               </ListItemIcon>
 
-              <ListItemText primary='cyril&#x002E;chapon&#x0040;live&#x002E;com' />
+              <ListItemText secondary='E-mail' primary={<strong>cyril&#x002E;chapon&#x0040;live&#x002E;com</strong>} />
             </ListItem>
 
             <ListItem>
@@ -56,7 +65,7 @@ const ContactPaper = () => {
                 <FontAwesomeSvgIcon fontSize='small' icon={faPhoneAlt} />
               </ListItemIcon>
 
-              <ListItemText primary='&#x002B;33&#x0020;6&#x0020;66&#x0020;09&#x0020;62&#x0020;02' />
+  <ListItemText secondary='Téléphone' primary={<strong>&#x002B;33&#x0020;6&#x0020;66&#x0020;09&#x0020;62&#x0020;02</strong>} />
             </ListItem>
           </List>
         </Grid>
@@ -68,7 +77,7 @@ const ContactPaper = () => {
                 <FontAwesomeSvgIcon fontSize='small' icon={faMediumM} />
               </ListItemIcon>
 
-              <ListItemLink primary='@cyril-chpn' />
+              <ListItemLink secondary='Medium' primary={<strong>@cyril-chpn</strong>} />
             </ListItem>
 
             <ListItem component={Link} href='https://github.com/cyrilchapon' color='inherit'>
@@ -76,7 +85,7 @@ const ContactPaper = () => {
                 <FontAwesomeSvgIcon fontSize='small' icon={faGithub} />
               </ListItemIcon>
 
-              <ListItemLink primary='cyrilchapon' />
+              <ListItemLink secondary='Github' primary={<strong>cyrilchapon</strong>} />
             </ListItem>
 
             <ListItem component={Link} href='https://www.linkedin.com/in/cchapon' color='inherit'>
@@ -84,7 +93,7 @@ const ContactPaper = () => {
                 <FontAwesomeSvgIcon fontSize='small' icon={faLinkedin} />
               </ListItemIcon>
 
-              <ListItemLink primary='cchapon' />
+              <ListItemLink secondary='LinkedIn' primary={<strong>cchapon</strong>} />
             </ListItem>
 
             <ListItem component={Link} href='https://www.malt.fr/profile/cyrilchapon' color='inherit'>
@@ -92,7 +101,7 @@ const ContactPaper = () => {
                 <MaltSvgIcon fontSize='small' />
               </ListItemIcon>
 
-              <ListItemLink primary='cyrilchapon' />
+              <ListItemLink secondary='Malt' primary={<strong>cyrilchapon</strong>} />
             </ListItem>
           </List>
         </Grid>

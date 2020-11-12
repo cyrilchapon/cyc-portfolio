@@ -23,10 +23,14 @@ import { FontGender } from '../styles/font'
 // }
 
 declare module '@material-ui/core/styles/createPalette' {
+  type SimpleTypeBackground = Omit<TypeBackground, 'light' | 'dark'>
+
   interface TypeBackground {
     intro: string
     terminal: string
     header: string
+    light: SimpleTypeBackground
+    dark: SimpleTypeBackground
   }
 
   export type StrongerTonalOffset =

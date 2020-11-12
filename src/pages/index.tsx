@@ -6,6 +6,7 @@ import { Main } from '$components/main'
 import { IntroHero } from '$components/heroes/intro-hero'
 import { AboutMeHero } from '$components/heroes/about-me-hero'
 import { TypographyTesterHero } from '$components/heroes/typography-tester-hero'
+import { ServicesHero } from '$components/heroes/services-hero'
 
 export default function Home() {
   return (
@@ -21,8 +22,9 @@ export default function Home() {
         <Header />
         <IntroHero id='intro' escapeHeader />
         <AboutMeHero id='a-propos-de-moi' escapeHeader />
+        <ServicesHero escapeHeader />
 
-        {/* <TypographyTesterHero /> */}
+        {process.env.NODE_ENV === 'development' && <TypographyTesterHero />}
       </Main>
     </>
   )

@@ -1,8 +1,8 @@
 import { Hero, HeroProps } from '$components/hero'
-import { ContactPaper } from '$components/papers/contact-paper'
+import { ContactPaper } from './about-me-contact-paper'
 import { ImgPaper } from '$components/papers/img-paper'
-import { useMediaQueryMatches, useResponsive } from '$styles/media-query'
-import { Button, Container, Grid, GridSpacing, makeStyles, Paper, PaperProps, Typography } from '@material-ui/core'
+import { useResponsive } from '$styles/media-query'
+import { Button, Container, Grid, GridSpacing, makeStyles, Typography } from '@material-ui/core'
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import { FunctionComponent } from 'react'
 

@@ -1,8 +1,8 @@
 import { responsiveFontSizes } from '@material-ui/core'
 import { createMuiTheme, ThemeOptions, Theme, fade } from '@material-ui/core/styles'
-import { Palette } from '@material-ui/core/styles/createPalette'
+import { dark, light, Palette } from '@material-ui/core/styles/createPalette'
 import { TypographyStyleOptions } from '@material-ui/core/styles/createTypography'
-import { createMuiCustomTheme } from './custom-theme'
+import { createMuiCustomTheme, customLight } from './custom-theme'
 import { composeStack, FontDefinition, FONTS } from './font'
 
 const composeMuiFontDefinition = (fontDefinition: FontDefinition) => ({
@@ -34,18 +34,38 @@ const backgroundImage = 'https://images.prismic.io/cyc-portfolio/96cdde6f-f250-4
 const theme: Theme = responsiveFontSizes(createMuiCustomTheme({
   palette: {
     type: 'dark',
+    tonalOffset: {
+      light: 0.5,
+      dark: 0.2
+    },
     primary: {
       main: '#E02F58'
       // main: '#1BB16D'
     },
     secondary: {
-      main: '#545EF0'
+      // main: '#FFFFFF'
+      main: '#1BB16D'
+      // main: '#FFFFFF'
     },
     background: {
       default: '#1A1A1A',
       intro: 'transparent',
       terminal: fade('#0A0A0A', 0.5),
-      header: fade('#000000', 0.85)
+      header: fade('#000000', 0.85),
+      light: {
+        default: light.background.default,
+        intro: customLight.background.intro,
+        terminal: customLight.background.terminal,
+        header: customLight.background.header,
+        paper: light.background.paper
+      },
+      dark: {
+        default: '#1A1A1A',
+        intro: 'transparent',
+        terminal: fade('#0A0A0A', 0.5),
+        header: fade('#000000', 0.85),
+        paper: dark.background.paper
+      }
     },
     text: {
       semi: 'rgba(255, 255, 255, 0.9)',
@@ -109,7 +129,7 @@ const theme: Theme = responsiveFontSizes(createMuiCustomTheme({
       fontFamily: composeStack(FONTS.serif),
       fontWeight: FONTS.serif.weights.bold,
       color: palette.text.semi,
-      ...smallCapsStyles
+      // ...smallCapsStyles
     },
     h5: {
       fontFamily: composeStack(FONTS.serif),
