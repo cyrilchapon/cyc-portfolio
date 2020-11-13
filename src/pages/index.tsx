@@ -9,8 +9,15 @@ import { TypographyTesterHero } from '$components/heroes/typography-tester-hero'
 import { ServicesHero } from '$components/heroes/services-hero'
 import { ThemeProvider } from '@material-ui/core'
 import { themes } from '$styles'
+import { useGlobalState } from '$global-state'
+import { SubscribeFormDialog } from '$components/dialogs/subscribe-form-dialog'
 
-export default function Home() {
+const Home = () => {
+  const [
+    subscribeDialogOpen,
+    setSubscribeDialogOpen
+  ] = useGlobalState('subscribeModalOpen')
+
   return (
     <>
       <Head>
@@ -28,9 +35,8 @@ export default function Home() {
           <AboutMeHero id='a-propos-de-moi' escapeHeader />
         </ThemeProvider>
 
-
         <ThemeProvider theme={themes.light}>
-          <ServicesHero escapeHeader />
+          <ServicesHero id='mes-services' escapeHeader />
         </ThemeProvider>
 
         {process.env.NODE_ENV === 'development' && (
@@ -38,7 +44,17 @@ export default function Home() {
             <TypographyTesterHero />
           </ThemeProvider>
         )}
+
+        <ThemeProvider theme={themes.light}>
+          <SubscribeFormDialog
+            open={subscribeDialogOpen}
+            onCancel={() => setSubscribeDialogOpen(false)}
+            onSubmit={() => setSubscribeDialogOpen(false)}
+          />
+        </ThemeProvider>
       </Main>
     </>
   )
 }
+
+export default Home

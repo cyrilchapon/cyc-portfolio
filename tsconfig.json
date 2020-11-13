@@ -26,6 +26,8 @@
       "$components/*": ["components/*"],
       "$constants": ["constants"],
       "$constants/*": ["constants/*"],
+      "$global-state": ["global-state"],
+      "$global-state/*": ["global-state/*"],
     }
   },
   "include": [
