@@ -57,7 +57,7 @@ const ContactPaper: FunctionComponent<PaperProps> = (props) => {
                 <FontAwesomeSvgIcon fontSize='small' icon={faEnvelope} />
               </ListItemIcon>
 
-              <ListItemText secondary='E-mail' primary={<strong>cyril&#x002E;chapon&#x0040;live&#x002E;com</strong>} />
+              <ListItemText secondary='E-mail' primary={<strong>cyril&#x002E;chapon[at]live&#x002E;com</strong>} />
             </ListItem>
 
             <ListItem>
