@@ -1,5 +1,5 @@
 export const terminalStrings = [
-  '<strong>Typescript</strong> ninja^2000',
+  '<strong>Typescript</strong> ninja^1000',
   'Voleur de <strong>briquets</strong>',
   'Amoureux des <strong>animaux</strong>',
   'Accroc aux <strong>podcasts</strong>',
