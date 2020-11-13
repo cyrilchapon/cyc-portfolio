@@ -7,6 +7,8 @@ import { IntroHero } from '$components/heroes/intro-hero'
 import { AboutMeHero } from '$components/heroes/about-me-hero'
 import { TypographyTesterHero } from '$components/heroes/typography-tester-hero'
 import { ServicesHero } from '$components/heroes/services-hero'
+import { ThemeProvider } from '@material-ui/core'
+import { themes } from '$styles'
 
 export default function Home() {
   return (
@@ -21,10 +23,21 @@ export default function Home() {
       <Main>
         <Header />
         <IntroHero id='intro' escapeHeader />
-        <AboutMeHero id='a-propos-de-moi' escapeHeader />
-        <ServicesHero escapeHeader />
 
-        {process.env.NODE_ENV === 'development' && <TypographyTesterHero />}
+        <ThemeProvider theme={themes.primary}>
+          <AboutMeHero id='a-propos-de-moi' escapeHeader />
+        </ThemeProvider>
+
+
+        <ThemeProvider theme={themes.light}>
+          <ServicesHero escapeHeader />
+        </ThemeProvider>
+
+        {process.env.NODE_ENV === 'development' && (
+          <ThemeProvider theme={themes.dark}>
+            <TypographyTesterHero />
+          </ThemeProvider>
+        )}
       </Main>
     </>
   )

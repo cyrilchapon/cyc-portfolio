@@ -2,11 +2,11 @@
 import * as React from 'react'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedin, faMediumM } from '@fortawesome/free-brands-svg-icons'
-import { AppBar, AppBarProps, IconButton, IconButtonProps, makeStyles, Slide, Theme, Toolbar, Typography, useScrollTrigger } from '@material-ui/core'
+import { AppBar, AppBarProps, IconButton, IconButtonProps, makeStyles, Slide, Theme, Toolbar, Typography, useScrollTrigger, useTheme } from '@material-ui/core'
 import { FunctionComponent } from 'react'
 import { FontAwesomeSvgIcon } from './icons/font-awesome-svg-icon'
 import { MaltSvgIcon } from './icons/malt-svg-icon'
-import { theme, useNavbarHeight } from '$styles'
+import { useNavbarHeight } from '$styles'
 
 const useSocialButtonStyles = makeStyles((theme) => ({
   socialIcon: {
@@ -41,10 +41,7 @@ const useStyles = makeStyles<
 >((theme) => ({
   root: {
     flexGrow: 1,
-    // backgroundColor: props => props.scrolled ? theme.palette.background.default : 'transparent',
-    color: theme.palette.getContrastText(theme.palette.background.header),
-    backgroundColor: props => props.scrolled ? theme.palette.background.header : 'transparent',
-    // backdropFilter: props => props.scrolled ? 'blur(5px)' : 'initial'
+    backgroundColor: props => props.scrolled ? theme.palette.background.header : 'transparent'
   },
   menuButton: {
     marginRight: theme.spacing(2)
@@ -58,6 +55,8 @@ const useStyles = makeStyles<
 
 export const Header: FunctionComponent<AppBarProps> = (props) => {
   const navbarHeight = useNavbarHeight()
+
+  const theme = useTheme()
 
   const scrolledOverNavbar = useScrollTrigger({
     disableHysteresis: true,

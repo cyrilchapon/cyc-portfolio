@@ -22,10 +22,6 @@ const useStyles = makeStyles(theme => ({
     textDecoration: 'underline',
     textDecorationStyle: 'dotted'
   },
-  featureTooltip: {
-    backgroundColor: theme.palette.background.light.default,
-    color: theme.palette.text.dark.secondary
-  },
   featureIcon: {
     color: theme.palette.primary.light
   },
@@ -46,7 +42,7 @@ const DarkTooltip = withStyles((theme) => ({
   tooltip: {
     backgroundColor: theme.palette.background.dark.header,
     boxShadow: theme.shadows[6],
-    color: theme.palette.text.primary,
+    color: theme.palette.getContrastText(theme.palette.background.dark.header),
     fontWeight: theme.typography.variants.sansSerif.fontWeightMedium,
     // maxWidth: 220,
     fontSize: theme.typography.body2.fontSize,
@@ -90,7 +86,7 @@ export const ServiceFeatureListItem: FunctionComponent<ServiceFeatureListItemPro
               <Markdown
                 options={{
                   overrides: {
-                    a: { component: Link, props: { /* color: 'textSecondary' */ className: classes.tooltipMarkdownLink, target: '_blank' } },
+                    a: { component: Link, props: { className: classes.tooltipMarkdownLink, target: '_blank' } },
                     p: { component: (props) => <p {...props} className={classes.tooltipMarkdownParagraph} /> }
                   }
                 }}

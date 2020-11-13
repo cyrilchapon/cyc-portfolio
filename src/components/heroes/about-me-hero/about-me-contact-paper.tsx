@@ -7,12 +7,6 @@ import { Grid, Link, List, ListItem, ListItemIcon, ListItemText, makeStyles, Pap
 import clsx from 'clsx'
 import { FunctionComponent } from 'react'
 
-const useStyles = makeStyles(theme => ({
-  contactPaper: {
-    backgroundColor: theme.palette.primary.dark
-  }
-}))
-
 const getAge = (birthday: Date) => {
   var ageDate = new Date(Date.now() - birthday.getTime())
   return Math.abs(ageDate.getUTCFullYear() - 1970)
@@ -21,18 +15,12 @@ const getAge = (birthday: Date) => {
 const birthDay = new Date(Date.parse('1991-01-04T00:00:00+01:00'))
 
 const ContactPaper: FunctionComponent<PaperProps> = (props) => { 
-  const classes = useStyles()
-
   const {
-    className,
     ...paperProps
   } = props
 
   return (
-    <Paper
-      {...paperProps}
-      className={clsx(className, classes.contactPaper)}
-    >
+    <Paper {...paperProps}>
       <Grid container direction='row' spacing={0}>
         <Grid item xs={12} sm={6}>
           <List>

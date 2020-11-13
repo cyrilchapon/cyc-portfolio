@@ -1,4 +1,4 @@
-import { theme } from '$styles'
+import { themes } from '$styles'
 import { CssBaseline, NoSsr, ThemeProvider } from '@material-ui/core'
 import type { AppProps } from 'next/app'
 
@@ -6,7 +6,7 @@ import type { AppProps } from 'next/app'
 
 const App = ({ Component, pageProps }: AppProps) => (
   <NoSsr>
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={themes.root}>
       <CssBaseline />
 
       <Component {...pageProps} />

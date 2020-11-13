@@ -2,9 +2,10 @@ import { Hero, HeroProps } from '$components/hero'
 import { ContactPaper } from './about-me-contact-paper'
 import { ImgPaper } from '$components/papers/img-paper'
 import { useResponsive } from '$styles/media-query'
-import { Button, Container, Grid, GridSpacing, makeStyles, Typography } from '@material-ui/core'
+import { Button, Container, Grid, GridSpacing, makeStyles, ThemeProvider, Typography } from '@material-ui/core'
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import { FunctionComponent } from 'react'
+import { themes } from '$styles'
 
 const useStyles = makeStyles(theme => ({
   imgGridItem: {
@@ -49,7 +50,7 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
   const r = useResponsive()
 
   return (
-    <Hero bgcolor='primary.main' {...props}>
+    <Hero bgcolor='background.default' {...props}>
       <Container>
         <Grid container direction='row' justify='center' spacing={r(breakpointGutterSpacings)}>
           <Grid

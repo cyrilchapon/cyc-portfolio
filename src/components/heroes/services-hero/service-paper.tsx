@@ -8,16 +8,11 @@ import { ServiceFeature, ServiceIcon } from '$constants'
 
 const useStyles = makeStyles(theme => ({
   servicePaper: {
-    backgroundColor: theme.palette.background.light.paper,
-    color: theme.palette.getContrastText(theme.palette.background.light.paper),
     padding: theme.spacing(2, 4)
   },
   serviceTitle: {
-    // fontFamily: theme.typography.variants.sansSerif.fontFamily,
-    // fontSize: theme.typography.h4.fontSize,
     fontWeight: theme.typography.variants[theme.typography.variantsMapping.h4].fontWeightMedium,
     color: theme.palette.text.dark.semi
-    // color: theme.palette.primary.main
   },
   serviceIcon: {
     fontSize: theme.typography.h1.fontSize,

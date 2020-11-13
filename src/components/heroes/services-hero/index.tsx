@@ -4,28 +4,17 @@ import { FunctionComponent } from 'react'
 import { ServicePaper } from './service-paper'
 import { services } from '$constants'
 
-const useStyles = makeStyles(theme => ({
-  serviceTitle: {
-    color: theme.palette.primary.main
-  },
-  serviceSubtitle: {
-    color: theme.palette.text.dark.secondary
-  }
-}))
-
 export const ServicesHero: FunctionComponent<HeroProps> = (props) => {
-  const classes = useStyles()
-
   return (
-    <Hero bgcolor='background.light.default' {...props}>
+    <Hero bgcolor='background.default' {...props}>
       <Container>
         <Grid container direction='column' spacing={4}>
           <Grid item>
-            <Typography variant='h3' component='h2' className={classes.serviceTitle}>
+            <Typography variant='h3' component='h2'>
               Mes services
             </Typography>
 
-            <Typography variant='subtitle1' className={classes.serviceSubtitle} gutterBottom>
+            <Typography variant='subtitle1' gutterBottom>
               Ce que je sais faire
             </Typography>
           </Grid>
