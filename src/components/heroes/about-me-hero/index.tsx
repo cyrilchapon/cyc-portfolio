@@ -83,11 +83,11 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
                   Évoluant depuis presque 12 ans dans le milieu de la tech
                   et majoritairement en environnement Startup,
                   j’ai exercé les besognes de Tech Lead, Chef de projet,
-                  et enfin désormais <strong>CTO</strong> &amp; <strong>Product manager</strong>.
+                  et désormais <strong>CTO</strong> &amp; <strong>Product manager</strong>.
                 </p>
 
                 <p>
-                  Je suis aujourd'hui freelance, et j'aime définir mon profil comme à la croisée des <strong>stratégies business</strong>, <strong>produit</strong> et <strong>technique</strong>.
+                  Je suis aujourd'hui freelance, et j'aime me définir comme un profil à la croisée des <strong>stratégies business</strong>, <strong>produit</strong> et <strong>technique</strong>.
                 </p>
               </Typography>
             </Grid>

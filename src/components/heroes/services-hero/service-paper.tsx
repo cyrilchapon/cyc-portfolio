@@ -13,6 +13,9 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2, 4)
   },
   serviceTitle: {
+    // fontFamily: theme.typography.variants.sansSerif.fontFamily,
+    // fontSize: theme.typography.h4.fontSize,
+    fontWeight: theme.typography.variants[theme.typography.variantsMapping.h4].fontWeightMedium,
     color: theme.palette.text.dark.semi
     // color: theme.palette.primary.main
   },

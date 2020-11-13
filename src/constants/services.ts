@@ -1,7 +1,7 @@
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import TimelineIcon from '@material-ui/icons/Timeline'
 import { SvgIcon } from '@material-ui/core'
-import { faCode, faDraftingCompass, faLaptopCode, faStream, faTasks } from '@fortawesome/free-solid-svg-icons'
+import { faCode, faDraftingCompass, faLaptopCode, faStream, faTasks, faUserNinja } from '@fortawesome/free-solid-svg-icons'
 
 export type ServiceIconType =
   | 'material'
@@ -72,10 +72,10 @@ définition des **process** et standards, **automatisation**.
     ]
   },
   {
-    title: '2. Stratégie technique',
+    title: '2. Gestion technique',
     icon: {
       type: 'font-awesome',
-      icon: faLaptopCode
+      icon: faUserNinja
     },
     features: [
       {
@@ -117,7 +117,7 @@ adaptés aux projets.
     title: '3. Implémentation',
     icon: {
       type: 'font-awesome',
-      icon: faTasks
+      icon: faLaptopCode
     },
     features: [
       {

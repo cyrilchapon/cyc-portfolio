@@ -54,6 +54,7 @@ export const ServicesHero: FunctionComponent<HeroProps> = (props) => {
                 href='https://www.malt.fr/profile/cyrilchapon'
                 variant='contained'
                 color='primary'
+                size='large'
               >
                 M'engager
               </Button>
