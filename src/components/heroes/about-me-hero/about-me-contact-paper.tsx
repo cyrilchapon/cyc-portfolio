@@ -65,7 +65,7 @@ const ContactPaper: FunctionComponent<PaperProps> = (props) => {
                 <FontAwesomeSvgIcon fontSize='small' icon={faPhoneAlt} />
               </ListItemIcon>
 
-  <ListItemText secondary='Téléphone' primary={<strong>&#x002B;33&#x0020;6&#x0020;66&#x0020;09&#x0020;62&#x0020;02</strong>} />
+              <ListItemText secondary='Téléphone' primary={<strong>&#x002B;33&#x0020;6&#x0020;66&#x0020;09&#x0020;62&#x0020;02</strong>} />
             </ListItem>
           </List>
         </Grid>
