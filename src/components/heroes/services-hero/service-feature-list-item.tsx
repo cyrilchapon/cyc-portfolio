@@ -96,7 +96,7 @@ export const ServiceFeatureListItem: FunctionComponent<ServiceFeatureListItemPro
             }
             interactive
             enterTouchDelay={0}
-            leaveTouchDelay={1500}
+            leaveTouchDelay={4000}
           >
             <IconButton edge='end' color='primary' className={classes.featureIcon} disableRipple size='small'>
               <FontAwesomeSvgIcon icon={faInfoCircle} fontSize='small' />
