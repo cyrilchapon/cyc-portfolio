@@ -40,9 +40,9 @@ const useStyles = makeStyles(theme => ({
 
 const DarkTooltip = withStyles((theme) => ({
   tooltip: {
-    backgroundColor: theme.palette.background.dark.header,
+    backgroundColor: theme.palette.background.tooltip,
     boxShadow: theme.shadows[6],
-    color: theme.palette.getContrastText(theme.palette.background.dark.header),
+    color: theme.palette.getContrastText(theme.palette.background.tooltip),
     fontWeight: theme.typography.variants.sansSerif.fontWeightMedium,
     // maxWidth: 220,
     fontSize: theme.typography.body2.fontSize,

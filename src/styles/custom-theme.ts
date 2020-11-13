@@ -10,18 +10,21 @@ interface CustomColors {
   intro: string
   terminal: string
   header: string
+  tooltip: string
 }
 
 const defaultAdditionalBackgroundMapping: Record<PaletteType, CustomColors> = {
   light: {
     terminal: colors.common.white,
     intro: colors.grey[50],
-    header: colors.grey[50]
+    header: colors.grey[50],
+    tooltip: colors.grey[50]
   },
   dark: {
     terminal: colors.common.black,
     intro: '#303030',
-    header: '#303030'
+    header: '#303030',
+    tooltip: '#303030'
   }
 }
 
@@ -92,20 +95,7 @@ export const createMuiCustomTheme = (options: ThemeOptions) => {
     palette: {
       ...options.palette,
       background: {
-        ...defaultAdditionalBackgroundMapping[darkOrLight],
-        ...options.palette?.background,
-        light: {
-          ...defaultAdditionalBackgroundMapping.light,
-          default: light.background.default,
-          paper: light.background.paper,
-          ...options.palette?.background?.light
-        },
-        dark: {
-          ...defaultAdditionalBackgroundMapping.dark,
-          default: dark.background.default,
-          paper: dark.background.paper,
-          ...options.palette?.background?.dark
-        }
+        ...options.palette?.background
       }
     },
     typography: (palette: Palette) => {

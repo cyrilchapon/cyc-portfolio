@@ -1,36 +1,13 @@
-// import { Theme, ThemeOptions } from '@material-ui/core/styles/createMuiTheme'
-// import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import '@material-ui/core'
 import { FontStyle, Variant } from '@material-ui/core'
 import { FontGender } from '../styles/font'
 
-// declare module '@material-ui/core/styles/createMuiTheme' {
-//   interface Theme {
-//     palette: {
-//       background: {
-//         terminal: React.CSSProperties['backgroundColor']
-//       }
-//     }
-//   }
-//   // allow configuration using `createMuiTheme`
-//   interface ThemeOptions {
-//     palette?: {
-//       background?: {
-//         terminal?: React.CSSProperties['backgroundColor']
-//       }
-//     }
-//   }
-// }
-
 declare module '@material-ui/core/styles/createPalette' {
-  type SimpleTypeBackground = Omit<TypeBackground, 'light' | 'dark'>
-
   interface TypeBackground {
     intro: string
     terminal: string
     header: string
-    light: SimpleTypeBackground
-    dark: SimpleTypeBackground
+    tooltip: string
   }
 
   export type StrongerTonalOffset =
