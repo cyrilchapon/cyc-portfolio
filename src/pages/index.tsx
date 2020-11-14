@@ -20,8 +20,9 @@ export default function Home() {
 
       {/* <SnapBody /> */}
 
+      <Header />
+
       <Main>
-        <Header />
         <IntroHero id='intro' escapeHeader />
 
         <ThemeProvider theme={themes.primary}>
@@ -33,11 +34,11 @@ export default function Home() {
           <ServicesHero escapeHeader />
         </ThemeProvider>
 
-        {process.env.NODE_ENV === 'development' && (
+        {/* {process.env.NODE_ENV === 'development' && (
           <ThemeProvider theme={themes.dark}>
             <TypographyTesterHero />
           </ThemeProvider>
-        )}
+        )} */}
       </Main>
     </>
   )

@@ -20,7 +20,9 @@ export const IntroHero: FunctionComponent<HeroProps> = (props) => {
               item
               container direction='row' justify='center'
             >
-              <IntroAvatar />
+              <Grid item>
+                <IntroAvatar />
+              </Grid>
             </Grid>
 
             <Grid

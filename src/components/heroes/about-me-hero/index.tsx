@@ -58,12 +58,14 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
             container direction='column' justify='center' alignItems='center'
             className={classes.imgGridItem}
           >
-            <ImgPaper
-              className={classes.img}
-              elevation={2}
-              src={r({xs: mySelfWideImg, lg: mySelfHeightImg})}
-              square
-            />
+            <Grid item>
+              <ImgPaper
+                className={classes.img}
+                elevation={2}
+                src={r({xs: mySelfWideImg, lg: mySelfHeightImg})}
+                square
+              />
+            </Grid>
           </Grid>
 
           <Grid
@@ -101,12 +103,14 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
               item xs={12}
               container direction='row' justify='center'
             >
-              <Button
-                href='https://www.malt.fr/profile/cyrilchapon'
-                variant='contained'
-              >
-                Me contacter
-              </Button>
+              <Grid item>
+                <Button
+                  href='https://www.malt.fr/profile/cyrilchapon'
+                  variant='contained'
+                >
+                  Me contacter
+                </Button>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>

@@ -7,23 +7,11 @@ import _Document, {
   DocumentInitialProps
 } from 'next/document'
 
-import {
-  SansSerifFontLink,
-  SerifFontLink,
-  MonoFontLink,
-  ViewportMetaLink
-} from '$components/html-head'
-
 class Document extends _Document<DocumentInitialProps> {
   render() {
     return (
       <Html>
-        <Head>
-          <ViewportMetaLink />
-          <SansSerifFontLink />
-          <SerifFontLink />
-          <MonoFontLink />
-        </Head>
+        <Head />
 
         <body>
           <Main />
