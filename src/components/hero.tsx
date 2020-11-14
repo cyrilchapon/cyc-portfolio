@@ -2,6 +2,7 @@ import { Box, BoxProps, makeStyles, Theme } from '@material-ui/core'
 import { FunctionComponent } from 'react'
 import { mapValues, omit } from 'lodash'
 import { maybePxToPx, PropsCssFunc } from '$styles'
+import clsx from 'clsx'
 
 export interface HeroProps extends BoxProps {
   escapeHeader?: boolean
@@ -51,6 +52,6 @@ export const Hero: FunctionComponent<HeroProps> = (props) => {
 
   return <Box
     {...restProps}
-    className={`${classes.hero} ${className}`}
+    className={clsx(classes.hero, className)}
   />
 }
