@@ -47,7 +47,7 @@ const breakpointGutterSpacings: Partial<Record<Breakpoint, GridSpacing>> = {
 }
 
 export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
-  const [ , setSubscribeModalOpen ] = useGlobalState('subscribeModalOpen')
+  const [ , setSubscribeDialogState ] = useGlobalState('subscribeDialog')
 
   const classes = useStyles()
   const r = useResponsive()
@@ -106,9 +106,13 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
                 container direction='row' justify='center'
               >
                 <Button
-                  onClick={() => setSubscribeModalOpen(true)}
+                  onClick={() => setSubscribeDialogState(prevState => ({
+                    ...prevState,
+                    open: true
+                  }))}
                   component='button'
                   variant='contained'
+                  disableTouchRipple
                 >
                   Me contacter
                 </Button>

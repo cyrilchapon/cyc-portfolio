@@ -35,11 +35,9 @@ export const IntroSubtitle: FunctionComponent<TypographyProps<'div'>> = (props) 
       className={clsx(classes.subtitle, className)}
       component='div'
     >
-      ({' '}
-        <strong className={classes.subtitleStrong}>CTO</strong>
-        {' '}&amp;{' '}
-        <strong className={classes.subtitleStrong}>Product manager</strong>
-      {' '})
+      <strong className={classes.subtitleStrong}>CTO</strong>
+      {' '}&amp;{' '}
+      <strong className={classes.subtitleStrong}>Product manager</strong>
     </Typography>
   )
 }

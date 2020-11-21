@@ -6,49 +6,102 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import { makeStyles, Typography, withStyles } from '@material-ui/core'
-import clsx from 'clsx'
+import { Box, CircularProgress, FormControl, IconButton, InputAdornment, InputLabel, LinearProgress, makeStyles, OutlinedInput, Typography, withStyles } from '@material-ui/core'
+import { FontAwesomeSvgIcon } from '$components/icons/font-awesome-svg-icon'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { DarkTooltip } from '$components/dark-tooltip'
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
 
 export type SubscribeFormDialogCancelReason =
   | 'backdropClick'
   | 'escapeKeyDown'
   | 'cancelButton'
 
-export interface SubscribeFormDialogSubmission {
-  email: string
+export interface SubscribeFormDialogProps extends Omit<DialogProps, 'onClose' | 'onSubmit'> {
+  onCancel: (reason: SubscribeFormDialogCancelReason) => void
+  onSubmit: (submission: SubscribeFormData) => void
+  loading: boolean
 }
 
-export interface SubscribeFormDialogProps extends Omit<DialogProps, 'onClose' | 'onSubmit'> {
-  onCancel: (evt: {}, reason: SubscribeFormDialogCancelReason) => void
-  onSubmit: (evt: {}, submission: SubscribeFormDialogSubmission) => void
+const useStyles = makeStyles(theme => ({
+  noSpamIcon: {
+    fontSize: theme.typography.body1.fontSize
+  },
+  noSpamIconButton: {
+    color: theme.palette.text.disabled
+  },
+  buttonWrapper: {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    overflow: 'hidden'
+  },
+  buttonProgress: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: 2
+  },
+  textField: {
+    '&:not(:last-child)': {
+      marginBottom: theme.spacing(1)
+    },
+    '&:not(:first-child)': {
+      marginTop: theme.spacing(1),
+    }
+  }
+}))
+
+export interface SubscribeFormData {
+  email: string
+  firstname: string
+  lastname: string
 }
+
+const subscribeFormSchema = yup.object().shape<SubscribeFormData>({
+  email: yup
+    .string()
+    .required('Il me faut votre e-mail !')
+    .email(`On ne dirait pas un e-mail valide...`),
+  firstname: yup
+    .string()
+    .required(`J'ai besoin de votre prénom`)
+    .min(3, `Un peu court, non ?`)
+    .max(50, `Un poil trop long, non ?`),
+  lastname: yup
+    .string()
+    .required(`J'ai besoin de votre nom`)
+    .min(3, `Un peu court, non ?`)
+    .max(50, `Un poil trop long, non ?`)
+})
+
+type CancelHandler = (event: React.BaseSyntheticEvent, reason: SubscribeFormDialogCancelReason) => void
 
 export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = (props) => {
+  const classes = useStyles()
+
   const {
     onCancel,
     onSubmit,
+    loading,
     ...dialogProps
   } = props
 
-  const [
-    email,
-    setEmail
-  ] = useState('')
+  const { register, handleSubmit: internalHandleSubmit, errors, formState } = useForm<SubscribeFormData>({
+    mode: 'onChange',
+    resolver: yupResolver(subscribeFormSchema)
+  })
 
-  const handleSubmit = useCallback(
-    (evt: React.MouseEvent) => {
-      onSubmit(evt, { email })
-      setEmail('')
-    },
-    [email]
+  const handleSubmit = useCallback<SubmitHandler<SubscribeFormData>>(
+    (data, evt) => { onSubmit(data) },
+    [onSubmit]
   )
 
-  const handleCancel = useCallback(
-    (evt: React.MouseEvent, reason: SubscribeFormDialogCancelReason) => {
-      onCancel(evt, reason)
-      setEmail('')
-    },
-    []
+  const handleCancel = useCallback<CancelHandler>(
+    (evt, reason) => { onCancel(reason) },
+    [onCancel]
   )
 
   return (
@@ -57,60 +110,120 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
       onClose={handleCancel}
       aria-labelledby='form-dialog-title'
     >
-      <DialogTitle
-        id='form-dialog-title'
+      <Box
+        flexDirection='column'
+        component='form' onSubmit={internalHandleSubmit(handleSubmit)} noValidate
       >
-        Recontactez-moi
-      </DialogTitle>
+        <DialogTitle
+          id='form-dialog-title'
+          disableTypography
+        >
+          <Typography
+            component='div'
+            variant='h5'
+          >
+            Contactez-moi
+          </Typography>
+        </DialogTitle>
 
-      <DialogContent>
-        <DialogContentText>
-          En me donnant votre adresse e-mail, vous consentez à ce que je vous recontacte.
-        </DialogContentText>
+        <DialogContent>
+          <DialogContentText color='textPrimary' component='div'>
+            Laissez moi vos coordonnées, je vous recontacte au plus vite 🙂
+          </DialogContentText>
 
-        <TextField
-          autoFocus
-          margin='dense'
-          id='email'
-          label='Adresse email'
-          type='email'
-          value={email}
-          onChange={(evt) => setEmail(evt.currentTarget.value)}
-          fullWidth
-        />
-      </DialogContent>
+          <TextField
+            // margin='dense'
+            id='subscribe-form-firstname'
+            color='secondary'
+            name='firstname'
+            label='Prénom'
+            type='text'
+            // defaultValue={email}
+            variant='standard'
+            fullWidth
+            helperText={
+              formState.touched.firstname
+                ? errors.firstname?.message
+                : null
+            }
+            inputRef={register}
+            error={formState.touched.firstname && !!errors.firstname}
+            className={classes.textField}
+          />
 
-      <DialogActions>
-        <Button onClick={evt => handleCancel(evt, 'cancelButton')} color='primary'>
-          Annuler
-        </Button>
+          <TextField
+            // margin='dense'
+            id='subscribe-form-lastname'
+            color='secondary'
+            name='lastname'
+            label='Nom'
+            type='text'
+            // defaultValue={email}
+            variant='standard'
+            fullWidth
+            helperText={
+              formState.touched.lastname
+                ? errors.lastname?.message
+                : null
+            }
+            inputRef={register}
+            error={formState.touched.lastname && !!errors.lastname}
+            className={classes.textField}
+          />
 
-        <Button onClick={handleSubmit} color='primary' variant='contained'>
-          Recontactez-moi
-        </Button>
-      </DialogActions>
+          <TextField
+            // margin='dense'
+            id='subscribe-form-email'
+            color='secondary'
+            name='email'
+            label='Adresse email'
+            type='email'
+            // defaultValue={email}
+            variant='standard'
+            fullWidth
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position='end'>
+                  <DarkTooltip
+                    title="Pas d'inquiétude, aucun SPAM sans votre accord"
+                  >
+                    <IconButton color='inherit' disableRipple size='small' className={classes.noSpamIconButton}>
+                      <FontAwesomeSvgIcon icon={faInfoCircle} className={classes.noSpamIcon} />
+                    </IconButton>
+                  </DarkTooltip>
+                </InputAdornment>
+              )
+            }}
+            helperText={
+              formState.touched.email
+                ? errors.email?.message
+                : null
+            }
+            inputRef={register}
+            error={formState.touched.email && !!errors.email}
+            className={classes.textField}
+          />
+        </DialogContent>
+
+        <DialogActions>
+          <div className={classes.buttonWrapper}>
+            <Button
+              type='submit'
+              color='primary'
+              variant='contained'
+              disabled={
+                loading ||
+                !formState.isValid
+              }
+              disableTouchRipple
+            >
+              C'est parti
+            </Button>
+
+            {loading && <LinearProgress className={classes.buttonProgress} variant='indeterminate' />}
+          </div>
+        </DialogActions>
+      </Box>
     </Dialog>
   )
 }
-
-// import MailchimpSubscribe from 'react-mailchimp-subscribe'
-
-// const url = '//xxxx.us13.list-manage.com/subscribe/post?u=zefzefzef&id=fnfgn';
-
-// // simplest form (only email)
-// const SimpleForm = () => <MailchimpSubscribe url={url}/>
-
-// // use the render prop and your custom form
-// const CustomForm = () => (
-//   <MailchimpSubscribe
-//     url={url}
-//     render={({ subscribe, status, message }) => (
-//       <div>
-//         <SimpleForm onSubmitted={formData => subscribe(formData)} />
-//         {status === 'sending' && <div style={{ color: 'blue' }}>sending...</div>}
-//         {status === 'error' && <div style={{ color: 'red' }} dangerouslySetInnerHTML={{__html: message}}/>}
-//         {status === 'success' && <div style={{ color: 'green' }}>Subscribed !</div>}
-//       </div>
-//     )}
-//   />
-// )

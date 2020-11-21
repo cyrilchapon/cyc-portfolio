@@ -4,6 +4,7 @@ import { ListItem, ListItemIcon, ListItemText, ListItemProps, makeStyles, ListIt
 import { FunctionComponent } from 'react'
 import clsx from 'clsx'
 import Markdown from 'markdown-to-jsx'
+import { DarkTooltip } from '$components/dark-tooltip'
 
 const useStyles = makeStyles(theme => ({
   listItem: {
@@ -37,19 +38,6 @@ const useStyles = makeStyles(theme => ({
     }
   }
 }))
-
-const DarkTooltip = withStyles((theme) => ({
-  tooltip: {
-    backgroundColor: theme.palette.background.tooltip,
-    boxShadow: theme.shadows[6],
-    color: theme.palette.getContrastText(theme.palette.background.tooltip),
-    fontWeight: theme.typography.variants.sansSerif.fontWeightMedium,
-    // maxWidth: 220,
-    fontSize: theme.typography.body2.fontSize,
-    padding: theme.spacing(2),
-    // border: `1px solid ${fade(theme.palette.primary.dark, 0.3)}`,
-  }
-}))(Tooltip)
 
 export interface ServiceFeatureListItemBaseProps {
   name: string

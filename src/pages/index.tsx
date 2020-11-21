@@ -9,15 +9,11 @@ import { TypographyTesterHero } from '$components/heroes/typography-tester-hero'
 import { ServicesHero } from '$components/heroes/services-hero'
 import { ThemeProvider } from '@material-ui/core'
 import { themes } from '$styles'
-import { useGlobalState } from '$global-state'
-import { SubscribeFormDialog } from '$components/dialogs/subscribe-form-dialog'
+import { MailchimpSubscribeFormDialog } from '$components/dialogs/mailchimp-subscribe-form-dialog'
+import { browserEnv } from '$env'
+import { ConnectedSnackbar as Snackbar } from '$components/snackbar'
 
 const Home = () => {
-  const [
-    subscribeDialogOpen,
-    setSubscribeDialogOpen
-  ] = useGlobalState('subscribeModalOpen')
-
   return (
     <>
       <Head>
@@ -39,18 +35,15 @@ const Home = () => {
           <ServicesHero id='mes-services' escapeHeader />
         </ThemeProvider>
 
-        {process.env.NODE_ENV === 'development' && (
+        {browserEnv.NODE_ENV === 'development' && (
           <ThemeProvider theme={themes.dark}>
             <TypographyTesterHero />
           </ThemeProvider>
         )}
 
         <ThemeProvider theme={themes.light}>
-          <SubscribeFormDialog
-            open={subscribeDialogOpen}
-            onCancel={() => setSubscribeDialogOpen(false)}
-            onSubmit={() => setSubscribeDialogOpen(false)}
-          />
+          <MailchimpSubscribeFormDialog />
+          <Snackbar />
         </ThemeProvider>
       </Main>
     </>
