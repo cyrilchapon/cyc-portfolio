@@ -4,8 +4,10 @@ import { ImgPaper } from '$components/papers/img-paper'
 import { useResponsive } from '$styles/media-query'
 import { Button, Container, Grid, GridSpacing, makeStyles, ThemeProvider, Typography } from '@material-ui/core'
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
-import { FunctionComponent } from 'react'
+import { FunctionComponent, useState } from 'react'
 import { themes } from '$styles'
+import { SubscribeFormDialog } from '$components/dialogs/subscribe-form-dialog'
+import { useGlobalState } from '$global-state'
 
 const useStyles = makeStyles(theme => ({
   imgGridItem: {
@@ -45,20 +47,21 @@ const breakpointGutterSpacings: Partial<Record<Breakpoint, GridSpacing>> = {
 }
 
 export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
-  const classes = useStyles()
+  const [ , setSubscribeDialogState ] = useGlobalState('subscribeDialog')
 
+  const classes = useStyles()
   const r = useResponsive()
 
   return (
-    <Hero bgcolor='background.default' {...props}>
-      <Container>
-        <Grid container direction='row' justify='center' spacing={r(breakpointGutterSpacings)}>
-          <Grid
-            item xs={12} lg={4}
-            container direction='column' justify='center' alignItems='center'
-            className={classes.imgGridItem}
-          >
-            <Grid item>
+    <>
+      <Hero bgcolor='background.default' {...props}>
+        <Container>
+          <Grid container direction='row' justify='center' spacing={r(breakpointGutterSpacings)}>
+            <Grid
+              item xs={12} lg={4}
+              container direction='column' justify='center' alignItems='center'
+              className={classes.imgGridItem}
+            >
               <ImgPaper
                 className={classes.img}
                 elevation={2}
@@ -66,55 +69,58 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
                 square
               />
             </Grid>
-          </Grid>
-
-          <Grid
-            item xs={12} lg={6}
-            container direction='row' spacing={4} justify='center'
-          >
-            <Grid item xs={12}>
-              <Typography variant='h3' component='h2' className={classes.darkTypography}>
-                À propos de moi
-              </Typography>
-
-              <Typography variant='subtitle1' className={classes.semiDarkTypography} gutterBottom>
-                Découvrez mon profil
-              </Typography>
-
-              <Typography variant='body1' component='div' className={classes.bodyParagraph}>
-                <p>
-                  Évoluant depuis presque 12 ans dans le milieu de la tech
-                  et majoritairement en environnement Startup,
-                  j’ai exercé les besognes de Tech Lead, Chef de projet,
-                  et désormais <strong>CTO</strong> &amp; <strong>Product manager</strong>.
-                </p>
-
-                <p>
-                  Je suis aujourd'hui freelance, et j'aime me définir comme un profil à la croisée des <strong>stratégies business</strong>, <strong>produit</strong> et <strong>technique</strong>.
-                </p>
-              </Typography>
-            </Grid>
-
-            <Grid item xs={12} sm={10} lg={12}>
-              <ContactPaper />
-            </Grid>
 
             <Grid
-              item xs={12}
-              container direction='row' justify='center'
+              item xs={12} lg={6}
+              container direction='row' spacing={4} justify='center'
             >
-              <Grid item>
+              <Grid item xs={12}>
+                <Typography variant='h3' component='h2' className={classes.darkTypography}>
+                  À propos de moi
+                </Typography>
+
+                <Typography variant='subtitle1' className={classes.semiDarkTypography} gutterBottom>
+                  Découvrez mon profil
+                </Typography>
+
+                <Typography variant='body1' component='div' className={classes.bodyParagraph}>
+                  <p>
+                    Évoluant depuis presque 12 ans dans le milieu de la tech
+                    et majoritairement en environnement Startup,
+                    j’ai exercé les besognes de Tech Lead, Chef de projet,
+                    et désormais <strong>CTO</strong> &amp; <strong>Product manager</strong>.
+                  </p>
+
+                  <p>
+                    Je suis aujourd'hui freelance, et j'aime me définir comme un profil à la croisée des <strong>stratégies business</strong>, <strong>produit</strong> et <strong>technique</strong>.
+                  </p>
+                </Typography>
+              </Grid>
+
+              <Grid item xs={12} sm={10} lg={12}>
+                <ContactPaper />
+              </Grid>
+
+              <Grid
+                item xs={12}
+                container direction='row' justify='center'
+              >
                 <Button
-                  href='https://www.malt.fr/profile/cyrilchapon'
+                  onClick={() => setSubscribeDialogState(prevState => ({
+                    ...prevState,
+                    open: true
+                  }))}
+                  component='button'
                   variant='contained'
+                  disableTouchRipple
                 >
                   Me contacter
                 </Button>
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
-      </Container>
-    </Hero>
+        </Container>
+      </Hero>
+    </>
   )
 }

@@ -8,7 +8,7 @@
     ],
     "rootDir": "./src",
     "allowJs": true,
-    "skipLibCheck": true,
+    "skipLibCheck": false,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
@@ -26,6 +26,12 @@
       "$components/*": ["components/*"],
       "$constants": ["constants"],
       "$constants/*": ["constants/*"],
+      "$global-state": ["global-state"],
+      "$global-state/*": ["global-state/*"],
+      "$connectors": ["connectors"],
+      "$connectors/*": ["connectors/*"],
+      "$env": ["env"],
+      "$env/*": ["env/*"],
     }
   },
   "include": [

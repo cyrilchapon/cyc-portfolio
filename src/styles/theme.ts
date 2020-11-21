@@ -27,8 +27,7 @@ const smallCapsStyles: TypographyStyleOptions = {
   fontVariant: 'small-caps'
 }
 
-const backgroundImageBack = 'https://images.prismic.io/cyc-portfolio/96cdde6f-f250-4b5b-a228-2a9f40400ede_wonderful-mountains-in-fall-colors-picjumbo-com.jpg?w=1200&auto=compress,format,enhance&q=30&fit=crop'
-const backgroundImage = 'https://images.prismic.io/cyc-portfolio/96cdde6f-f250-4b5b-a228-2a9f40400ede_wonderful-mountains-in-fall-colors-picjumbo-com.jpg?w=1200&auto=compress,format,enhance&q=30&fit=crop&blend-color=000000&blend-mode=normal&blend-alpha=85'
+const backgroundImage = 'https://images.prismic.io/cyc-portfolio/96cdde6f-f250-4b5b-a228-2a9f40400ede_wonderful-mountains-in-fall-colors-picjumbo-com.jpg?w=1920&auto=compress,format,enhance&q=30&fit=crop&blend-color=000000&blend-mode=normal&blend-alpha=85'
 
 const getTypographyOptions = (palette: Palette): TypographyOptions => ({
   ...sansSerifMuiFontDefinition,

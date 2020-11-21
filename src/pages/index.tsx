@@ -9,8 +9,11 @@ import { TypographyTesterHero } from '$components/heroes/typography-tester-hero'
 import { ServicesHero } from '$components/heroes/services-hero'
 import { ThemeProvider } from '@material-ui/core'
 import { themes } from '$styles'
+import { MailchimpSubscribeFormDialog } from '$components/dialogs/mailchimp-subscribe-form-dialog'
+import { browserEnv } from '$env'
+import { ConnectedSnackbar as Snackbar } from '$components/snackbar'
 
-export default function Home() {
+const Home = () => {
   return (
     <>
       <Head>
@@ -29,17 +32,23 @@ export default function Home() {
           <AboutMeHero id='a-propos-de-moi' escapeHeader />
         </ThemeProvider>
 
-
         <ThemeProvider theme={themes.light}>
-          <ServicesHero escapeHeader />
+          <ServicesHero id='mes-services' escapeHeader />
         </ThemeProvider>
 
-        {process.env.NODE_ENV === 'development' && (
+        {browserEnv.NODE_ENV === 'development' && (
           <ThemeProvider theme={themes.dark}>
             <TypographyTesterHero />
           </ThemeProvider>
         )}
+
+        <ThemeProvider theme={themes.light}>
+          <MailchimpSubscribeFormDialog />
+          <Snackbar />
+        </ThemeProvider>
       </Main>
     </>
   )
 }
+
+export default Home
