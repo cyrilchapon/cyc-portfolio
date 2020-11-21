@@ -9,7 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import { IconButton, InputAdornment, InputLabel, LinearProgress, makeStyles, OutlinedInput, Typography, withStyles } from '@material-ui/core'
 import { FontAwesomeSvgIcon } from '$components/icons/font-awesome-svg-icon'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import { DarkTooltip } from '$components/dark-tooltip'
+import { Tooltip } from '$components/tooltip'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
@@ -185,13 +185,13 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
             InputProps={{
               endAdornment: (
                 <InputAdornment position='end'>
-                  <DarkTooltip
+                  <Tooltip
                     title="Pas d'inquiétude, aucun SPAM sans votre accord"
                   >
                     <IconButton color='inherit' disableRipple size='small' className={classes.noSpamIconButton}>
                       <FontAwesomeSvgIcon icon={faInfoCircle} className={classes.noSpamIcon} />
                     </IconButton>
-                  </DarkTooltip>
+                  </Tooltip>
                 </InputAdornment>
               )
             }}

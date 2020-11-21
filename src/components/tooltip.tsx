@@ -1,6 +1,6 @@
-import { Tooltip, withStyles } from "@material-ui/core";
+import { Tooltip as _Tooltip, withStyles } from "@material-ui/core";
 
-export const DarkTooltip = withStyles((theme) => ({
+export const Tooltip = withStyles((theme) => ({
   tooltip: {
     backgroundColor: theme.palette.background.tooltip,
     boxShadow: theme.shadows[6],
@@ -11,4 +11,4 @@ export const DarkTooltip = withStyles((theme) => ({
     padding: theme.spacing(2),
     // border: `1px solid ${fade(theme.palette.primary.dark, 0.3)}`,
   }
-}))(Tooltip)
+}))(_Tooltip)

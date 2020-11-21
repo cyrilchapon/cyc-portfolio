@@ -1,10 +1,10 @@
 import { FontAwesomeSvgIcon } from '$components/icons/font-awesome-svg-icon'
 import { faCircle, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import { ListItem, ListItemIcon, ListItemText, ListItemProps, makeStyles, ListItemTypeMap, Tooltip, Button, ListItemSecondaryAction, IconButton, withStyles, darken, fade, lighten, Link } from '@material-ui/core'
+import { ListItem, ListItemIcon, ListItemText, ListItemProps, makeStyles, ListItemTypeMap, Button, ListItemSecondaryAction, IconButton, withStyles, darken, fade, lighten, Link } from '@material-ui/core'
 import { FunctionComponent } from 'react'
 import clsx from 'clsx'
 import Markdown from 'markdown-to-jsx'
-import { DarkTooltip } from '$components/dark-tooltip'
+import { Tooltip } from '$components/tooltip'
 
 const useStyles = makeStyles(theme => ({
   listItem: {
@@ -69,7 +69,7 @@ export const ServiceFeatureListItem: FunctionComponent<ServiceFeatureListItemPro
 
       {description && (
         <ListItemSecondaryAction>
-          <DarkTooltip
+          <Tooltip
             title={
               <Markdown
                 options={{
@@ -89,7 +89,7 @@ export const ServiceFeatureListItem: FunctionComponent<ServiceFeatureListItemPro
             <IconButton edge='end' color='primary' className={classes.featureIcon} disableRipple size='small'>
               <FontAwesomeSvgIcon icon={faInfoCircle} fontSize='small' />
             </IconButton>
-          </DarkTooltip>
+          </Tooltip>
         </ListItemSecondaryAction>
       )}
     </ListItem>
