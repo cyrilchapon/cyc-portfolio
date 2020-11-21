@@ -6,13 +6,14 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import { Box, CircularProgress, FormControl, IconButton, InputAdornment, InputLabel, LinearProgress, makeStyles, OutlinedInput, Typography, withStyles } from '@material-ui/core'
+import { IconButton, InputAdornment, InputLabel, LinearProgress, makeStyles, OutlinedInput, Typography, withStyles } from '@material-ui/core'
 import { FontAwesomeSvgIcon } from '$components/icons/font-awesome-svg-icon'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { DarkTooltip } from '$components/dark-tooltip'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import { FormBox } from '$components/boxes/form-box'
 
 export type SubscribeFormDialogCancelReason =
   | 'backdropClick'
@@ -110,7 +111,7 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
       onClose={handleCancel}
       aria-labelledby='form-dialog-title'
     >
-      <Box
+      <FormBox
         flexDirection='column'
         component='form' onSubmit={internalHandleSubmit(handleSubmit)} noValidate
       >
@@ -223,7 +224,7 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
             {loading && <LinearProgress className={classes.buttonProgress} variant='indeterminate' />}
           </div>
         </DialogActions>
-      </Box>
+      </FormBox>
     </Dialog>
   )
 }
