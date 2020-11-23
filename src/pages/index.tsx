@@ -7,6 +7,7 @@ import { IntroHero } from '$components/heroes/intro-hero'
 import { AboutMeHero } from '$components/heroes/about-me-hero'
 import { TypographyTesterHero } from '$components/heroes/typography-tester-hero'
 import { ServicesHero } from '$components/heroes/services-hero'
+import { MediumHero } from '$components/heroes/medium-hero'
 import { ThemeProvider } from '@material-ui/core'
 import { themes } from '$styles'
 import { MailchimpSubscribeFormDialog } from '$components/dialogs/mailchimp-subscribe-form-dialog'
@@ -36,8 +37,12 @@ const Home = () => {
           <ServicesHero id='mes-services' escapeHeader />
         </ThemeProvider>
 
+        <ThemeProvider theme={themes.dark}>
+          <MediumHero id='mes-articles' escapeHeader />
+        </ThemeProvider>
+
         {browserEnv.NODE_ENV === 'development' && (
-          <ThemeProvider theme={themes.dark}>
+          <ThemeProvider theme={themes.light}>
             <TypographyTesterHero />
           </ThemeProvider>
         )}

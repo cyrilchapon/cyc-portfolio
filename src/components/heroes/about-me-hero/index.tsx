@@ -112,6 +112,7 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
                   }))}
                   component='button'
                   variant='contained'
+                  size='large'
                   disableTouchRipple
                 >
                   Me contacter

@@ -133,7 +133,8 @@ const darkTheme: ThemeOptions = {
       intro: 'transparent',
       terminal: fade('#0A0A0A', 0.5),
       header: fade('#000000', 0.85),
-      tooltip: fade('#FFFFFF', 0.85)
+      tooltip: fade('#FFFFFF', 0.85),
+      paper: '#0A0A0A'
     },
     text: {
       semi: 'rgba(255, 255, 255, 0.9)',
