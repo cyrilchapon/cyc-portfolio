@@ -1,50 +1,27 @@
 import { Hero, HeroProps } from '$components/hero'
-import { Button, Container, Grid, makeStyles, Typography } from '@material-ui/core'
-import useAxios from 'axios-hooks'
-import { FunctionComponent, useMemo } from 'react'
-import { MediumFeed, parseMediumFeed, RawMediumFeed } from 'types/medium-feed'
+import { Button, Container, Grid, Typography } from '@material-ui/core'
+import { FunctionComponent } from 'react'
+import { MediumFeed } from 'types/medium-feed'
 import { FakeArticlePaper } from './fake-article-paper'
 import { MediumArticlePaper } from './medium-article-paper'
 
-const rss2jsonUrl = 'https://api.rss2json.com/v1/api.json'
-const rss2jsonRssUrlQs = 'rss_url'
-const mediumFeedUrl = 'https://medium.com/feed/@cyril-chpn'
-
-const mediumJsonFeedUrl = `${rss2jsonUrl}?${rss2jsonRssUrlQs}=${encodeURIComponent(mediumFeedUrl)}`
 
 interface MediumHeroProps extends HeroProps {
+  mediumFeed?: MediumFeed
   articlesCount?: number
 }
 
 export const MediumHero: FunctionComponent<MediumHeroProps> = (props) => {
   const {
     articlesCount: _articlesCount,
+    mediumFeed,
     ...heroProps
   } = props
 
   const articlesCount = _articlesCount ?? 2
 
-  const [{
-    data: rawMediumFeed,
-    loading,
-    error
-  }, refetch] = useAxios<RawMediumFeed>({
-    url: mediumJsonFeedUrl
-  }, {
-    useCache: false
-  })
-
-  const mediumFeed = useMemo<MediumFeed | null>(
-    () => (
-      rawMediumFeed != null
-        ? parseMediumFeed(rawMediumFeed)
-        : null
-    ),
-    [rawMediumFeed]
-  )
-
   return (
-    <Hero bgcolor='background.default' {...props}>
+    <Hero bgcolor='background.default' {...heroProps}>
       <Container>
         <Grid container direction='column' spacing={4}>
           <Grid item>
@@ -61,7 +38,7 @@ export const MediumHero: FunctionComponent<MediumHeroProps> = (props) => {
             item
             container direction='column' spacing={3}
           >
-          {!loading && mediumFeed != null
+          {mediumFeed != null
             ? (
               <>
               {mediumFeed.articles.slice(0, articlesCount).map(article => (

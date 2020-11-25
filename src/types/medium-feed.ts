@@ -13,8 +13,12 @@ export interface MediumFeedMeta {
   image: string
 }
 
+export type SerializableMediumFeedMeta = MediumFeedMeta
+
 export interface MediumFeedItemEnclosure {
 }
+
+export type SerializableMediumFeedItemEnclosure = MediumFeedItemEnclosure
 
 export interface MediumArticle {
   title: string
@@ -28,6 +32,10 @@ export interface MediumArticle {
   content: string
   enclosure: MediumFeedItemEnclosure
   categories: string[]
+}
+
+export type SerializableMediumArticle = Omit<MediumArticle, 'pubDate'> & {
+  pubDate: string
 }
 
 export interface RawMediumFeedItem {
@@ -47,6 +55,10 @@ export interface MediumFeed {
   status: string
   meta: MediumFeedMeta
   articles: MediumArticle[]
+}
+
+export type SerializableMediumFeed = Omit<MediumFeed, 'articles'> & {
+  articles: SerializableMediumArticle[]
 }
 
 export interface RawMediumFeed {
@@ -165,9 +177,41 @@ const parseMediumFeed = (mediumFeed: RawMediumFeed, options?: Partial<MediumFeed
   return parsed
 }
 
+const deflateMediumFeedArticle = (mediumArticle: MediumArticle): SerializableMediumArticle => {
+  return {
+    ...mediumArticle,
+    pubDate: mediumArticle.pubDate.toISOString()
+  }
+}
+
+const deflateMediumFeed = (mediumFeed: MediumFeed): SerializableMediumFeed => {
+  return {
+    ...mediumFeed,
+    articles: mediumFeed.articles.map(deflateMediumFeedArticle)
+  }
+}
+
+const inflateMediumFeedArticle = (deflatedArticle: SerializableMediumArticle): MediumArticle => {
+  return {
+    ...deflatedArticle,
+    pubDate: new Date(deflatedArticle.pubDate)
+  }
+}
+
+const inflateMediumFeed = (deflatedFeed: SerializableMediumFeed): MediumFeed => {
+  return {
+    ...deflatedFeed,
+    articles: deflatedFeed.articles.map(inflateMediumFeedArticle)
+  }
+}
+
 export {
   parseMediumFeed,
   parseMediumFeedArticle,
+  deflateMediumFeed,
+  deflateMediumFeedArticle,
+  inflateMediumFeedArticle,
+  inflateMediumFeed,
   _parseMediumItemContent,
   _parseMediumDate,
   _composeDescriptionFromContent

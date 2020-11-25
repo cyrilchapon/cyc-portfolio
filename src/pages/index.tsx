@@ -13,8 +13,17 @@ import { themes } from '$styles'
 import { MailchimpSubscribeFormDialog } from '$components/dialogs/mailchimp-subscribe-form-dialog'
 import { browserEnv } from '$env'
 import { ConnectedSnackbar as Snackbar } from '$components/snackbar'
+import { GetStaticProps, NextPage } from 'next'
+import Axios from 'axios'
+import { deflateMediumFeed, inflateMediumFeed, parseMediumFeed, RawMediumFeed, SerializableMediumFeed } from 'types/medium-feed'
 
-const Home = () => {
+interface HomeProps {
+  serializableMediumFeed: SerializableMediumFeed
+}
+
+const Home: NextPage<HomeProps> = (props) => {
+  const mediumFeed = inflateMediumFeed(props.serializableMediumFeed)
+
   return (
     <>
       <Head>
@@ -38,13 +47,27 @@ const Home = () => {
         </ThemeProvider>
 
         <ThemeProvider theme={themes.dark}>
-          <MediumHero id='mes-articles' escapeHeader />
+          <MediumHero
+            id='mes-articles'
+            mediumFeed={mediumFeed}
+            escapeHeader
+          />
         </ThemeProvider>
 
         {browserEnv.NODE_ENV === 'development' && (
-          <ThemeProvider theme={themes.light}>
-            <TypographyTesterHero />
-          </ThemeProvider>
+          <>
+            <ThemeProvider theme={themes.light}>
+              <TypographyTesterHero />
+            </ThemeProvider>
+
+            <ThemeProvider theme={themes.dark}>
+              <TypographyTesterHero />
+            </ThemeProvider>
+
+            <ThemeProvider theme={themes.primary}>
+              <TypographyTesterHero />
+            </ThemeProvider>
+          </>
         )}
 
         <ThemeProvider theme={themes.light}>
@@ -54,6 +77,30 @@ const Home = () => {
       </Main>
     </>
   )
+}
+
+const rss2jsonUrl = 'https://api.rss2json.com/v1/api.json'
+const rss2jsonRssUrlQs = 'rss_url'
+const mediumFeedUrl = 'https://medium.com/feed/@cyril-chpn'
+
+const mediumJsonFeedUrl = `${rss2jsonUrl}?${rss2jsonRssUrlQs}=${encodeURIComponent(mediumFeedUrl)}`
+
+export const getStaticProps: GetStaticProps<HomeProps> = async (context) => {
+  const {
+    data: rawMediumFeed
+  } = await Axios.request<RawMediumFeed>({
+    url: mediumJsonFeedUrl,
+    method: 'GET'
+  })
+
+  const mediumFeed = parseMediumFeed(rawMediumFeed)
+  const serializableMediumFeed = deflateMediumFeed(mediumFeed)
+
+  return {
+    props: {
+      serializableMediumFeed
+    }
+  }
 }
 
 export default Home
