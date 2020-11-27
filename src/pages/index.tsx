@@ -16,6 +16,7 @@ import { ConnectedSnackbar as Snackbar } from '$components/snackbar'
 import { GetStaticProps, NextPage } from 'next'
 import Axios from 'axios'
 import { deflateMediumFeed, inflateMediumFeed, parseMediumFeed, RawMediumFeed, SerializableMediumFeed } from 'types/medium-feed'
+import { CalendlyMeetingDialog } from '$components/dialogs/calendly-meeting-dialog'
 
 interface HomeProps {
   serializableMediumFeed: SerializableMediumFeed
@@ -72,6 +73,7 @@ const Home: NextPage<HomeProps> = (props) => {
 
         <ThemeProvider theme={themes.light}>
           <MailchimpSubscribeFormDialog />
+          <CalendlyMeetingDialog />
           <Snackbar />
         </ThemeProvider>
       </Main>

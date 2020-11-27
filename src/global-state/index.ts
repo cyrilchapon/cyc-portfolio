@@ -6,6 +6,10 @@ interface SubscribeDialogState {
   error: Error | null
 }
 
+interface MeetingDialogState {
+  open?: boolean
+}
+
 interface SnackbarState {
   open: boolean
   message: string
@@ -13,6 +17,7 @@ interface SnackbarState {
 
 interface GlobalState {
   subscribeDialog: SubscribeDialogState
+  meetingDialog: MeetingDialogState
   snackbar: SnackbarState
 }
 
@@ -21,6 +26,9 @@ const initialState: GlobalState = {
     open: undefined,
     loading: false,
     error: null
+  },
+  meetingDialog: {
+    open: undefined
   },
   snackbar: {
     open: false,

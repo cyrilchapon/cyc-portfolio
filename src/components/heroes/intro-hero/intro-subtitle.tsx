@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: theme.typography.h4.fontSize,
     fontFamily: theme.typography.variants.sansSerif.fontFamily,
     fontWeight: theme.typography.variants.sansSerif.fontWeightLight,
+    lineHeight: 1.3,
     '&:before': {
       content: 'initial'
     }
@@ -35,9 +36,9 @@ export const IntroSubtitle: FunctionComponent<TypographyProps<'div'>> = (props) 
       className={clsx(classes.subtitle, className)}
       component='div'
     >
-      <strong className={classes.subtitleStrong}>CTO</strong>
-      {' '}&amp;{' '}
-      <strong className={classes.subtitleStrong}>Product manager</strong>
+      Consultant <strong className={classes.subtitleStrong}>Stratégie Produit</strong>
+      <br />
+      &amp; <strong className={classes.subtitleStrong}>CTO</strong> freelance
     </Typography>
   )
 }

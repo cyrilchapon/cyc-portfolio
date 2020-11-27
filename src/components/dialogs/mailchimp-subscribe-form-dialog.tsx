@@ -3,14 +3,6 @@ import { FunctionComponent, useCallback } from 'react'
 import { SubscribeFormDialog, SubscribeFormDialogProps, SubscribeFormData } from './subscribe-form-dialog'
 import { mailchimpAxios } from '$connectors'
 
-interface MailchimpSubscribeFormDialog extends SubscribeFormDialogProps {
-  mailchimpForm: {
-    host: string
-    id: string
-    userId: string
-  }
-}
-
 interface MailchimpSubscribeFormDialogProps extends Omit<
   SubscribeFormDialogProps,
   'onCancel' | 'onSubmit' | 'loading' | 'open'

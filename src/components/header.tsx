@@ -1,7 +1,7 @@
 // import { snapChild, SnapChildProps } from '$styles'
 import * as React from 'react'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
-import { faGithub, faLinkedin, faMediumM } from '@fortawesome/free-brands-svg-icons'
+import { faDev, faGithub, faLinkedin, faMediumM } from '@fortawesome/free-brands-svg-icons'
 import { AppBar, AppBarProps, IconButton, IconButtonProps, makeStyles, Slide, Theme, Toolbar, Typography, useScrollTrigger, useTheme } from '@material-ui/core'
 import { FunctionComponent } from 'react'
 import { FontAwesomeSvgIcon } from './icons/font-awesome-svg-icon'
@@ -85,20 +85,24 @@ export const Header: FunctionComponent<AppBarProps> = (props) => {
           Cyril CHAPON
         </Typography>
 
-        <SocialIconButton href='https://cyril-chpn.medium.com' target='_blank'>
-          <FontAwesomeSvgIcon icon={faMediumM} />
-        </SocialIconButton>
-
-        <SocialIconButton href='https://github.com/cyrilchapon' target='_blank'>
-          <FontAwesomeSvgIcon icon={faGithub} />
-        </SocialIconButton>
-
         <SocialIconButton href='https://www.linkedin.com/in/cchapon' target='_blank'>
           <FontAwesomeSvgIcon icon={faLinkedin} />
         </SocialIconButton>
 
         <SocialIconButton href='https://www.malt.fr/profile/cyrilchapon' target='_blank'>
           <MaltSvgIcon />
+        </SocialIconButton>
+
+        <SocialIconButton href='https://github.com/cyrilchapon' target='_blank'>
+          <FontAwesomeSvgIcon icon={faGithub} />
+        </SocialIconButton>
+
+        <SocialIconButton href='https://cyril-chpn.medium.com' target='_blank'>
+          <FontAwesomeSvgIcon icon={faMediumM} />
+        </SocialIconButton>
+
+        <SocialIconButton href='https://dev.to/cyrilchapon' target='_blank'>
+          <FontAwesomeSvgIcon icon={faDev} />
         </SocialIconButton>
       </Toolbar>
     </AppBar>

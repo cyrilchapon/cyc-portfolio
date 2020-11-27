@@ -3,8 +3,19 @@ import { Button, Container, Grid, makeStyles, Typography } from '@material-ui/co
 import { FunctionComponent } from 'react'
 import { ServicePaper } from './service-paper'
 import { services } from '$constants'
+import { useGlobalState } from '$global-state'
+
+const useStyles = makeStyles(theme => ({
+  buttonGridItem: {
+    textAlign: 'center'
+  }
+}))
 
 export const ServicesHero: FunctionComponent<HeroProps> = (props) => {
+  const classes = useStyles()
+
+  const [ , setMeetingDialogState ] = useGlobalState('meetingDialog')
+
   return (
     <Hero bgcolor='background.default' {...props}>
       <Container>
@@ -36,16 +47,31 @@ export const ServicesHero: FunctionComponent<HeroProps> = (props) => {
 
           <Grid
             item xs={12}
-            container justify='center'
+            container direction='row' justify='center' spacing={2}
           >
-            <Grid item>
+            <Grid item xs={12} sm='auto' className={classes.buttonGridItem}>
               <Button
-                href='https://www.malt.fr/profile/cyrilchapon'
+                onClick={() => setMeetingDialogState(prevState => ({
+                  ...prevState,
+                  open: true
+                }))}
+                variant='outlined'
+                color='primary'
+                size='large'
+                disableTouchRipple
+              >
+                Prendre rendez-vous
+              </Button>
+            </Grid>
+
+            <Grid item xs={12} sm='auto' className={classes.buttonGridItem}>
+              <Button
+                href='https://www.malt.fr/project/new?freelanceId=5f7cfd793a399f2641be0ce0&amp;viewId=5fbfd99ec994b74bc573bb54'
                 variant='contained'
                 color='primary'
                 size='large'
               >
-                M'engager
+                Devis gratuit
               </Button>
             </Grid>
           </Grid>
