@@ -94,7 +94,7 @@ const getTypographyOptions = (palette: Palette): TypographyOptions => ({
     fontSize: 20,
     color: palette.text.secondary,
     '&:before': {
-      content: '"—"'
+      content: '"— "'
     }
   },
   subtitle2: {

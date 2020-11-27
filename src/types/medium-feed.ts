@@ -4,7 +4,24 @@ import textClip from 'text-clipper'
 import stripTags from 'striptags'
 import { omit } from 'lodash'
 
-export interface MediumFeedMeta {
+type JSONPrimitive =
+  | number
+  | string
+  | boolean
+  | null
+
+type JSONObject = { [k: string]: JSONType }
+type JSONArray = Array<JSONType>
+
+type JSONType =
+  | JSONPrimitive
+  | JSONObject
+  | JSONArray
+
+type Serializer<T, TSerializable extends JSONType> = (object: T) => TSerializable
+type Deserializer<T, TSerializable extends JSONType> = (serializedObject: TSerializable) => T
+
+export type MediumFeedMeta = {
   url: string
   title: string
   link: string
@@ -13,14 +30,12 @@ export interface MediumFeedMeta {
   image: string
 }
 
-export type SerializableMediumFeedMeta = MediumFeedMeta
-
-export interface MediumFeedItemEnclosure {
+export type MediumFeedItemEnclosure = {
 }
 
-export type SerializableMediumFeedItemEnclosure = MediumFeedItemEnclosure
+// Index signature is missing in type 'MyInterface'.
 
-export interface MediumArticle {
+export type MediumArticle = {
   title: string
   subtitle: string | null
   pubDate: Date
@@ -38,7 +53,7 @@ export type SerializableMediumArticle = Omit<MediumArticle, 'pubDate'> & {
   pubDate: string
 }
 
-export interface RawMediumFeedItem {
+export type RawMediumFeedItem = {
   title: string
   pubDate: string
   link: string
@@ -51,7 +66,7 @@ export interface RawMediumFeedItem {
   categories: string[]
 }
 
-export interface MediumFeed {
+export type MediumFeed = {
   status: string
   meta: MediumFeedMeta
   articles: MediumArticle[]
@@ -61,7 +76,7 @@ export type SerializableMediumFeed = Omit<MediumFeed, 'articles'> & {
   articles: SerializableMediumArticle[]
 }
 
-export interface RawMediumFeed {
+export type RawMediumFeed = {
   status: string
   feed: MediumFeedMeta
   items: RawMediumFeedItem[]
@@ -177,28 +192,28 @@ const parseMediumFeed = (mediumFeed: RawMediumFeed, options?: Partial<MediumFeed
   return parsed
 }
 
-const deflateMediumFeedArticle = (mediumArticle: MediumArticle): SerializableMediumArticle => {
+const deflateMediumFeedArticle: Serializer<MediumArticle, SerializableMediumArticle> = (mediumArticle) => {
   return {
     ...mediumArticle,
     pubDate: mediumArticle.pubDate.toISOString()
   }
 }
 
-const deflateMediumFeed = (mediumFeed: MediumFeed): SerializableMediumFeed => {
+const deflateMediumFeed: Serializer<MediumFeed, SerializableMediumFeed> = (mediumFeed) => {
   return {
     ...mediumFeed,
     articles: mediumFeed.articles.map(deflateMediumFeedArticle)
   }
 }
 
-const inflateMediumFeedArticle = (deflatedArticle: SerializableMediumArticle): MediumArticle => {
+const inflateMediumFeedArticle: Deserializer<MediumArticle, SerializableMediumArticle> = (deflatedArticle) => {
   return {
     ...deflatedArticle,
     pubDate: new Date(deflatedArticle.pubDate)
   }
 }
 
-const inflateMediumFeed = (deflatedFeed: SerializableMediumFeed): MediumFeed => {
+const inflateMediumFeed: Deserializer<MediumFeed, SerializableMediumFeed> = (deflatedFeed) => {
   return {
     ...deflatedFeed,
     articles: deflatedFeed.articles.map(inflateMediumFeedArticle)
