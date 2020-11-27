@@ -92,7 +92,7 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
                   </p>
 
                   <p>
-                    Je suis aujourd'hui freelance, et j'aime me définir comme un profil à la croisée des <strong>stratégies business</strong>, <strong>produit</strong> et <strong>technique</strong>.
+                    Je suis aujourd'hui freelance, et j'aime me définir comme un profil à la croisée des <strong>stratégies Business</strong>, <strong>Produit</strong> et <strong>Technique</strong>.
                   </p>
                 </Typography>
               </Grid>

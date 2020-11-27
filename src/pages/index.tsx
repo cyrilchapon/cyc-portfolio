@@ -27,7 +27,7 @@ const Home: NextPage<HomeProps> = (props) => {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>Cyril CHAPON — Consultant stratégie produit &amp; CTO en freelance</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
