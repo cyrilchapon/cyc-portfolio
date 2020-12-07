@@ -30,49 +30,47 @@ export const ServicesHero: FunctionComponent<HeroProps> = (props) => {
             </Typography>
           </Grid>
 
-          <Grid
-            item
-            container direction='row' justify='center' spacing={4}
-          >
-            {services.map((service, index) => (
-              <Grid item xs={12} sm={6} lg={4} key={index}>
-                <ServicePaper
-                  title={service.title}
-                  icon={service.icon}
-                  features={service.features}
-                />
-              </Grid>
-            ))}
+          <Grid item>
+            <Grid container direction='row' justify='center' spacing={4}>
+              {services.map((service, index) => (
+                <Grid item xs={12} sm={6} lg={4} key={index}>
+                  <ServicePaper
+                    title={service.title}
+                    icon={service.icon}
+                    features={service.features}
+                  />
+                </Grid>
+              ))}
+            </Grid>
           </Grid>
 
-          <Grid
-            item xs={12}
-            container direction='row' justify='center' spacing={2}
-          >
-            <Grid item xs={12} sm='auto' className={classes.buttonGridItem}>
-              <Button
-                onClick={() => setMeetingDialogState(prevState => ({
-                  ...prevState,
-                  open: true
-                }))}
-                variant='outlined'
-                color='primary'
-                size='large'
-                disableTouchRipple
-              >
-                Prendre rendez-vous
-              </Button>
-            </Grid>
+          <Grid item xs={12}>
+            <Grid container direction='row' justify='center' spacing={2}>
+              <Grid item xs={12} sm='auto' className={classes.buttonGridItem}>
+                <Button
+                  onClick={() => setMeetingDialogState(prevState => ({
+                    ...prevState,
+                    open: true
+                  }))}
+                  variant='outlined'
+                  color='primary'
+                  size='large'
+                  disableTouchRipple
+                >
+                  Prendre rendez-vous
+                </Button>
+              </Grid>
 
-            <Grid item xs={12} sm='auto' className={classes.buttonGridItem}>
-              <Button
-                href='https://www.malt.fr/project/new?freelanceId=5f7cfd793a399f2641be0ce0&amp;viewId=5fbfd99ec994b74bc573bb54'
-                variant='contained'
-                color='primary'
-                size='large'
-              >
-                Devis gratuit
-              </Button>
+              <Grid item xs={12} sm='auto' className={classes.buttonGridItem}>
+                <Button
+                  href='https://www.malt.fr/project/new?freelanceId=5f7cfd793a399f2641be0ce0&amp;viewId=5fbfd99ec994b74bc573bb54'
+                  variant='contained'
+                  color='primary'
+                  size='large'
+                >
+                  Devis gratuit
+                </Button>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>

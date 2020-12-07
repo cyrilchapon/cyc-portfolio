@@ -62,12 +62,14 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
               container direction='column' justify='center' alignItems='center'
               className={classes.imgGridItem}
             >
-              <ImgPaper
-                className={classes.img}
-                elevation={2}
-                src={r({xs: mySelfWideImg, lg: mySelfHeightImg})}
-                square
-              />
+              <Grid item>
+                <ImgPaper
+                  className={classes.img}
+                  elevation={2}
+                  src={r({xs: mySelfWideImg, lg: mySelfHeightImg})}
+                  square
+                />
+              </Grid>
             </Grid>
 
             <Grid
@@ -75,11 +77,11 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
               container direction='row' spacing={4} justify='center'
             >
               <Grid item xs={12}>
-                <Typography variant='h3' component='h2' className={classes.darkTypography}>
+                <Typography variant='h3' component='h2'>
                   À propos de moi
                 </Typography>
 
-                <Typography variant='subtitle1' className={classes.semiDarkTypography} gutterBottom>
+                <Typography variant='subtitle1' gutterBottom>
                   Découvrez mon profil
                 </Typography>
 
@@ -105,18 +107,20 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
                 item xs={12}
                 container direction='row' justify='center'
               >
-                <Button
-                  onClick={() => setSubscribeDialogState(prevState => ({
-                    ...prevState,
-                    open: true
-                  }))}
-                  component='button'
-                  variant='contained'
-                  size='large'
-                  disableTouchRipple
-                >
-                  Me contacter
-                </Button>
+                <Grid item>
+                  <Button
+                    onClick={() => setSubscribeDialogState(prevState => ({
+                      ...prevState,
+                      open: true
+                    }))}
+                    component='button'
+                    variant='contained'
+                    size='large'
+                    disableTouchRipple
+                  >
+                    Me contacter
+                  </Button>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>

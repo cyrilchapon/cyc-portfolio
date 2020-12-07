@@ -34,30 +34,32 @@ export const MediumHero: FunctionComponent<MediumHeroProps> = (props) => {
             </Typography>
           </Grid>
 
-          <Grid
-            item
-            container direction='column' spacing={3}
-          >
-          {mediumFeed != null
-            ? (
-              <>
-              {mediumFeed.articles.slice(0, articlesCount).map(article => (
-                <Grid item key={article.guid}>
-                  <MediumArticlePaper article={article} />
-                </Grid>
-              ))}
-              </>
-            )
-            : (
-              <>
-              {Array(articlesCount).fill(undefined).map((v, index) => (
-                <Grid item key={index}>
-                  <FakeArticlePaper />
-                </Grid>
-              ))}
-              </>
-            )
-          }
+          <Grid item>
+            <Grid
+              container direction='column' spacing={3}
+            >
+            {mediumFeed != null
+              ? (
+                <>
+                {mediumFeed.articles.slice(0, articlesCount).map(article => (
+                  <Grid item key={article.guid}>
+                    <MediumArticlePaper article={article} />
+                  </Grid>
+                ))}
+                </>
+              )
+              : (
+                <>
+                {Array(articlesCount).fill(undefined).map((v, index) => (
+                  <Grid item key={index}>
+                    <FakeArticlePaper />
+                  </Grid>
+                ))}
+                </>
+              )
+            }
+            </Grid>
+          </Grid>
 
           <Grid
             item xs={12}
@@ -73,7 +75,6 @@ export const MediumHero: FunctionComponent<MediumHeroProps> = (props) => {
                 Découvrir
               </Button>
             </Grid>
-          </Grid>
           </Grid>
         </Grid>
       </Container>

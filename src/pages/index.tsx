@@ -29,7 +29,7 @@ const Home: NextPage<HomeProps> = (props) => {
     <>
       <Head>
         <title>Cyril CHAPON — Consultant stratégie produit &amp; CTO en freelance</title>
-        <link rel="icon" href="/favicon.ico" />
+        {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
 
       {/* <SnapBody /> */}
