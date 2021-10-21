@@ -1,4 +1,5 @@
-import { Box, BoxProps, makeStyles, Theme } from '@material-ui/core'
+import { Box, BoxProps, Theme } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import { FunctionComponent } from 'react'
 import { mapValues, omit } from 'lodash'
 import { maybePxToPx, PropsCssFunc } from '$styles'
@@ -15,11 +16,11 @@ interface WithMinHeight {
 const getPaddingTop = (theme: Theme): PropsCssFunc<HeroProps> => ({ escapeHeader }) => (
   (escapeHeader ?? false)
     ? {
-      paddingTop: `calc(${theme.spacing(4)}px + ${maybePxToPx(theme.mixins.toolbar.minHeight)})`,
+      paddingTop: `calc(${maybePxToPx(theme.spacing(4))} + ${maybePxToPx(theme.mixins.toolbar.minHeight)})`,
       ...(mapValues(
         omit(theme.mixins.toolbar, 'minHeight'),
         (value: WithMinHeight) => ({
-          paddingTop: `calc(${theme.spacing(4)}px + ${maybePxToPx(value.minHeight)})`
+          paddingTop: `calc(${maybePxToPx(theme.spacing(4))} + ${maybePxToPx(value.minHeight)})`
         })
       ))
     }

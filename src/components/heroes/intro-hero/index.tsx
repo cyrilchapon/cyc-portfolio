@@ -1,6 +1,6 @@
 import { Hero, HeroProps } from '$components/hero'
 import { terminalStrings } from '$constants'
-import { Container, Grid } from '@material-ui/core'
+import { Container, Grid } from '@mui/material'
 import { FunctionComponent } from 'react'
 import { IntroAvatar } from './intro-avatar'
 import { IntroSubtitle } from './intro-subtitle'

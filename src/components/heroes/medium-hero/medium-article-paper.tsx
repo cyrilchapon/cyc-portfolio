@@ -1,5 +1,7 @@
 import { ImgPaper } from '$components/papers/img-paper'
-import { Chip, Grid, Link, makeStyles, PaperProps, Typography } from '@material-ui/core'
+import { Chip, Grid, Link, PaperProps, Typography } from '@mui/material'
+import { makeStyles } from '@mui/styles'
+import { Theme } from '$styles'
 import Interweave, { ALLOWED_TAG_LIST, TransformCallback } from 'interweave'
 import { DateTime } from 'luxon'
 import { FunctionComponent } from 'react'
@@ -27,7 +29,7 @@ const articleBodyTransformer = (classes: ReturnType<typeof useStyles>): Transfor
     return <p className={classes.articleBodyParagraph}>{children}</p>
   }
 }
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles<Theme>(theme => ({
   img: {
     width: 'auto',
     maxWidth: '100%',
@@ -105,7 +107,6 @@ const MediumArticlePaper: FunctionComponent<MediumArticlePaperProps> = (props) =
                     label={category}
                     size='small'
                     // color='primary'
-                    variant='default'
                   />
                 </Grid>
               ))}

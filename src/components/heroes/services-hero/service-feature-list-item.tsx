@@ -1,12 +1,14 @@
 import { FontAwesomeSvgIcon } from '$components/icons/font-awesome-svg-icon'
 import { faCircle, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import { ListItem, ListItemIcon, ListItemText, ListItemProps, makeStyles, ListItemTypeMap, Button, ListItemSecondaryAction, IconButton, withStyles, darken, fade, lighten, Link } from '@material-ui/core'
+import { ListItem, ListItemIcon, ListItemText, ListItemProps, ListItemTypeMap, ListItemSecondaryAction, IconButton, Link } from '@mui/material'
+import { makeStyles } from '@mui/styles'
+import { Theme } from '$styles'
 import { FunctionComponent } from 'react'
 import clsx from 'clsx'
 import Markdown from 'markdown-to-jsx'
 import { Tooltip } from '$components/tooltip'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles<Theme>(theme => ({
   listItem: {
     paddingTop: `calc(${theme.spacing(1)}px / 2)`,
     paddingBottom: `calc(${theme.spacing(1)}px / 2)`
@@ -55,7 +57,6 @@ export const ServiceFeatureListItem: FunctionComponent<ServiceFeatureListItemPro
     name,
     description,
     className,
-    button, // Bugs
     ...listItemProps
   } = props
 
@@ -82,7 +83,6 @@ export const ServiceFeatureListItem: FunctionComponent<ServiceFeatureListItemPro
                 {description}
               </Markdown>
             }
-            interactive
             enterTouchDelay={0}
             leaveTouchDelay={4000}
           >

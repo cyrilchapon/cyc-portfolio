@@ -1,12 +1,14 @@
 import { FontAwesomeSvgIcon } from '$components/icons/font-awesome-svg-icon'
-import { Grid, makeStyles, Paper, PaperProps, Typography } from '@material-ui/core'
+import { Grid, Paper, PaperProps, Typography } from '@mui/material'
+import { makeStyles } from '@mui/styles'
+import { Theme } from '$styles'
 import { FunctionComponent } from 'react'
 import { ServiceFeatureList } from './service-feature-list'
 import { ServiceFeatureListItemBaseProps } from './service-feature-list-item'
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import { ServiceFeature, ServiceIcon } from '$constants'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles<Theme>(theme => ({
   servicePaper: {
     padding: theme.spacing(2, 4)
   },

@@ -1,9 +1,12 @@
-import { makeStyles, Typography } from '@material-ui/core'
+import { Typography } from '@mui/material'
+import { makeStyles } from '@mui/styles'
+import { Theme } from '$styles'
+import { visuallyHidden } from '@mui/utils'
 import Typed from 'react-typed'
 import { FunctionComponent } from 'react'
 import { TerminalPaperBase, TerminalPaperBaseProps } from '$components/papers/terminal-paper'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles<Theme>((theme) => ({
   terminalTypo: {
     color: theme.palette.text.secondary,
     fontWeight: theme.typography.variants.mono.fontWeightMedium,
@@ -30,7 +33,7 @@ export const TerminalPaper: FunctionComponent<TerminalPaperProps> = (props) => {
         &gt;{' '}
           {strings.length > 0 && (
             <Typography
-              variant='srOnly'
+              style={visuallyHidden}
             >
               {strings[0]}
             </Typography>

@@ -1,7 +1,7 @@
-import { responsiveFontSizes } from '@material-ui/core'
-import { createTheme, ThemeOptions, Theme, alpha } from '@material-ui/core/styles'
-import { dark, light, Palette, PaletteOptions } from '@material-ui/core/styles/createPalette'
-import { TypographyOptions, TypographyStyleOptions } from '@material-ui/core/styles/createTypography'
+import { responsiveFontSizes } from '@mui/material'
+import { createTheme, ThemeOptions, Theme, alpha } from '@mui/material/styles'
+import { Palette, PaletteOptions } from '@mui/material'
+import { TypographyOptions, TypographyStyleOptions } from '@mui/material/styles/createTypography'
 import { createMuiCustomTheme, customLight } from './custom-theme'
 import { composeStack, FontDefinition, FONTS } from './font'
 
@@ -51,6 +51,12 @@ const getTypographyOptions = (palette: Palette): TypographyOptions => ({
     button: 'sansSerif',
     caption: 'mono',
     overline: 'mono'
+  },
+  body1: {
+    color: palette.text.primary
+  },
+  body2: {
+    color: palette.text.primary
   },
   h1: {
     fontFamily: composeStack(FONTS.serif),
@@ -108,13 +114,20 @@ const getTypographyOptions = (palette: Palette): TypographyOptions => ({
   },
   button: {
     fontFamily: composeStack(FONTS.sansSerif),
-    fontWeight: FONTS.sansSerif.weights.bold
+    fontWeight: FONTS.sansSerif.weights.bold,
+    color: palette.text.primary
+  },
+  caption: {
+    color: palette.text.semi
+  },
+  overline: {
+    color: palette.text.semi
   }
 })
 
 const darkTheme: ThemeOptions = {
   palette: {
-    type: 'dark',
+    mode: 'dark',
     tonalOffset: {
       light: 0.5,
       dark: 0.2
@@ -137,20 +150,21 @@ const darkTheme: ThemeOptions = {
       paper: '#0A0A0A'
     },
     text: {
+      primary: '#FFFFFF',
       semi: 'rgba(255, 255, 255, 0.9)',
+      secondary: 'rgba(255, 255, 255, 0.7)',
+      disabled: 'rgba(255, 255, 255, 0.5)',
       light: {
         primary: '#FFFFFF',
         semi: 'rgba(255, 255, 255, 0.9)',
         secondary: 'rgba(255, 255, 255, 0.7)',
-        disabled: 'rgba(255, 255, 255, 0.5)',
-        hint: 'rgba(255, 255, 255, 0.5)'
+        disabled: 'rgba(255, 255, 255, 0.5)'
       },
       dark: {
         primary: 'rgba(0, 0, 0, 0.87)',
         semi: 'rgba(0, 0, 0, 0.7)',
         secondary: 'rgba(0, 0, 0, 0.54)',
-        disabled: 'rgba(0, 0, 0, 0.38)',
-        hint: 'rgba(0, 0, 0, 0.38)'
+        disabled: 'rgba(0, 0, 0, 0.38)'
       }
     }
   },
@@ -159,7 +173,7 @@ const darkTheme: ThemeOptions = {
 
 const lightTheme: ThemeOptions = {
   palette: {
-    type: 'light',
+    mode: 'light',
     tonalOffset: {
       light: 0.5,
       dark: 0.2
@@ -171,27 +185,28 @@ const lightTheme: ThemeOptions = {
       main: '#1BB16D'
     },
     background: {
-      default: light.background.default,
+      default: 'rgb(250, 250, 250)',
       intro: customLight.background.intro,
       terminal: customLight.background.terminal,
       header: customLight.background.header,
       tooltip: alpha('#000000', 0.85)
     },
     text: {
+      primary: 'rgba(0, 0, 0, 0.87)',
       semi: 'rgba(0, 0, 0, 0.7)',
+      secondary: 'rgba(0, 0, 0, 0.54)',
+      disabled: 'rgba(0, 0, 0, 0.38)',
       light: {
         primary: '#FFFFFF',
         semi: 'rgba(255, 255, 255, 0.9)',
         secondary: 'rgba(255, 255, 255, 0.7)',
-        disabled: 'rgba(255, 255, 255, 0.5)',
-        hint: 'rgba(255, 255, 255, 0.5)'
+        disabled: 'rgba(255, 255, 255, 0.5)'
       },
       dark: {
         primary: 'rgba(0, 0, 0, 0.87)',
         semi: 'rgba(0, 0, 0, 0.7)',
         secondary: 'rgba(0, 0, 0, 0.54)',
-        disabled: 'rgba(0, 0, 0, 0.38)',
-        hint: 'rgba(0, 0, 0, 0.38)'
+        disabled: 'rgba(0, 0, 0, 0.38)'
       }
     }
   },
@@ -200,7 +215,7 @@ const lightTheme: ThemeOptions = {
 
 const primaryTheme: ThemeOptions = {
   palette: {
-    type: 'dark',
+    mode: 'dark',
     tonalOffset: {
       light: 0.5,
       dark: 0.2
@@ -223,20 +238,21 @@ const primaryTheme: ThemeOptions = {
       tooltip: alpha('#000000', 0.85)
     },
     text: {
+      primary: '#FFFFFF',
       semi: 'rgba(255, 255, 255, 0.9)',
+      secondary: 'rgba(255, 255, 255, 0.7)',
+      disabled: 'rgba(255, 255, 255, 0.5)',
       light: {
         primary: '#FFFFFF',
         semi: 'rgba(255, 255, 255, 0.9)',
         secondary: 'rgba(255, 255, 255, 0.7)',
-        disabled: 'rgba(255, 255, 255, 0.5)',
-        hint: 'rgba(255, 255, 255, 0.5)'
+        disabled: 'rgba(255, 255, 255, 0.5)'
       },
       dark: {
         primary: 'rgba(0, 0, 0, 0.87)',
         semi: 'rgba(0, 0, 0, 0.7)',
         secondary: 'rgba(0, 0, 0, 0.54)',
-        disabled: 'rgba(0, 0, 0, 0.38)',
-        hint: 'rgba(0, 0, 0, 0.38)'
+        disabled: 'rgba(0, 0, 0, 0.38)'
       }
     }
   },
@@ -245,9 +261,9 @@ const primaryTheme: ThemeOptions = {
 
 const rootTheme: ThemeOptions = {
   ...darkTheme,
-  overrides: {
+  components: {
     MuiCssBaseline: {
-      "@global": {
+      styleOverrides: {
         body: {
           backgroundImage: `url('${backgroundImage}'), url('${loadingBackgroundImage}')`,
           backgroundPosition: 'center center',

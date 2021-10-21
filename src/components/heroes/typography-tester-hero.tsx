@@ -1,5 +1,5 @@
 import { Hero, HeroProps } from '$components/hero'
-import { Container, Grid, Typography } from '@material-ui/core'
+import { Container, Grid, Typography } from '@mui/material'
 import { FunctionComponent } from 'react'
 
 export const TypographyTesterHero: FunctionComponent<HeroProps> = (props) => {

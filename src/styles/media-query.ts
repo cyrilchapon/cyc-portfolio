@@ -1,5 +1,5 @@
-import { useMediaQuery, useTheme } from "@material-ui/core"
-import { Breakpoint } from "@material-ui/core/styles/createBreakpoints"
+import { useMediaQuery, useTheme } from "@mui/material"
+import { Breakpoint } from "@mui/material/styles/createBreakpoints"
 import { findLast } from "lodash"
 
 type MediaQueryMatches = Record<Breakpoint, boolean>

@@ -1,5 +1,6 @@
 import { Hero, HeroProps } from '$components/hero'
-import { Button, Container, Grid, makeStyles, Typography } from '@material-ui/core'
+import { Button, Container, Grid, Typography } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import { FunctionComponent } from 'react'
 import { ServicePaper } from './service-paper'
 import { services } from '$constants'

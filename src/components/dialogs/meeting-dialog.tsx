@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useCallback } from 'react'
-import Dialog, { DialogProps } from '@material-ui/core/Dialog'
-import { ColorObject, decomposeColor, hslToRgb, makeStyles, recomposeColor, rgbToHex, useTheme } from '@material-ui/core'
+import Dialog, { DialogProps } from '@mui/material/Dialog'
+import { ColorObject, decomposeColor, hslToRgb, recomposeColor, rgbToHex, useTheme } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import { InlineWidget } from 'react-calendly'
 
 export type MeetingDialogCancelReason =

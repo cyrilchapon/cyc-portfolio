@@ -1,9 +1,9 @@
-import { createTheme, alpha, ThemeOptions } from '@material-ui/core/styles'
-import { dark, light, Palette, PaletteOptions } from '@material-ui/core/styles/createPalette'
-import * as colors from '@material-ui/core/colors'
-import { PaletteType } from '@material-ui/core'
+import { createTheme, alpha, ThemeOptions } from '@mui/material/styles'
+import { Palette, PaletteOptions } from '@mui/material'
+import * as colors from '@mui/material/colors'
+import { PaletteMode } from '@mui/material'
 import { FontGender } from './font'
-import { TypographyOptions, Variant, VariantFontStyle } from '@material-ui/core/styles/createTypography'
+import { TypographyOptions, Variant, VariantFontStyle } from '@mui/material/styles/createTypography'
 import { mapValues } from 'lodash'
 
 interface CustomColors {
@@ -13,7 +13,7 @@ interface CustomColors {
   tooltip: string
 }
 
-const defaultAdditionalBackgroundMapping: Record<PaletteType, CustomColors> = {
+const defaultAdditionalBackgroundMapping: Record<PaletteMode, CustomColors> = {
   light: {
     terminal: colors.common.white,
     intro: colors.grey[50],
@@ -84,7 +84,7 @@ export const customLight = {
 }
 
 export const createMuiCustomTheme = (options: ThemeOptions) => {
-  const darkOrLight = options.palette?.type ?? 'light'
+  const darkOrLight = options.palette?.mode ?? 'light'
 
   const typographyFunction = typeof options.typography === 'function'
     ? options.typography

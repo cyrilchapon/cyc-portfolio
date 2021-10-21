@@ -1,5 +1,5 @@
 import { Hero, HeroProps } from '$components/hero'
-import { Button, Container, Grid, Typography } from '@material-ui/core'
+import { Button, Container, Grid, Typography } from '@mui/material'
 import { FunctionComponent } from 'react'
 import { MediumFeed } from 'types/medium-feed'
 import { FakeArticlePaper } from './fake-article-paper'
@@ -69,7 +69,6 @@ export const MediumHero: FunctionComponent<MediumHeroProps> = (props) => {
               <Button
                 href='https://cyril-chpn.medium.com'
                 variant='outlined'
-                color='default'
                 size='large'
               >
                 Découvrir

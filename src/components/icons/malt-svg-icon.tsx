@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SvgIconProps, SvgIcon } from '@material-ui/core'
+import { SvgIconProps, SvgIcon } from '@mui/material'
 
 const MaltSvgIcon: React.FunctionComponent<SvgIconProps> = (props) => (
   <SvgIcon {...props}>

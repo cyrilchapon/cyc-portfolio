@@ -1,8 +1,8 @@
-import '@material-ui/core'
-import { FontStyle, Variant } from '@material-ui/core'
+import '@mui/material'
+import { FontStyle, Variant } from '@mui/material'
 import { FontGender } from '../styles/font'
 
-declare module '@material-ui/core/styles/createPalette' {
+declare module '@mui/material/styles/createPalette' {
   interface TypeBackground {
     intro: string
     terminal: string
@@ -34,8 +34,8 @@ declare module '@material-ui/core/styles/createPalette' {
   }
 }
 
-declare module '@material-ui/core/styles/createTypography' {
-  interface VariantFontStyle extends Omit<FontStyle, 'fontSize'> {
+declare module '@mui/material/styles/createTypography' {
+  interface VariantFontStyle extends Omit<FontStyle, 'fontSize' | 'htmlFontSize'> {
     fontGender: FontGender
   }
 
@@ -52,8 +52,8 @@ declare module '@material-ui/core/styles/createTypography' {
   }
 }
 
-declare module '@material-ui/core/styles/createMuiTheme' {
-  import { Typography, TypographyOptions } from '@material-ui/core/styles/createTypography'
+declare module '@mui/material/styles/createMuiTheme' {
+  import { Typography, TypographyOptions } from '@mui/material/styles/createTypography'
 
   interface Theme {
     typography: Typography

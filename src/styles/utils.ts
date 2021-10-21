@@ -1,4 +1,4 @@
-import { CreateCSSProperties } from '@material-ui/core/styles/withStyles'
+import { CreateCSSProperties } from '@mui/styles'
 
 export const removePx = (value: number | string | null) => (
   typeof value === 'string'

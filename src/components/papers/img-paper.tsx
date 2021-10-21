@@ -1,5 +1,5 @@
 import { FunctionComponent, ImgHTMLAttributes } from 'react'
-import { Paper, PaperClassKey, PaperProps, StandardProps } from '@material-ui/core'
+import { Paper, PaperClassKey, PaperProps, StandardProps } from '@mui/material'
 
 type ImgPaperProps = PaperProps & StandardProps<
   ImgHTMLAttributes<HTMLImageElement>,

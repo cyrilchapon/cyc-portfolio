@@ -1,4 +1,4 @@
-import { CreateCSSProperties } from '@material-ui/core/styles/withStyles'
+import { CreateCSSProperties } from '@mui/styles'
 
 export * from './theme'
 export * from './media-query'

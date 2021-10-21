@@ -1,8 +1,10 @@
-import { Avatar, AvatarProps, makeStyles, Paper } from '@material-ui/core'
+import { Avatar, AvatarProps, Paper } from '@mui/material'
+import { makeStyles } from '@mui/styles'
+import { Theme } from '$styles'
 import clsx from 'clsx'
 import { FunctionComponent } from 'react'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles<Theme>((theme) => ({
   avatar: {
     width: theme.spacing(32),
     height: theme.spacing(32),

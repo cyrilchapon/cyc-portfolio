@@ -1,8 +1,10 @@
-import { makeStyles, Typography, TypographyProps } from '@material-ui/core'
+import { Typography, TypographyProps } from '@mui/material'
+import { makeStyles } from '@mui/styles'
+import { Theme } from '$styles'
 import clsx from 'clsx'
 import { FunctionComponent } from 'react'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles<Theme>((theme) => ({
   subtitle: {
     textAlign: 'center',
     color: theme.palette.text.primary,

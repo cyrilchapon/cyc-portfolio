@@ -2,16 +2,18 @@
 import * as React from 'react'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { faDev, faGithub, faLinkedin, faMediumM } from '@fortawesome/free-brands-svg-icons'
-import { AppBar, AppBarProps, IconButton, IconButtonProps, makeStyles, Slide, Theme, Toolbar, Typography, useScrollTrigger, useTheme } from '@material-ui/core'
+import { AppBar, AppBarProps, IconButton, IconButtonProps, Slide, Toolbar, Typography, useScrollTrigger, useTheme } from '@mui/material'
+import { makeStyles } from '@mui/styles'
+import { removePx, Theme } from '$styles'
 import { FunctionComponent } from 'react'
 import { FontAwesomeSvgIcon } from './icons/font-awesome-svg-icon'
 import { MaltSvgIcon } from './icons/malt-svg-icon'
 import { useNavbarHeight } from '$styles'
 
-const useSocialButtonStyles = makeStyles((theme) => ({
+const useSocialButtonStyles = makeStyles<Theme>((theme) => ({
   socialIcon: {
     '& + &': {
-      marginLeft: theme.spacing(1)
+      marginLeft: theme.spacing(2)
     }
   }
 }))
@@ -58,14 +60,19 @@ export const Header: FunctionComponent<AppBarProps> = (props) => {
 
   const theme = useTheme()
 
+  const smallSpacing = removePx(theme.spacing(4))!
+  const bigSpacing = removePx(theme.spacing(20))!
+
   const scrolledOverNavbar = useScrollTrigger({
     disableHysteresis: true,
-    threshold: (navbarHeight ?? theme.spacing(4))
+    // HACK: hack type after migration
+    threshold: navbarHeight ?? smallSpacing
   })
 
   const scrolled = useScrollTrigger({
     disableHysteresis: true,
-    threshold: (navbarHeight ?? theme.spacing(4)) + theme.spacing(20)
+    // HACK: hack type after migration
+    threshold: (navbarHeight ?? smallSpacing) + bigSpacing
   })
 
   const classes = useStyles({ ...props, scrolled: scrolledOverNavbar })

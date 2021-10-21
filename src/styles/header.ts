@@ -1,5 +1,5 @@
-import { useMediaQuery, useTheme } from '@material-ui/core'
-import { CSSProperties } from '@material-ui/core/styles/withStyles'
+import { useMediaQuery, useTheme } from '@mui/material'
+import { CSSProperties } from '@mui/styles'
 import { removePx } from './utils'
 
 const useNavbarHeight = () => {

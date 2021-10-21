@@ -1,4 +1,5 @@
-import { makeStyles, Paper, PaperProps, Theme } from '@material-ui/core'
+import { Paper, PaperProps, Theme } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import clsx from 'clsx'
 import { FunctionComponent } from 'react'
 

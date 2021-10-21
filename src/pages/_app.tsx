@@ -1,7 +1,7 @@
 import React from 'react'
 import { linksGenerator } from '$components/html-head'
 import { themes } from '$styles'
-import { CssBaseline, NoSsr, ThemeProvider } from '@material-ui/core'
+import { CssBaseline, NoSsr, ThemeProvider } from '@mui/material'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { SERVER_STYLESHEET_ID } from './_document'

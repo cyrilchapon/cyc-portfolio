@@ -1,5 +1,5 @@
 import React from 'react'
-import { ServerStyleSheets } from '@material-ui/core'
+import { ServerStyleSheets } from '@mui/styles'
 import _Document, {
   Html,
   Head,

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SvgIcon, SvgIconProps } from '@material-ui/core'
+import { SvgIcon, SvgIconProps } from '@mui/material'
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 
 interface FontAwesomeSvgIconProps extends SvgIconProps {

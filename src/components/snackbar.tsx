@@ -1,6 +1,6 @@
 import React from 'react'
 import { useGlobalState } from '$global-state'
-import { IconButton, Snackbar, SnackbarProps } from '@material-ui/core'
+import { IconButton, Snackbar, SnackbarProps } from '@mui/material'
 import { FunctionComponent } from 'react'
 import Markdown from 'markdown-to-jsx'
 import { FontAwesomeSvgIcon } from './icons/font-awesome-svg-icon'

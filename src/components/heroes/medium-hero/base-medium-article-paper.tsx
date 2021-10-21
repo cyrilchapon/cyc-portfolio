@@ -1,8 +1,10 @@
-import { makeStyles, Paper, PaperProps } from '@material-ui/core'
+import { Paper, PaperProps } from '@mui/material'
+import { makeStyles } from '@mui/styles'
+import { Theme } from '$styles'
 import clsx from 'clsx'
 import { FunctionComponent } from 'react'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles<Theme>(theme => ({
   articlePaper: {
     padding: theme.spacing(3)
   }

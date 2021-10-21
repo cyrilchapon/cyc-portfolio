@@ -1,10 +1,12 @@
 import { AspectRatioSkeleton } from '$components/aspect-ratio-squeleton'
-import { Grid, makeStyles, Paper, PaperProps } from '@material-ui/core'
-import { Skeleton } from '@material-ui/lab'
+import { Grid, Paper, PaperProps } from '@mui/material'
+import { makeStyles } from '@mui/styles'
+import { Theme } from '$styles'
+import { Skeleton } from '@mui/lab'
 import { FunctionComponent } from 'react'
 import { BaseMediumArticlePaper } from './base-medium-article-paper'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles<Theme>(theme => ({
 
 }))
 
@@ -47,7 +49,7 @@ const FakeArticlePaper: FunctionComponent<PaperProps> = (props) => {
           </Grid>
 
           <Grid item>
-            <Skeleton variant='rect' width='100%' height={200} />
+            <Skeleton variant='rectangular' width='100%' height={200} />
           </Grid>
 
           <Grid item>

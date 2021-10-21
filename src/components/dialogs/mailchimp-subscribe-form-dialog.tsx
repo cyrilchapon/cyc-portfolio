@@ -34,6 +34,12 @@ export const MailchimpSubscribeFormDialog: FunctionComponent<MailchimpSubscribeF
     try {
       await mailchimpAxios.subscribe(formData)
 
+      setSnackbarState(prevState => ({
+        ...prevState,
+        open: true,
+        message: "C'est OK, je vous recontacte très vite 🤗"
+      }))
+
       setSubscribeDialogState(prevState => ({
         ...prevState,
         error: null,

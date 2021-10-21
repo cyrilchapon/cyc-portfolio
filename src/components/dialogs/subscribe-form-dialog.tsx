@@ -1,12 +1,14 @@
 import React, { FunctionComponent, useCallback, useState } from 'react'
-import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
-import Dialog, { DialogProps } from '@material-ui/core/Dialog'
-import DialogActions from '@material-ui/core/DialogActions'
-import DialogContent from '@material-ui/core/DialogContent'
-import DialogContentText from '@material-ui/core/DialogContentText'
-import DialogTitle from '@material-ui/core/DialogTitle'
-import { IconButton, InputAdornment, InputLabel, LinearProgress, makeStyles, OutlinedInput, Typography, withStyles } from '@material-ui/core'
+import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField'
+import Dialog, { DialogProps } from '@mui/material/Dialog'
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import DialogContentText from '@mui/material/DialogContentText'
+import DialogTitle from '@mui/material/DialogTitle'
+import { IconButton, InputAdornment, InputLabel, LinearProgress, OutlinedInput, Typography } from '@mui/material'
+import { makeStyles, withStyles } from '@mui/styles'
+import { Theme } from '$styles'
 import { FontAwesomeSvgIcon } from '$components/icons/font-awesome-svg-icon'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { Tooltip } from '$components/tooltip'
@@ -26,7 +28,7 @@ export interface SubscribeFormDialogProps extends Omit<DialogProps, 'onClose' | 
   loading: boolean
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles<Theme>(theme => ({
   noSpamIcon: {
     fontSize: theme.typography.body1.fontSize
   },
@@ -92,6 +94,7 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
 
   const { register, handleSubmit: internalHandleSubmit, formState } = useForm<SubscribeFormData>({
     mode: 'onChange',
+    shouldUnregister: true,
     resolver: yupResolver(subscribeFormSchema)
   })
 
@@ -105,6 +108,10 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
     [onCancel]
   )
 
+  const { ref: firstnameRef, ...firstnameProps } = register('firstname')
+  const { ref: lastnameRef, ...lastnameProps } = register('lastname')
+  const { ref: emailRef, ...emailProps } = register('email')
+
   return (
     <Dialog
       {...dialogProps}
@@ -117,7 +124,6 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
       >
         <DialogTitle
           id='form-dialog-title'
-          disableTypography
         >
           <Typography
             component='div'
@@ -136,7 +142,6 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
             // margin='dense'
             id='subscribe-form-firstname'
             color='secondary'
-            name='firstname'
             label='Prénom'
             type='text'
             // defaultValue={email}
@@ -147,7 +152,8 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
                 ? formState.errors.firstname?.message
                 : null
             }
-            inputRef={register}
+            inputRef={firstnameRef}
+            {...firstnameProps}
             error={formState.touchedFields.firstname && !!formState.errors.firstname}
             className={classes.textField}
           />
@@ -156,7 +162,6 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
             // margin='dense'
             id='subscribe-form-lastname'
             color='secondary'
-            name='lastname'
             label='Nom'
             type='text'
             // defaultValue={email}
@@ -167,7 +172,8 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
                 ? formState.errors.lastname?.message
                 : null
             }
-            inputRef={register}
+            inputRef={lastnameRef}
+            {...lastnameProps}
             error={formState.touchedFields.lastname && !!formState.errors.lastname}
             className={classes.textField}
           />
@@ -176,7 +182,6 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
             // margin='dense'
             id='subscribe-form-email'
             color='secondary'
-            name='email'
             label='Adresse email'
             type='email'
             // defaultValue={email}
@@ -200,7 +205,8 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
                 ? formState.errors.email?.message
                 : null
             }
-            inputRef={register}
+            inputRef={emailRef}
+            {...emailProps}
             error={formState.touchedFields.email && !!formState.errors.email}
             className={classes.textField}
           />

@@ -1,5 +1,5 @@
 import { FunctionComponent, FormHTMLAttributes } from 'react'
-import { Box, BoxProps } from '@material-ui/core'
+import { Box, BoxProps } from '@mui/material'
 
 type FormBoxProps = BoxProps & FormHTMLAttributes<HTMLFormElement>
 

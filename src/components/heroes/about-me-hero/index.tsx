@@ -2,14 +2,16 @@ import { Hero, HeroProps } from '$components/hero'
 import { ContactPaper } from './about-me-contact-paper'
 import { ImgPaper } from '$components/papers/img-paper'
 import { useResponsive } from '$styles/media-query'
-import { Button, Container, Grid, GridSpacing, makeStyles, ThemeProvider, Typography } from '@material-ui/core'
-import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
+import { Button, Container, Grid, GridSpacing, ThemeProvider, Typography } from '@mui/material'
+import { makeStyles } from '@mui/styles'
+import { Theme } from '$styles'
+import { Breakpoint } from '@mui/system/createTheme'
 import { FunctionComponent, useState } from 'react'
 import { themes } from '$styles'
 import { SubscribeFormDialog } from '$components/dialogs/subscribe-form-dialog'
 import { useGlobalState } from '$global-state'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles<Theme>(theme => ({
   imgGridItem: {
     [theme.breakpoints.up('lg')]: {
       alignItems: 'flex-start'
