@@ -1,5 +1,5 @@
 import { responsiveFontSizes } from '@material-ui/core'
-import { createMuiTheme, ThemeOptions, Theme, fade } from '@material-ui/core/styles'
+import { createTheme, ThemeOptions, Theme, alpha } from '@material-ui/core/styles'
 import { dark, light, Palette, PaletteOptions } from '@material-ui/core/styles/createPalette'
 import { TypographyOptions, TypographyStyleOptions } from '@material-ui/core/styles/createTypography'
 import { createMuiCustomTheme, customLight } from './custom-theme'
@@ -131,9 +131,9 @@ const darkTheme: ThemeOptions = {
     background: {
       default: '#1A1A1A',
       intro: 'transparent',
-      terminal: fade('#0A0A0A', 0.5),
-      header: fade('#000000', 0.85),
-      tooltip: fade('#FFFFFF', 0.85),
+      terminal: alpha('#0A0A0A', 0.5),
+      header: alpha('#000000', 0.85),
+      tooltip: alpha('#FFFFFF', 0.85),
       paper: '#0A0A0A'
     },
     text: {
@@ -175,7 +175,7 @@ const lightTheme: ThemeOptions = {
       intro: customLight.background.intro,
       terminal: customLight.background.terminal,
       header: customLight.background.header,
-      tooltip: fade('#000000', 0.85)
+      tooltip: alpha('#000000', 0.85)
     },
     text: {
       semi: 'rgba(0, 0, 0, 0.7)',
@@ -217,10 +217,10 @@ const primaryTheme: ThemeOptions = {
     background: {
       default: '#E02F58',
       intro: 'transparent',
-      terminal: fade('#0A0A0A', 0.5),
-      header: fade('#000000', 0.85),
+      terminal: alpha('#0A0A0A', 0.5),
+      header: alpha('#000000', 0.85),
       paper: '#b32546',
-      tooltip: fade('#000000', 0.85)
+      tooltip: alpha('#000000', 0.85)
     },
     text: {
       semi: 'rgba(255, 255, 255, 0.9)',

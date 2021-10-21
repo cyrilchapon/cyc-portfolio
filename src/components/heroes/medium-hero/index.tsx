@@ -63,7 +63,7 @@ export const MediumHero: FunctionComponent<MediumHeroProps> = (props) => {
 
           <Grid
             item xs={12}
-            container justify='center'
+            container justifyContent='center'
           >
             <Grid item>
               <Button

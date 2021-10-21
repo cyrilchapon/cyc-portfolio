@@ -11,14 +11,14 @@ export const IntroHero: FunctionComponent<HeroProps> = (props) => {
   return (
     <Hero bgcolor='background.intro' {...props}>
       <Container>
-        <Grid container justify='center'>
+        <Grid container justifyContent='center'>
           <Grid
             item xs={12} sm={8} lg={6}
             container spacing={4} direction='column' alignItems='stretch'
           >
             <Grid
               item
-              container direction='row' justify='center'
+              container direction='row' justifyContent='center'
             >
               <Grid item>
                 <IntroAvatar />
@@ -27,7 +27,7 @@ export const IntroHero: FunctionComponent<HeroProps> = (props) => {
 
             <Grid
               item
-              container direction='row' justify='center' spacing={4}
+              container direction='row' justifyContent='center' spacing={4}
             >
               <Grid item xs={12}>
                 <IntroTitle />

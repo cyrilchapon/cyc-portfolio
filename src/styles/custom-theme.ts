@@ -1,4 +1,4 @@
-import { createMuiTheme, fade, ThemeOptions } from '@material-ui/core/styles'
+import { createTheme, alpha, ThemeOptions } from '@material-ui/core/styles'
 import { dark, light, Palette, PaletteOptions } from '@material-ui/core/styles/createPalette'
 import * as colors from '@material-ui/core/colors'
 import { PaletteType } from '@material-ui/core'
@@ -90,7 +90,7 @@ export const createMuiCustomTheme = (options: ThemeOptions) => {
     ? options.typography
     : (palette: Palette) => options.typography as TypographyOptions | undefined
 
-  return createMuiTheme({
+  return createTheme({
     ...options,
     palette: {
       ...options.palette,

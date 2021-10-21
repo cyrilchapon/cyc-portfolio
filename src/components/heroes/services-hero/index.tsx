@@ -31,7 +31,7 @@ export const ServicesHero: FunctionComponent<HeroProps> = (props) => {
           </Grid>
 
           <Grid item>
-            <Grid container direction='row' justify='center' spacing={4}>
+            <Grid container direction='row' justifyContent='center' spacing={4}>
               {services.map((service, index) => (
                 <Grid item xs={12} sm={6} lg={4} key={index}>
                   <ServicePaper
@@ -45,7 +45,7 @@ export const ServicesHero: FunctionComponent<HeroProps> = (props) => {
           </Grid>
 
           <Grid item xs={12}>
-            <Grid container direction='row' justify='center' spacing={2}>
+            <Grid container direction='row' justifyContent='center' spacing={2}>
               <Grid item xs={12} sm='auto' className={classes.buttonGridItem}>
                 <Button
                   onClick={() => setMeetingDialogState(prevState => ({

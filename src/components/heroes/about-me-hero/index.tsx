@@ -56,10 +56,10 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
     <>
       <Hero bgcolor='background.default' {...props}>
         <Container>
-          <Grid container direction='row' justify='center' spacing={r(breakpointGutterSpacings)}>
+          <Grid container direction='row' justifyContent='center' spacing={r(breakpointGutterSpacings)}>
             <Grid
               item xs={12} lg={4}
-              container direction='column' justify='center' alignItems='center'
+              container direction='column' justifyContent='center' alignItems='center'
               className={classes.imgGridItem}
             >
               <Grid item>
@@ -74,7 +74,7 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
 
             <Grid
               item xs={12} lg={6}
-              container direction='row' spacing={4} justify='center'
+              container direction='row' spacing={4} justifyContent='center'
             >
               <Grid item xs={12}>
                 <Typography variant='h3' component='h2'>
@@ -105,7 +105,7 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
 
               <Grid
                 item xs={12}
-                container direction='row' justify='center'
+                container direction='row' justifyContent='center'
               >
                 <Grid item>
                   <Button

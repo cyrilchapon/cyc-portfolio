@@ -6,7 +6,7 @@ export const TypographyTesterHero: FunctionComponent<HeroProps> = (props) => {
   return (
     <Hero bgcolor='background.default' {...props}>
       <Container>
-        <Grid container justify='center'>
+        <Grid container justifyContent='center'>
           <Grid item xs={12} sm={6}>
             <Typography variant="h1" component="h2" gutterBottom>
               h1. Heading
