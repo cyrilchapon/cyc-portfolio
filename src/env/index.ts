@@ -1,4 +1,4 @@
-import { cleanEnv, host, str } from 'envalid'
+import { cleanEnv, host, str, ValidatorSpec } from 'envalid'
 
 interface BrowserEnv {
   NODE_ENV: NodeJS.ProcessEnv['NODE_ENV']
@@ -16,15 +16,10 @@ const getBrowserEnv = () => {
   }
 
   const cleanedEnv = cleanEnv<BrowserEnv>(env, {
-    NODE_ENV: str({ choices: ['development', 'production', 'test'] }),
+    NODE_ENV: str({ choices: ['development', 'production', 'test'] }) as ValidatorSpec<NodeJS.ProcessEnv['NODE_ENV']>,
     NEXT_PUBLIC_MAILCHIMP_HOST: host(),
     NEXT_PUBLIC_MAILCHIMP_USER_ID: str(),
     NEXT_PUBLIC_MAILCHIMP_FORM_ID: str()
-  }, {
-    strict: true,
-    dotEnvPath: null,
-    // Remove proxy shit
-    // transformer: (env) => ({ ...(env as BrowserEnv) })
   })
 
   return { ...cleanedEnv } as BrowserEnv

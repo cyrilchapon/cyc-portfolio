@@ -61,7 +61,7 @@ export interface SubscribeFormData {
   lastname: string
 }
 
-const subscribeFormSchema = yup.object().shape<SubscribeFormData>({
+const subscribeFormSchema: yup.SchemaOf<SubscribeFormData> = yup.object({
   email: yup
     .string()
     .required('Il me faut votre e-mail !')
@@ -90,7 +90,7 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
     ...dialogProps
   } = props
 
-  const { register, handleSubmit: internalHandleSubmit, errors, formState } = useForm<SubscribeFormData>({
+  const { register, handleSubmit: internalHandleSubmit, formState } = useForm<SubscribeFormData>({
     mode: 'onChange',
     resolver: yupResolver(subscribeFormSchema)
   })
@@ -143,12 +143,12 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
             variant='standard'
             fullWidth
             helperText={
-              formState.touched.firstname
-                ? errors.firstname?.message
+              formState.touchedFields.firstname
+                ? formState.errors.firstname?.message
                 : null
             }
             inputRef={register}
-            error={formState.touched.firstname && !!errors.firstname}
+            error={formState.touchedFields.firstname && !!formState.errors.firstname}
             className={classes.textField}
           />
 
@@ -163,12 +163,12 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
             variant='standard'
             fullWidth
             helperText={
-              formState.touched.lastname
-                ? errors.lastname?.message
+              formState.touchedFields.lastname
+                ? formState.errors.lastname?.message
                 : null
             }
             inputRef={register}
-            error={formState.touched.lastname && !!errors.lastname}
+            error={formState.touchedFields.lastname && !!formState.errors.lastname}
             className={classes.textField}
           />
 
@@ -196,12 +196,12 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
               )
             }}
             helperText={
-              formState.touched.email
-                ? errors.email?.message
+              formState.touchedFields.email
+                ? formState.errors.email?.message
                 : null
             }
             inputRef={register}
-            error={formState.touched.email && !!errors.email}
+            error={formState.touchedFields.email && !!formState.errors.email}
             className={classes.textField}
           />
         </DialogContent>

@@ -73,8 +73,7 @@ export const mailchimpAxios: MailchimpAxiosInstance = Object.assign<
   MailchimpAxiosMethods
 >({}, baseAxios, {
   subscribe: async function (data, config) {
-    const _config = mergeConfig(this.defaults, config ?? {})
-    console.log(data)
+    const _config = mergeConfig(this.defaults as unknown as AxiosRequestConfig<any>, config ?? {})
 
     const response = await this.get<RawMailchimpSubscribeResponse>(
       // That crap adapter doesn't respect baseURL config
