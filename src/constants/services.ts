@@ -72,7 +72,7 @@ définition des **process** et standards, **automatisation**.
     ]
   },
   {
-    title: '2. Gestion technique',
+    title: '2. Gestion tech.',
     icon: {
       type: 'font-awesome',
       icon: faUserNinja

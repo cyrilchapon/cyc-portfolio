@@ -88,18 +88,19 @@ export const HomereHero: FunctionComponent<HeroProps> = (props) => {
 
                     <Typography variant='body1' component='div' className={classes.bodyParagraph}>
                       <p>
-                        Depuis 2020, avec mon associé <Link href="https://www.linkedin.com/in/marc-antoine-calzada" target='_blank'>Marc-Antoine CALZADA</Link> nous avons lancé la Marketplace <strong><Link href="https://www.homere.shop" target="_blank">Homère Shop</Link></strong>.
+                        Depuis fin 2020, avec mon associé <Link href="https://www.linkedin.com/in/marc-antoine-calzada" target='_blank'>Marc-Antoine CALZADA</Link> nous avons lancé la Marketplace <strong><Link href="https://www.homere.shop" target="_blank">Homère Shop</Link></strong>.
+                        J'en suis aujourd'hui le CEO.
                       </p>
 
                       <p>
-                        Homère, c'est un site de vêtements masculins éco-responsables de qualité.
-                        On déniche les plus belles marques durables de France et d'Europe,
+                        Homère, c'est un site de <strong>vêtements masculins éco-responsables de qualité</strong>.
+                        On déniche les plus belles <strong>marques durables</strong> de France et d'Europe,
                         et on propose leurs fringues incroyables sur notre Marketplace en ligne.
                       </p>
 
                       <p>
                         C'est aussi pour moi le projet parfait : un projet de coeur
-                        qui résonne avec mes valeurs personnelles, tout en étant une base
+                        qui résonne avec mes <strong>valeurs personnelles</strong>, tout en étant une base
                         de business solide et scalable comme je les aime.
                       </p>
                     </Typography>
