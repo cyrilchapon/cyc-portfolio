@@ -1,10 +1,7 @@
-import { FunctionComponent, ImgHTMLAttributes } from 'react'
-import { Paper, PaperClassKey, PaperProps, StandardProps } from '@mui/material'
+import { FunctionComponent } from 'react'
+import { Paper, PaperProps } from '@mui/material'
 
-type ImgPaperProps = PaperProps & StandardProps<
-  ImgHTMLAttributes<HTMLImageElement>,
-  PaperClassKey
->
+type ImgPaperProps = PaperProps<'img'>
 
 export const ImgPaper: FunctionComponent<ImgPaperProps> = (props) => (
   <Paper {...props} component='img' />

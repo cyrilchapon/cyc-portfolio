@@ -23,6 +23,8 @@ interface FontDefinition {
 
 const fontDefinitions: {
   vollkorn: FontDefinition,
+  andadaPro: FontDefinition,
+  redHatText: FontDefinition,
   workSans: FontDefinition,
   quicksand: FontDefinition,
   anonymousPro: FontDefinition
@@ -30,7 +32,7 @@ const fontDefinitions: {
   vollkorn: {
     link: 'https://fonts.googleapis.com/css2?family=Vollkorn:wght@300;400;550;650&display=swap',
     family: 'Vollkorn',
-    fallback: FONT_STACKS.Tahoma,
+    fallback: FONT_STACKS.Arial,
     weights: {
       light: 300,
       regular: 400,
@@ -38,6 +40,30 @@ const fontDefinitions: {
       bold: 650
     },
     gender: 'serif'
+  },
+  andadaPro: {
+    link: 'https://fonts.googleapis.com/css2?family=Andada+Pro:wght@300;400;550;650&display=swap',
+    family: 'Andada Pro',
+    fallback: FONT_STACKS.Arial,
+    weights: {
+      light: 300,
+      regular: 400,
+      medium: 550,
+      bold: 650
+    },
+    gender: 'serif'
+  },
+  redHatText: {
+    link: 'https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@280;350;450;600&display=swap',
+    family: 'Red Hat Text',
+    fallback: FONT_STACKS.Tahoma,
+    weights: {
+      light: 280,
+      regular: 350,
+      medium: 450,
+      bold: 600
+    },
+    gender: 'sansSerif'
   },
   workSans: {
     link: 'https://fonts.googleapis.com/css2?family=Work+Sans:wght@280;350;450;600&display=swap',
@@ -77,8 +103,8 @@ const fontDefinitions: {
   }
 }
 
-const serif = fontDefinitions.vollkorn
-const sansSerif = fontDefinitions.quicksand
+const serif = fontDefinitions.andadaPro
+const sansSerif = fontDefinitions.redHatText
 const mono = fontDefinitions.anonymousPro
 
 export const FONTS: Record<FontGender, FontDefinition> = {

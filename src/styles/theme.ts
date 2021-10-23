@@ -46,8 +46,8 @@ const getTypographyOptions = (palette: Palette): TypographyOptions => ({
     h4: 'serif',
     h5: 'serif',
     h6: 'serif',
-    subtitle1: 'serif',
-    subtitle2: 'serif',
+    subtitle1: 'sansSerif',
+    subtitle2: 'sansSerif',
     button: 'sansSerif',
     caption: 'mono',
     overline: 'mono'
@@ -95,17 +95,20 @@ const getTypographyOptions = (palette: Palette): TypographyOptions => ({
     ...smallCapsStyles
   },
   subtitle1: {
-    fontFamily: composeStack(FONTS.serif),
-    fontWeight: FONTS.serif.weights.regular,
-    fontSize: 20,
+    fontFamily: composeStack(FONTS.sansSerif),
+    fontWeight: FONTS.sansSerif.weights.medium,
+    fontSize: 24,
     color: palette.text.secondary,
+    letterSpacing: '2px',
+    textTransform: 'lowercase',
+    fontVariant: 'all-small-caps',
     '&:before': {
       content: '"— "'
     }
   },
   subtitle2: {
-    fontFamily: composeStack(FONTS.serif),
-    fontWeight: FONTS.serif.weights.regular,
+    fontFamily: composeStack(FONTS.sansSerif),
+    fontWeight: FONTS.sansSerif.weights.medium,
     fontSize: 16,
     color: palette.text.secondary,
     '&:before': {
@@ -259,6 +262,52 @@ const primaryTheme: ThemeOptions = {
   typography: getTypographyOptions
 }
 
+const homereTheme: ThemeOptions = {
+  palette: {
+    mode: 'dark',
+    tonalOffset: {
+      light: 0.5,
+      dark: 0.2
+    },
+    primary: {
+      main: '#FFFFFF'
+      // main: '#1BB16D'
+    },
+    secondary: {
+      // main: '#FFFFFF'
+      main: '#1BB16D'
+      // main: '#FFFFFF'
+    },
+    background: {
+      default: '#00483f',
+      intro: 'transparent',
+      terminal: alpha('#0A0A0A', 0.5),
+      header: alpha('#000000', 0.85),
+      paper: '#b32546',
+      tooltip: alpha('#000000', 0.85)
+    },
+    text: {
+      primary: '#FFFFFF',
+      semi: 'rgba(255, 255, 255, 0.9)',
+      secondary: 'rgba(255, 255, 255, 0.7)',
+      disabled: 'rgba(255, 255, 255, 0.5)',
+      light: {
+        primary: '#FFFFFF',
+        semi: 'rgba(255, 255, 255, 0.9)',
+        secondary: 'rgba(255, 255, 255, 0.7)',
+        disabled: 'rgba(255, 255, 255, 0.5)'
+      },
+      dark: {
+        primary: 'rgba(0, 0, 0, 0.87)',
+        semi: 'rgba(0, 0, 0, 0.7)',
+        secondary: 'rgba(0, 0, 0, 0.54)',
+        disabled: 'rgba(0, 0, 0, 0.38)'
+      }
+    }
+  },
+  typography: getTypographyOptions
+}
+
 const rootTheme: ThemeOptions = {
   ...darkTheme,
   components: {
@@ -284,7 +333,8 @@ const themes = {
   root: responsiveFontSizes(createMuiCustomTheme(rootTheme)),
   dark: responsiveFontSizes(createMuiCustomTheme(darkTheme)),
   light: responsiveFontSizes(createMuiCustomTheme(lightTheme)),
-  primary: responsiveFontSizes(createMuiCustomTheme(primaryTheme))
+  primary: responsiveFontSizes(createMuiCustomTheme(primaryTheme)),
+  homere: responsiveFontSizes(createMuiCustomTheme(homereTheme))
 }
 
 export default themes

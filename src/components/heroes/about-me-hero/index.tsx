@@ -5,7 +5,7 @@ import { useResponsive } from '$styles/media-query'
 import { Button, Container, Grid, GridSpacing, ThemeProvider, Typography } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import { Theme } from '$styles'
-import { Breakpoint } from '@mui/system/createTheme'
+import { Breakpoint } from '@mui/system'
 import { FunctionComponent, useState } from 'react'
 import { themes } from '$styles'
 import { SubscribeFormDialog } from '$components/dialogs/subscribe-form-dialog'
@@ -42,12 +42,6 @@ const useStyles = makeStyles<Theme>(theme => ({
 const mySelfHeightImg = 'https://images.prismic.io/cyc-portfolio/8876ba7e-bdf6-4d48-894c-a993ca3a9b9f_moi.png?auto=compress,format&ar=2:3&fit=crop&crop=faces,center'
 const mySelfWideImg = 'https://images.prismic.io/cyc-portfolio/8876ba7e-bdf6-4d48-894c-a993ca3a9b9f_moi.png?auto=compress,format&ar=4:2&fit=crop&crop=faces,center'
 
-const breakpointGutterSpacings: Partial<Record<Breakpoint, GridSpacing>> = {
-  xs: 4,
-  md: 4,
-  lg: 8
-}
-
 export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
   const [ , setSubscribeDialogState ] = useGlobalState('subscribeDialog')
 
@@ -58,7 +52,14 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
     <>
       <Hero bgcolor='background.default' {...props}>
         <Container>
-          <Grid container direction='row' justifyContent='center' spacing={r(breakpointGutterSpacings)}>
+          <Grid
+            container direction='row' justifyContent='center'
+            spacing={{
+              xs: 4,
+              md: 4,
+              lg: 8
+            }}
+          >
             <Grid
               item xs={12} lg={4}
               container direction='column' justifyContent='center' alignItems='center'
@@ -89,14 +90,18 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
 
                 <Typography variant='body1' component='div' className={classes.bodyParagraph}>
                   <p>
-                    Évoluant depuis presque 12 ans dans le milieu de la tech
-                    et majoritairement en environnement Startup,
-                    j’ai exercé les besognes de Tech Lead, Chef de projet,
-                    et désormais <strong>CTO</strong> &amp; <strong>Product manager</strong>.
+                    Évoluant depuis une douzaine d'années dans le milieu de la tech
+                    en environnement Startup, j’ai exercé en tant que Tech Lead &amp; CTO.
                   </p>
 
                   <p>
-                    Je suis aujourd'hui freelance, et j'aime me définir comme un profil à la croisée des <strong>stratégies Business</strong>, <strong>Produit</strong> et <strong>Technique</strong>.
+                    Je suis aujourd'hui <strong>CEO et co-founder d'Homère</strong>,
+                    le site de fringues écologiques et de qualité pour homme, au format Marketplace.
+                  </p>
+
+                  <p>
+                    Je fais aussi de temps en temps du consulting en <strong>stratégie Business</strong>, <strong>Produit</strong> et <strong>Technique</strong> —
+                    quand le sujet m'intéresse.
                   </p>
                 </Typography>
               </Grid>

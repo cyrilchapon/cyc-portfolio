@@ -6,8 +6,10 @@ import { Main } from '$components/main'
 import { IntroHero } from '$components/heroes/intro-hero'
 import { AboutMeHero } from '$components/heroes/about-me-hero'
 import { TypographyTesterHero } from '$components/heroes/typography-tester-hero'
+import { GridTesterHero } from '$components/heroes/grid-tester-hero'
 import { ServicesHero } from '$components/heroes/services-hero'
 import { MediumHero } from '$components/heroes/medium-hero'
+import { HomereHero } from '$components/heroes/homere-hero'
 import { ThemeProvider } from '@mui/material'
 import { themes } from '$styles'
 import { MailchimpSubscribeFormDialog } from '$components/dialogs/mailchimp-subscribe-form-dialog'
@@ -43,6 +45,10 @@ const Home: NextPage<HomeProps> = (props) => {
           <AboutMeHero id='a-propos-de-moi' escapeHeader />
         </ThemeProvider>
 
+        <ThemeProvider theme={themes.homere}>
+          <HomereHero id='homere' />
+        </ThemeProvider>
+
         <ThemeProvider theme={themes.light}>
           <ServicesHero id='mes-services' escapeHeader />
         </ThemeProvider>
@@ -58,6 +64,10 @@ const Home: NextPage<HomeProps> = (props) => {
         {browserEnv.NODE_ENV === 'development' && (
           <>
             <ThemeProvider theme={themes.light}>
+              <GridTesterHero />
+            </ThemeProvider>
+
+            <ThemeProvider theme={themes.light}>
               <TypographyTesterHero />
             </ThemeProvider>
 
@@ -66,6 +76,10 @@ const Home: NextPage<HomeProps> = (props) => {
             </ThemeProvider>
 
             <ThemeProvider theme={themes.primary}>
+              <TypographyTesterHero />
+            </ThemeProvider>
+
+            <ThemeProvider theme={themes.homere}>
               <TypographyTesterHero />
             </ThemeProvider>
           </>

@@ -191,7 +191,7 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
               endAdornment: (
                 <InputAdornment position='end'>
                   <Tooltip
-                    title="Pas d'inquiétude, aucun SPAM sans votre accord"
+                    title="Pas d'inquiétude, je spam pas"
                   >
                     <IconButton color='inherit' disableRipple size='small' className={classes.noSpamIconButton}>
                       <FontAwesomeSvgIcon icon={faInfoCircle} className={classes.noSpamIcon} />

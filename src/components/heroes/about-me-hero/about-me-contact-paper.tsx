@@ -41,7 +41,7 @@ const ContactPaper: FunctionComponent<PaperProps> = (props) => {
               <ListItemText secondary='Age' primary={<strong>{getAge(birthDay)} ans</strong>} />
             </ListItem>
 
-            <ListItem>
+            {/* <ListItem>
               <ListItemIcon>
                 <FontAwesomeSvgIcon fontSize='small' icon={faEnvelope} />
               </ListItemIcon>
@@ -55,18 +55,26 @@ const ContactPaper: FunctionComponent<PaperProps> = (props) => {
               </ListItemIcon>
 
               <ListItemText secondary='Téléphone' primary={<strong>&#x002B;33&#x0020;6&#x0020;66&#x0020;09&#x0020;62&#x0020;02</strong>} />
-            </ListItem>
+            </ListItem> */}
           </List>
         </Grid>
 
         <Grid item xs={12} sm={6}>
           <List>
-            <ListItem component={Link} href='https://cyril-chpn.medium.com' color='inherit'>
+            {/* <ListItem component={Link} href='https://cyril-chpn.medium.com' color='inherit'>
               <ListItemIcon>
                 <FontAwesomeSvgIcon fontSize='small' icon={faMediumM} />
               </ListItemIcon>
 
               <ListItemLink secondary='Medium' primary={<strong>@cyril-chpn</strong>} />
+            </ListItem> */}
+
+            <ListItem component={Link} href='https://www.linkedin.com/in/cchapon' color='inherit'>
+              <ListItemIcon>
+                <FontAwesomeSvgIcon fontSize='small' icon={faLinkedin} />
+              </ListItemIcon>
+
+              <ListItemLink secondary='LinkedIn' primary={<strong>cchapon</strong>} />
             </ListItem>
 
             <ListItem component={Link} href='https://github.com/cyrilchapon' color='inherit'>
@@ -77,21 +85,13 @@ const ContactPaper: FunctionComponent<PaperProps> = (props) => {
               <ListItemLink secondary='Github' primary={<strong>cyrilchapon</strong>} />
             </ListItem>
 
-            <ListItem component={Link} href='https://www.linkedin.com/in/cchapon' color='inherit'>
-              <ListItemIcon>
-                <FontAwesomeSvgIcon fontSize='small' icon={faLinkedin} />
-              </ListItemIcon>
-
-              <ListItemLink secondary='LinkedIn' primary={<strong>cchapon</strong>} />
-            </ListItem>
-
-            <ListItem component={Link} href='https://www.malt.fr/profile/cyrilchapon' color='inherit'>
+            {/* <ListItem component={Link} href='https://www.malt.fr/profile/cyrilchapon' color='inherit'>
               <ListItemIcon>
                 <MaltSvgIcon fontSize='small' />
               </ListItemIcon>
 
               <ListItemLink secondary='Malt' primary={<strong>cyrilchapon</strong>} />
-            </ListItem>
+            </ListItem> */}
           </List>
         </Grid>
       </Grid>
