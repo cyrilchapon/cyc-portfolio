@@ -71,7 +71,7 @@ const ContactPaper: FunctionComponent<PaperProps> = (props) => {
 
             <ListItem component={Link} href='https://www.linkedin.com/in/cchapon' color='inherit'>
               <ListItemIcon>
-                <FontAwesomeSvgIcon fontSize='small' icon={faLinkedin} />
+                <FontAwesomeSvgIcon fontSize='medium' icon={faLinkedin} />
               </ListItemIcon>
 
               <ListItemLink secondary='LinkedIn' primary={<strong>cchapon</strong>} />
@@ -79,7 +79,7 @@ const ContactPaper: FunctionComponent<PaperProps> = (props) => {
 
             <ListItem component={Link} href='https://github.com/cyrilchapon' color='inherit'>
               <ListItemIcon>
-                <FontAwesomeSvgIcon fontSize='small' icon={faGithub} />
+                <FontAwesomeSvgIcon fontSize='medium' icon={faGithub} />
               </ListItemIcon>
 
               <ListItemLink secondary='Github' primary={<strong>cyrilchapon</strong>} />

@@ -43,7 +43,7 @@ export const services: Service[] = [
       {
         name: 'Business modeling',
         description: `
-Analyse et challenge du **Business Model**
+Analyse et challenge de **Business Model**
 (Revenue Model & Distribution Model).
         `
       },
