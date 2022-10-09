@@ -13,7 +13,7 @@ interface WithMinHeight {
   minHeight: any
 }
 
-const getPaddingTop = (theme: Theme): PropsCssFunc<HeroProps> => ({ escapeHeader }) => (
+export const getPaddingTop = (theme: Theme): PropsCssFunc<HeroProps> => ({ escapeHeader }) => (
   (escapeHeader ?? false)
     ? {
       paddingTop: `calc(${maybePxToPx(theme.spacing(4))} + ${maybePxToPx(theme.mixins.toolbar.minHeight)})`,

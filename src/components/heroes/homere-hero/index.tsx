@@ -1,16 +1,11 @@
-import { Hero, HeroProps } from '$components/hero'
+import { getPaddingTop, Hero, HeroProps } from '$components/hero'
 // import { ContactPaper } from './about-me-contact-paper'
-import { ImgPaper } from '$components/papers/img-paper'
 import { useResponsive } from '$styles/media-query'
-import { Box, Button, Container, Grid, GridSpacing, Link, ThemeProvider, Typography } from '@mui/material'
+import { Box, Button, Grid, Link, Typography } from '@mui/material'
 import { makeStyles } from '@mui/styles'
-import { maybePxToPx, Theme } from '$styles'
-import { Breakpoint } from '@mui/system'
-import { FunctionComponent, useState } from 'react'
-import { themes } from '$styles'
-import { SubscribeFormDialog } from '$components/dialogs/subscribe-form-dialog'
+import { Theme } from '$styles'
+import { FunctionComponent } from 'react'
 import { useGlobalState } from '$global-state'
-import { mapValues, omit } from 'lodash'
 
 const useStyles = makeStyles<Theme>(theme => ({
   hero: {
@@ -18,10 +13,38 @@ const useStyles = makeStyles<Theme>(theme => ({
     paddingBottom: 0,
     minHeight: 'auto'
   },
+  imgGridContainer: {
+    minHeight: '100vh',
+    [theme.breakpoints.down('lg')]: {
+      display: 'none',
+    }
+  },
   imgGridItem: {
     backgroundImage: `url(${mySelfHeightImg})`,
     backgroundSize: 'cover',
-    minHeight: '100vh'
+  },
+  paragraphGridContainer: {
+    paddingBottom: theme.spacing(4),
+    ...getPaddingTop(theme)({ escapeHeader: true }),
+    minHeight: '100vh',
+    [theme.breakpoints.down('lg')]: {
+      background: `url(${mySelfHeightImg})`,
+      position: 'relative',
+      '&::before': {
+        content: '""',
+        position: 'absolute',
+        display: 'block',
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+        width: '100%',
+        height: '100%',
+        backgroundColor: theme.palette.background.default,
+        zIndex: 1,
+        opacity: 0.6
+      }
+    }
   },
   paragraphGridItem: {
     maxWidth: '600px',
@@ -29,7 +52,10 @@ const useStyles = makeStyles<Theme>(theme => ({
     paddingRight: theme.spacing(2),
     marginLeft: 'auto',
     marginRight: 'auto',
-    minHeight: '100vh'
+    // minHeight: '100vh',
+    [theme.breakpoints.down('lg')]: {
+      zIndex: 2
+    }
     // [theme.breakpoints.up('lg')]: {
     //   justifySelf: 'flex-start'
     // }
@@ -67,6 +93,7 @@ export const HomereHero: FunctionComponent<HeroProps> = (props) => {
             <Grid
               item xs={12} lg={6}
               container
+              className={classes.paragraphGridContainer}
             >
               <Box
                 flex={1}
@@ -122,6 +149,7 @@ export const HomereHero: FunctionComponent<HeroProps> = (props) => {
             <Grid
               item xs={12} lg={6}
               container spacing={0}
+              className={classes.imgGridContainer}
             >
               <Grid
                 item xs={12}
