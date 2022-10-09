@@ -102,7 +102,7 @@ export const HomereHero: FunctionComponent<HeroProps> = (props) => {
               >
                 <Grid
                   flex={1}
-                  container direction='column' spacing={8} justifyContent='center'
+                  container direction='column' spacing={8}
                 >
                   <Grid item>
                     <Typography variant='h3' component='h2'>
@@ -133,14 +133,18 @@ export const HomereHero: FunctionComponent<HeroProps> = (props) => {
                     </Typography>
                   </Grid>
 
-                  <Grid item>
-                    <Button
-                      href='https://www.homere.shop'
-                      variant='contained'
-                      size='large'
+                  <Grid item container justifyContent='center'>
+                    <Grid
+                      item xs='auto' lg={12}
                     >
-                      Découvrir Homère
-                    </Button>
+                      <Button
+                        href='https://www.homere.shop'
+                        variant='contained'
+                        size='large'
+                      >
+                        Découvrir Homère
+                      </Button>
+                    </Grid>
                   </Grid>
                 </Grid>
               </Box>
