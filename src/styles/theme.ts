@@ -315,14 +315,22 @@ const rootTheme: ThemeOptions = {
       styleOverrides: {
         body: {
           backgroundImage: `url('${backgroundImage}'), url('${loadingBackgroundImage}')`,
+          // Fallback
+          backgroundColor: 'black',
+
           backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat',
           // Don't scroll
           backgroundAttachment: 'fixed',
           // Fill
           backgroundSize: 'cover',
-          // Fallback
-          backgroundColor: 'black'
+
+          // Fix for Safari not supporting fixed
+          '@supports (-webkit-overflow-scrolling: touch)': {
+            backgroundAttachment: 'scroll',
+            backgroundPosition: 'top center',
+            backgroundSize: 'auto',
+          },
         }
       }
     }
