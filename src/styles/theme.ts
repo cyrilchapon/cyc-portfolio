@@ -331,7 +331,7 @@ const rootTheme: ThemeOptions = {
           '@supports (-webkit-overflow-scrolling: touch)': {
             backgroundAttachment: 'scroll',
             backgroundPosition: 'top center',
-            backgroundSize: 'auto',
+            backgroundSize: 'contain',
           },
         }
       }
