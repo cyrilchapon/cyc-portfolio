@@ -5,6 +5,7 @@ export const terminalStrings = [
   'Accroc aux <strong>podcasts</strong>',
   'Citoyen du <strong>monde</strong>',
   '<strong>Straight</strong> to the point',
+  'Khmer <strong>vert</strong>',
   '<strong>Flexitarien</strong>',
   '<strong>Corsaire</strong> des temps modernes',
 ]
