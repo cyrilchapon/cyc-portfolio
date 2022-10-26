@@ -1,1 +1,1 @@
-export * from './mailchimp-axios'
+export * from "./mailchimp-axios";

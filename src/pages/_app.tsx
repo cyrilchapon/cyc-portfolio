@@ -1,7 +1,7 @@
-import React from 'react'
-import { linksGenerator } from '$components/html-head'
-import { themes } from '$styles'
-import { CssBaseline, NoSsr, ThemeProvider } from '@mui/material'
+import React, { useMemo } from 'react'
+import { metasGenerator } from '$components/html-head'
+import { createThemes, ThemesServiceContext } from '$styles'
+import { CssBaseline, ThemeProvider, useMediaQuery } from '@mui/material'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { SERVER_STYLESHEET_ID } from './_document'
@@ -15,17 +15,26 @@ const App = ({ Component, pageProps }: AppProps) => {
     jssStyles?.parentElement?.removeChild(jssStyles)
   }, [])
 
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
+
+  const themes = useMemo(
+    () => createThemes(prefersDarkMode ? 'dark' : 'light'),
+    [prefersDarkMode],
+  )
+
   return (
     <>
       <Head>
-        {linksGenerator()}
+        {metasGenerator()}
       </Head>
 
-      <ThemeProvider theme={themes.root}>
-        <CssBaseline />
+      <ThemesServiceContext.Provider value={themes}>
+        <ThemeProvider theme={themes.root}>
+          <CssBaseline />
 
-        <Component {...pageProps} />
-      </ThemeProvider>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </ThemesServiceContext.Provider>
     </>
   )
 }

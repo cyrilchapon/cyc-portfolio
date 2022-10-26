@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "rootDir": "./src",
     "allowJs": true,
     "skipLibCheck": true,
@@ -31,15 +27,10 @@
       "$connectors": ["connectors"],
       "$connectors/*": ["connectors/*"],
       "$env": ["env"],
-      "$env/*": ["env/*"],
-    }
+      "$env/*": ["env/*"]
+    },
+    "incremental": true
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }

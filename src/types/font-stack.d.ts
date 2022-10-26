@@ -1,28 +1,21 @@
-declare module 'font-stack' {
-  type DefaultKnownFamily = 'default'
+declare module "font-stack" {
+  type DefaultKnownFamily = "default";
 
   type SansSerifKnownFamily =
-    | 'Arial'
-    | 'Arial Black'
-    | 'Arial Narrow'
-    | 'Gill Sans'
-    | 'Tahoma'
-    | 'Verdana'
+    | "Arial"
+    | "Arial Black"
+    | "Arial Narrow"
+    | "Gill Sans"
+    | "Tahoma"
+    | "Verdana";
 
-  type SerifKnownFamily =
-    | 'Georgia'
-    | 'Palatino'
-    | 'Times New Roman'
+  type SerifKnownFamily = "Georgia" | "Palatino" | "Times New Roman";
 
-  type MonoKnownFamily =
-    | 'Courier New'
-    | 'Lucida Sans Typewriter'
+  type MonoKnownFamily = "Courier New" | "Lucida Sans Typewriter";
 
-  type FantasyKnownFamily =
-    | 'Copperplate'
-    | 'Papyrus'
+  type FantasyKnownFamily = "Copperplate" | "Papyrus";
 
-  type ScriptKnownFamily = 'Brush Script MT'
+  type ScriptKnownFamily = "Brush Script MT";
 
   type KnownFamily =
     | DefaultKnownFamily
@@ -30,17 +23,17 @@ declare module 'font-stack' {
     | SerifKnownFamily
     | MonoKnownFamily
     | FantasyKnownFamily
-    | ScriptKnownFamily
+    | ScriptKnownFamily;
 
-  export function _escapeFamily(char: string): (family: string) => string
-  export function _familyIsUnsafe(family: string): boolean
-  export function composeStack(families: string[]): string
-  export const FONT_STACKS: Record<KnownFamily, string[]>
+  export function _escapeFamily(char: string): (family: string) => string;
+  export function _familyIsUnsafe(family: string): boolean;
+  export function composeStack(families: string[]): string;
+  export const FONT_STACKS: Record<KnownFamily, string[]>;
 
   export default {
     _escapeFamily,
     _familyIsUnsafe,
     composeStack,
-    FONT_STACKS
-  }
+    FONT_STACKS,
+  };
 }

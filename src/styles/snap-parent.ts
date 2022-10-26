@@ -1,7 +1,5 @@
-
-
 export interface SnapParentProps {
-  snap?: boolean
+  snap?: boolean;
 }
 
 // export const snapParent = css<SnapParentProps>`

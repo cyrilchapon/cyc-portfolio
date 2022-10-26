@@ -18,7 +18,7 @@ const useStyles = makeStyles<Theme>(theme => ({
   },
   listSvgIcon: {
     fontSize: `calc(${theme.typography.body1.fontSize} - 6px)`,
-    color: theme.palette.text.dark.semi,
+    color: theme.palette.text.paper.semi,
     transform: 'translateY(1px)'
   },
   abbr: {

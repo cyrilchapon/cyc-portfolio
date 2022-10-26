@@ -11,7 +11,6 @@ import { ServicesHero } from '$components/heroes/services-hero'
 import { MediumHero } from '$components/heroes/medium-hero'
 import { HomereHero } from '$components/heroes/homere-hero'
 import { ThemeProvider } from '@mui/material'
-import { themes } from '$styles'
 import { MailchimpSubscribeFormDialog } from '$components/dialogs/mailchimp-subscribe-form-dialog'
 import { browserEnv } from '$env'
 import { ConnectedSnackbar as Snackbar } from '$components/snackbar'
@@ -19,12 +18,15 @@ import { GetStaticProps, NextPage } from 'next'
 import Axios from 'axios'
 import { deflateMediumFeed, inflateMediumFeed, parseMediumFeed, RawMediumFeed, SerializableMediumFeed } from 'types/medium-feed'
 import { CalendlyMeetingDialog } from '$components/dialogs/calendly-meeting-dialog'
+import { ThemesServiceContext } from '$styles'
 
 interface HomeProps {
   serializableMediumFeed: SerializableMediumFeed
 }
 
 const Home: NextPage<HomeProps> = (props) => {
+  const themes = React.useContext(ThemesServiceContext)
+
   const mediumFeed = inflateMediumFeed(props.serializableMediumFeed)
 
   return (
@@ -101,7 +103,7 @@ const mediumFeedUrl = 'https://medium.com/feed/@cyril-chpn'
 
 const mediumJsonFeedUrl = `${rss2jsonUrl}?${rss2jsonRssUrlQs}=${encodeURIComponent(mediumFeedUrl)}`
 
-export const getStaticProps: GetStaticProps<HomeProps> = async (context) => {
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const {
     data: rawMediumFeed
   } = await Axios.request<RawMediumFeed>({

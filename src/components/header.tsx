@@ -1,7 +1,6 @@
 // import { snapChild, SnapChildProps } from '$styles'
 import * as React from 'react'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
-import { faDev, faGithub, faLinkedin, faMediumM } from '@fortawesome/free-brands-svg-icons'
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { AppBar, AppBarProps, IconButton, IconButtonProps, Slide, Toolbar, Typography, useScrollTrigger, useTheme } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import { removePx, Theme } from '$styles'
@@ -32,7 +31,7 @@ const SocialIconButton: FunctionComponent<IconButtonProps<'a'>> = (props) => {
   )
 }
 
-type WithScrollTrigger<T extends {} = {}> = T & {
+type WithScrollTrigger<T extends Record<string, unknown> = Record<string, unknown>> = T & {
   scrolled: boolean
 }
 
@@ -43,7 +42,8 @@ const useStyles = makeStyles<
 >((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: props => props.scrolled ? theme.palette.background.header : 'transparent'
+    backgroundColor: props => props.scrolled ? theme.palette.background.header : 'transparent',
+    backdropFilter: props => props.scrolled ? 'blur(4px)' : 'none'
   },
   menuButton: {
     marginRight: theme.spacing(2)
@@ -60,8 +60,8 @@ export const Header: FunctionComponent<AppBarProps> = (props) => {
 
   const theme = useTheme()
 
-  const smallSpacing = removePx(theme.spacing(4))!
-  const bigSpacing = removePx(theme.spacing(20))!
+  const smallSpacing = removePx(theme.spacing(4))
+  const bigSpacing = removePx(theme.spacing(20))
 
   const scrolledOverNavbar = useScrollTrigger({
     disableHysteresis: true,
@@ -104,13 +104,13 @@ export const Header: FunctionComponent<AppBarProps> = (props) => {
           <FontAwesomeSvgIcon icon={faGithub} />
         </SocialIconButton>
 
-        <SocialIconButton href='https://cyril-chpn.medium.com' target='_blank'>
+        {/* <SocialIconButton href='https://cyril-chpn.medium.com' target='_blank'>
           <FontAwesomeSvgIcon icon={faMediumM} />
         </SocialIconButton>
 
         <SocialIconButton href='https://dev.to/cyrilchapon' target='_blank'>
           <FontAwesomeSvgIcon icon={faDev} />
-        </SocialIconButton>
+        </SocialIconButton> */}
       </Toolbar>
     </AppBar>
   )

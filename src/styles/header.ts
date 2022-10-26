@@ -1,24 +1,43 @@
 import { useMediaQuery, useTheme } from '@mui/material'
-import { CSSProperties } from '@mui/styles'
-import { removePx } from './utils'
+
+type MinHeight = {
+  minHeight: number
+}
 
 const useNavbarHeight = () => {
-  const theme = useTheme()
+  //   {
+  //     "minHeight": 56,
+  //     "@media (min-width:0px)": {
+  //         "@media (orientation: landscape)": {
+  //             "minHeight": 48
+  //         }
+  //     },
+  //     "@media (min-width:600px)": {
+  //         "minHeight": 64
+  //     }
+  // }
 
-  const defaultHeight = theme.mixins.toolbar.minHeight
+  const {
+    mixins: { toolbar },
+    breakpoints,
+  } = useTheme()
 
-  const matchingHeight = Object
-    .entries(theme.mixins.toolbar as Record<string, CSSProperties>)
-    .filter(([k]) => k.startsWith('@media'))
-    .reduce((acc, [mq, styleObj]) => {
-      const matches = useMediaQuery(mq)
-      if (matches && 'minHeight' in styleObj) {
-        acc = styleObj.minHeight ?? null
-      }
-      return acc
-    }, null as string | number | null)
+  const toolbarDesktopQuery = breakpoints.up('sm')
+  const toolbarLandscapeQuery = `${breakpoints.up(
+    'xs',
+  )} and (orientation: landscape)`
+  const isDesktop = useMediaQuery(toolbarDesktopQuery)
+  const isLandscape = useMediaQuery(toolbarLandscapeQuery)
 
-  return removePx(matchingHeight ?? defaultHeight ?? null)
+  let currentToolbarMinHeight = toolbar as MinHeight
+  if (isDesktop) {
+    currentToolbarMinHeight = toolbar[toolbarDesktopQuery] as MinHeight
+  } else if (isLandscape) {
+    currentToolbarMinHeight = (
+      toolbar[breakpoints.up('xs')] as Record<string, MinHeight>
+    )[`@media (orientation: landscape)`]
+  }
+  return currentToolbarMinHeight.minHeight
 }
 
 export { useNavbarHeight }

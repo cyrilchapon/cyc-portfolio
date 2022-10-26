@@ -14,7 +14,7 @@ const useStyles = makeStyles<Theme>(theme => ({
   },
   serviceTitle: {
     fontWeight: theme.typography.variants[theme.typography.variantsMapping.h4].fontWeightMedium,
-    color: theme.palette.text.dark.semi
+    color: theme.palette.text.paper.semi
   },
   serviceIcon: {
     fontSize: theme.typography.h1.fontSize,

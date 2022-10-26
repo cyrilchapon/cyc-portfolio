@@ -3,12 +3,10 @@ import { FunctionComponent, useCallback } from 'react'
 import { SubscribeFormDialog, SubscribeFormDialogProps, SubscribeFormData } from './subscribe-form-dialog'
 import { mailchimpAxios } from '$connectors'
 
-interface MailchimpSubscribeFormDialogProps extends Omit<
+type MailchimpSubscribeFormDialogProps = Omit<
   SubscribeFormDialogProps,
   'onCancel' | 'onSubmit' | 'loading' | 'open'
-> {
-
-}
+>
 
 export const MailchimpSubscribeFormDialog: FunctionComponent<MailchimpSubscribeFormDialogProps> = (props) => {
   const {
@@ -59,7 +57,7 @@ export const MailchimpSubscribeFormDialog: FunctionComponent<MailchimpSubscribeF
         loading: false
       }))
     }
-  }, [setSubscribeDialogState, mailchimpAxios])
+  }, [setSubscribeDialogState, setSnackbarState])
 
   const handleCancel = useCallback(async () => {
     setSubscribeDialogState((prevState) => ({

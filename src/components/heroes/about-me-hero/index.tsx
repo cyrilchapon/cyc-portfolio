@@ -23,10 +23,10 @@ const useStyles = makeStyles<Theme>(theme => ({
     height: 'auto'
   },
   darkTypography: {
-    color: theme.palette.text.dark.semi
+    color: theme.palette.text.paper.semi
   },
   semiDarkTypography: {
-    color: theme.palette.text.dark.secondary
+    color: theme.palette.text.paper.secondary
   },
   bodyParagraph: {
     textAlign: 'justify',

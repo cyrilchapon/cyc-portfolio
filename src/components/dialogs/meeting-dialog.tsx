@@ -13,7 +13,7 @@ export interface MeetingDialogProps extends Omit<DialogProps, 'onClose'> {
   loading: boolean
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   dialogPaper: {
     minHeight: 'calc(100% - 64px)',
     height: 'calc(100% - 64px)'
@@ -43,7 +43,7 @@ const rgbaToHex = (color: string) => {
   return hex
 }
 
-const getHex = (color: ColorObject | string, removeHash: boolean = false): string => {
+const getHex = (color: ColorObject | string, removeHash = false): string => {
   let hex: string
 
   if (typeof color === 'string') {
@@ -82,7 +82,6 @@ export const MeetingDialog: FunctionComponent<MeetingDialogProps> = (props) => {
 
   const {
     onCancel,
-    loading,
     ...dialogProps
   } = props
 

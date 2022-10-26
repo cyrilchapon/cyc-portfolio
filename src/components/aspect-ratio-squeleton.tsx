@@ -1,5 +1,3 @@
-import { Theme } from '@mui/material'
-import { makeStyles } from '@mui/styles'
 import { Skeleton, SkeletonProps, SkeletonTypeMap } from '@mui/lab'
 import { FunctionComponent } from 'react'
 import ReactResizeDetector from 'react-resize-detector'
@@ -34,6 +32,7 @@ const AspectRatioSkeleton: FunctionComponent<AspectRatioSkeletonProps> = (props)
               ? ratio * calculatedWidth
               : (defaultHeight ?? 200)
           }
+          {...skeletonProps}
         />
       )}
     </ReactResizeDetector>

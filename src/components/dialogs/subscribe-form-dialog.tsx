@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useCallback, useState } from 'react'
+import React, { FunctionComponent, useCallback } from 'react'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import Dialog, { DialogProps } from '@mui/material/Dialog'
@@ -6,8 +6,8 @@ import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
-import { IconButton, InputAdornment, InputLabel, LinearProgress, OutlinedInput, Typography } from '@mui/material'
-import { makeStyles, withStyles } from '@mui/styles'
+import { IconButton, InputAdornment, LinearProgress, Typography } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import { Theme } from '$styles'
 import { FontAwesomeSvgIcon } from '$components/icons/font-awesome-svg-icon'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
@@ -99,7 +99,7 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
   })
 
   const handleSubmit = useCallback<SubmitHandler<SubscribeFormData>>(
-    (data, evt) => { onSubmit(data) },
+    (data) => { onSubmit(data) },
     [onSubmit]
   )
 
@@ -224,7 +224,7 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
               }
               disableTouchRipple
             >
-              C'est parti
+              C&apos;est parti
             </Button>
 
             {loading && <LinearProgress className={classes.buttonProgress} variant='indeterminate' />}

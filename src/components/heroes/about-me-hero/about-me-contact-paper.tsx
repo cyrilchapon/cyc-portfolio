@@ -9,7 +9,7 @@ import clsx from 'clsx'
 import { FunctionComponent } from 'react'
 
 const getAge = (birthday: Date) => {
-  var ageDate = new Date(Date.now() - birthday.getTime())
+  const ageDate = new Date(Date.now() - birthday.getTime())
   return Math.abs(ageDate.getUTCFullYear() - 1970)
 }
 

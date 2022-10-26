@@ -1,3 +1,7 @@
+// Polyfill document for interweave
+import { polyfill } from 'interweave-ssr'
+polyfill()
+
 import React from 'react'
 import { ServerStyleSheets } from '@mui/styles'
 import _Document, {
@@ -8,6 +12,7 @@ import _Document, {
   DocumentInitialProps,
   DocumentContext
 } from 'next/document'
+import { linksGenerator } from '$components/html-head'
 
 export const SERVER_STYLESHEET_ID = 'jss-serverside'
 
@@ -63,7 +68,9 @@ class Document extends _Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+          {linksGenerator()}
+        </Head>
 
         <body>
           <Main />

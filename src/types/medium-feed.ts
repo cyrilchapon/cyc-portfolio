@@ -1,160 +1,154 @@
-import { DateTime } from 'luxon'
-import textClip from 'text-clipper'
+import { DateTime } from "luxon";
+import textClip from "text-clipper";
 // import escapeHtml from 'escape-html'
-import stripTags from 'striptags'
-import { omit } from 'lodash'
+import stripTags from "striptags";
+import { omit } from "lodash";
 
-type JSONPrimitive =
-  | number
-  | string
-  | boolean
-  | null
+type JSONPrimitive = number | string | boolean | null;
 
-type JSONObject = { [k: string]: JSONType }
-type JSONArray = Array<JSONType>
+type JSONObject = { [k: string]: JSONType };
+type JSONArray = Array<JSONType>;
 
-type JSONType =
-  | JSONPrimitive
-  | JSONObject
-  | JSONArray
+type JSONType = JSONPrimitive | JSONObject | JSONArray;
 
-type Serializer<T, TSerializable extends JSONType> = (object: T) => TSerializable
-type Deserializer<T, TSerializable extends JSONType> = (serializedObject: TSerializable) => T
+type Serializer<T, TSerializable extends JSONType> = (
+  object: T
+) => TSerializable;
+type Deserializer<T, TSerializable extends JSONType> = (
+  serializedObject: TSerializable
+) => T;
 
 export type MediumFeedMeta = {
-  url: string
-  title: string
-  link: string
-  author: string
-  description: string
-  image: string
-}
+  url: string;
+  title: string;
+  link: string;
+  author: string;
+  description: string;
+  image: string;
+};
 
-export type MediumFeedItemEnclosure = {
-}
+export type MediumFeedItemEnclosure = {};
 
 // Index signature is missing in type 'MyInterface'.
 
 export type MediumArticle = {
-  title: string
-  subtitle: string | null
-  pubDate: Date
-  link: string
-  guid: string
-  author: string
-  thumbnail: string
-  description: string
-  content: string
-  enclosure: MediumFeedItemEnclosure
-  categories: string[]
-}
+  title: string;
+  subtitle: string | null;
+  pubDate: Date;
+  link: string;
+  guid: string;
+  author: string;
+  thumbnail: string;
+  description: string;
+  content: string;
+  enclosure: MediumFeedItemEnclosure;
+  categories: string[];
+};
 
-export type SerializableMediumArticle = Omit<MediumArticle, 'pubDate'> & {
-  pubDate: string
-}
+export type SerializableMediumArticle = Omit<MediumArticle, "pubDate"> & {
+  pubDate: string;
+};
 
 export type RawMediumFeedItem = {
-  title: string
-  pubDate: string
-  link: string
-  guid: string
-  author: string
-  thumbnail: string
-  description: string
-  content: string
-  enclosure: MediumFeedItemEnclosure
-  categories: string[]
-}
+  title: string;
+  pubDate: string;
+  link: string;
+  guid: string;
+  author: string;
+  thumbnail: string;
+  description: string;
+  content: string;
+  enclosure: MediumFeedItemEnclosure;
+  categories: string[];
+};
 
 export type MediumFeed = {
-  status: string
-  meta: MediumFeedMeta
-  articles: MediumArticle[]
-}
+  status: string;
+  meta: MediumFeedMeta;
+  articles: MediumArticle[];
+};
 
-export type SerializableMediumFeed = Omit<MediumFeed, 'articles'> & {
-  articles: SerializableMediumArticle[]
-}
+export type SerializableMediumFeed = Omit<MediumFeed, "articles"> & {
+  articles: SerializableMediumArticle[];
+};
 
 export type RawMediumFeed = {
-  status: string
-  feed: MediumFeedMeta
-  items: RawMediumFeedItem[]
-}
+  status: string;
+  feed: MediumFeedMeta;
+  items: RawMediumFeedItem[];
+};
 
-type WithGroups<T extends string, RegexResultT extends RegExpExecArray = RegExpExecArray> = Omit<RegexResultT, 'groups'> & {
+type WithGroups<
+  T extends string,
+  RegexResultT extends RegExpExecArray = RegExpExecArray
+> = Omit<RegexResultT, "groups"> & {
   groups: {
-    [key in T]?: string
-  }
-}
+    [key in T]?: string;
+  };
+};
 
 const _parseMediumItemContent = (content: string) => {
-  const titleSubtitlePattern = /^\s*(?<title><h3>.*<\/h3>)\s*(?<subtitle><h4>.*<\/h4>)?\s*(<figure>.*<\/figure>)?/m
+  const titleSubtitlePattern =
+    /^\s*(?<title><h3>.*<\/h3>)\s*(?<subtitle><h4>.*<\/h4>)?\s*(<figure>.*<\/figure>)?/m;
 
   const {
-    groups: {
-      title,
-      subtitle
-    }
-  } = titleSubtitlePattern.exec(content) as WithGroups<'title' | 'subtitle'>
+    groups: { title, subtitle },
+  } = titleSubtitlePattern.exec(content) as WithGroups<"title" | "subtitle">;
 
-  const contentWithoutTitlesAndImg = content.replace(titleSubtitlePattern, '')
+  const contentWithoutTitlesAndImg = content.replace(titleSubtitlePattern, "");
 
   return {
     title: title != null ? stripTags(title) : null,
     subtitle: subtitle != null ? stripTags(subtitle) : null,
-    content: contentWithoutTitlesAndImg
-  }
-}
+    content: contentWithoutTitlesAndImg,
+  };
+};
 
 const _parseMediumDate = (dateString: string) => {
-  const dateTime = DateTime.fromFormat(dateString, 'yyyy-MM-dd HH:mm:ss')
-  const date = dateTime.toJSDate()
-  return date
-}
+  const dateTime = DateTime.fromFormat(dateString, "yyyy-MM-dd HH:mm:ss");
+  const date = dateTime.toJSDate();
+  return date;
+};
 
-const _composeDescriptionFromContent = (limit: number) => (content: string) => textClip(content, 1000, {
-  html: true,
-  breakWords: false,
-  imageWeight: 0
-})
+const _composeDescriptionFromContent = (limit: number) => (content: string) =>
+  textClip(content, 1000, {
+    html: true,
+    breakWords: false,
+    imageWeight: 0,
+  });
 
 const _splitMediumImg = (imgSrc: string) => {
-  const imgPattern = /(?:https?:)?\/\/(?<host>cdn-images-\d+\.medium\.com|miro\.medium\.com)\/[a-zA-Z0-9-]+\/[a-zA-Z0-9-]+\/(?<id>\d+\*[a-zA-Z0-9-]+)/
+  const imgPattern =
+    /(?:https?:)?\/\/(?<host>cdn-images-\d+\.medium\.com|miro\.medium\.com)\/[a-zA-Z0-9-]+\/[a-zA-Z0-9-]+\/(?<id>\d+\*[a-zA-Z0-9-]+)/;
   const {
-    groups: {
-      host,
-      id
-    }
-  } = imgPattern.exec(imgSrc) as WithGroups<'host' | 'id'>
+    groups: { host, id },
+  } = imgPattern.exec(imgSrc) as WithGroups<"host" | "id">;
 
-  return (host != null && id != null)
-    ? { host, id }
-    : null
-}
+  return host != null && id != null ? { host, id } : null;
+};
 
-const _composeMediumImg = (size: number) => ({ host, id }: { host: string, id: string }) => (
-  `https://${host}/max/${size}/${id}`
-)
+const _composeMediumImg =
+  (size: number) =>
+  ({ host, id }: { host: string; id: string }) =>
+    `https://${host}/max/${size}/${id}`;
 
 const _parseMediumImg = (size: number) => (imgSrc: string) => {
-  const imgAttrs = _splitMediumImg(imgSrc)
+  const imgAttrs = _splitMediumImg(imgSrc);
 
   if (imgAttrs == null) {
-    return imgSrc
+    return imgSrc;
   }
 
-  const adaptedMediumImg = _composeMediumImg(size)(imgAttrs)
+  const adaptedMediumImg = _composeMediumImg(size)(imgAttrs);
 
-  return adaptedMediumImg
-}
+  return adaptedMediumImg;
+};
 
-const parseMediumFeedArticle = (rawItem: RawMediumFeedItem, options: MediumFeedOptions): MediumArticle => {
-  const {
-    title,
-    subtitle,
-    content
-  } = _parseMediumItemContent(rawItem.content)
+const parseMediumFeedArticle = (
+  rawItem: RawMediumFeedItem,
+  options: MediumFeedOptions
+): MediumArticle => {
+  const { title, subtitle, content } = _parseMediumItemContent(rawItem.content);
 
   return {
     ...rawItem,
@@ -162,63 +156,80 @@ const parseMediumFeedArticle = (rawItem: RawMediumFeedItem, options: MediumFeedO
     title: title ?? rawItem.title,
     subtitle,
     content,
-    description: _composeDescriptionFromContent(options.descriptionMaxLength)(content),
-    thumbnail: _parseMediumImg(options.imgWidth)(rawItem.thumbnail)
-  }
-}
+    description: _composeDescriptionFromContent(options.descriptionMaxLength)(
+      content
+    ),
+    thumbnail: _parseMediumImg(options.imgWidth)(rawItem.thumbnail),
+  };
+};
 
 interface MediumFeedOptions {
-  imgWidth: number
-  descriptionMaxLength: number
+  imgWidth: number;
+  descriptionMaxLength: number;
 }
 
 const defaultOptions: MediumFeedOptions = {
   imgWidth: 512,
-  descriptionMaxLength: 1000
-}
+  descriptionMaxLength: 1000,
+};
 
-const parseMediumFeed = (mediumFeed: RawMediumFeed, options?: Partial<MediumFeedOptions>): MediumFeed => {
+const parseMediumFeed = (
+  mediumFeed: RawMediumFeed,
+  options?: Partial<MediumFeedOptions>
+): MediumFeed => {
   const _options: MediumFeedOptions = {
     ...defaultOptions,
     ...options,
-  }
+  };
 
   const parsed = {
-    ...omit(mediumFeed, ['items', 'feed']),
+    ...omit(mediumFeed, ["items", "feed"]),
     meta: mediumFeed.feed,
-    articles: mediumFeed.items.map(item => parseMediumFeedArticle(item, _options))
-  }
+    articles: mediumFeed.items.map((item) =>
+      parseMediumFeedArticle(item, _options)
+    ),
+  };
 
-  return parsed
-}
+  return parsed;
+};
 
-const deflateMediumFeedArticle: Serializer<MediumArticle, SerializableMediumArticle> = (mediumArticle) => {
+const deflateMediumFeedArticle: Serializer<
+  MediumArticle,
+  SerializableMediumArticle
+> = (mediumArticle) => {
   return {
     ...mediumArticle,
-    pubDate: mediumArticle.pubDate.toISOString()
-  }
-}
+    pubDate: mediumArticle.pubDate.toISOString(),
+  };
+};
 
-const deflateMediumFeed: Serializer<MediumFeed, SerializableMediumFeed> = (mediumFeed) => {
+const deflateMediumFeed: Serializer<MediumFeed, SerializableMediumFeed> = (
+  mediumFeed
+) => {
   return {
     ...mediumFeed,
-    articles: mediumFeed.articles.map(deflateMediumFeedArticle)
-  }
-}
+    articles: mediumFeed.articles.map(deflateMediumFeedArticle),
+  };
+};
 
-const inflateMediumFeedArticle: Deserializer<MediumArticle, SerializableMediumArticle> = (deflatedArticle) => {
+const inflateMediumFeedArticle: Deserializer<
+  MediumArticle,
+  SerializableMediumArticle
+> = (deflatedArticle) => {
   return {
     ...deflatedArticle,
-    pubDate: new Date(deflatedArticle.pubDate)
-  }
-}
+    pubDate: new Date(deflatedArticle.pubDate),
+  };
+};
 
-const inflateMediumFeed: Deserializer<MediumFeed, SerializableMediumFeed> = (deflatedFeed) => {
+const inflateMediumFeed: Deserializer<MediumFeed, SerializableMediumFeed> = (
+  deflatedFeed
+) => {
   return {
     ...deflatedFeed,
-    articles: deflatedFeed.articles.map(inflateMediumFeedArticle)
-  }
-}
+    articles: deflatedFeed.articles.map(inflateMediumFeedArticle),
+  };
+};
 
 export {
   parseMediumFeed,
@@ -229,5 +240,5 @@ export {
   inflateMediumFeed,
   _parseMediumItemContent,
   _parseMediumDate,
-  _composeDescriptionFromContent
-}
+  _composeDescriptionFromContent,
+};

@@ -1,16 +1,14 @@
 import { useGlobalState } from '$global-state'
 import { FunctionComponent, useCallback } from 'react'
 import { MeetingDialog, MeetingDialogProps } from './meeting-dialog'
-import { CalendlyEventListener } from 'react-calendly'
+import { EventScheduledEvent, useCalendlyEventListener } from 'react-calendly'
 
-interface CalendlyMeetingDialogProps extends Omit<
+type CalendlyMeetingDialogProps = Omit<
 MeetingDialogProps,
   'onCancel' | 'onSubmit' | 'loading' | 'open'
-> {
+>
 
-}
-
-type ScheduledHandler = NonNullable<CalendlyEventListener['props']['onEventScheduled']>
+type ScheduledHandler = (e: EventScheduledEvent) => void
 
 export const CalendlyMeetingDialog: FunctionComponent<CalendlyMeetingDialogProps> = (props) => {
   const {
@@ -27,7 +25,7 @@ export const CalendlyMeetingDialog: FunctionComponent<CalendlyMeetingDialogProps
     setSnackbarState
   ] = useGlobalState('snackbar')
 
-  const handleSubmit = useCallback<ScheduledHandler>((e) => {
+  const handleSubmit = useCallback<ScheduledHandler>(() => {
     setMeetingDialogState(prevState => ({
       ...prevState,
       open: false
@@ -47,19 +45,19 @@ export const CalendlyMeetingDialog: FunctionComponent<CalendlyMeetingDialogProps
     }))
   }, [setMeetingDialogState])
 
+  useCalendlyEventListener({
+    onEventScheduled: handleSubmit
+  })
+
   return (
     !!meetingDialogState.open
       ? (
-        <CalendlyEventListener onEventScheduled={handleSubmit}>
-          <MeetingDialog
-            {...meetingDialogProps}
-            open
-            onCancel={handleCancel}
-            loading={false}
-          >
-
-          </MeetingDialog>
-        </CalendlyEventListener>
+        <MeetingDialog
+          {...meetingDialogProps}
+          open
+          onCancel={handleCancel}
+          loading={false}
+        />
       )
       : null
   )
