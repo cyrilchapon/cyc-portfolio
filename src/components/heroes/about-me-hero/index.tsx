@@ -2,7 +2,7 @@ import { Hero, HeroProps } from '$components/hero'
 import { ContactPaper } from './about-me-contact-paper'
 import { ImgPaper } from '$components/papers/img-paper'
 import { useResponsive } from '$styles/media-query'
-import { Button, Container, Grid, styled, Typography, TypographyProps } from '@mui/material'
+import { Button, Container, Grid, NoSsr, styled, Typography, TypographyProps } from '@mui/material'
 import { FunctionComponent } from 'react'
 import { useGlobalState } from '$global-state'
 
@@ -12,7 +12,7 @@ const ImgGrid = styled(Grid)(({ theme }) => ({
   }
 }))
 
-const MyselfImgPaper = styled(ImgPaper)(() => ({
+const MyselfImgPaper = styled(ImgPaper, { name: 'pifpaf', label: 'pouf' })(() => ({
   width: 'auto',
   maxWidth: '100%',
   height: 'auto'
@@ -35,6 +35,11 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
   const [ , setSubscribeDialogState ] = useGlobalState('subscribeDialog')
   const r = useResponsive()
 
+  const myselfSrc = r({
+    xs: mySelfWideImg,
+    lg: mySelfHeightImg
+  }, mySelfHeightImg)
+
   return (
     <>
       <Hero bgcolor='background.default' {...props}>
@@ -52,11 +57,14 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
               container direction='column' justifyContent='center' alignItems='center'
             >
               <Grid item>
-                <MyselfImgPaper
-                  elevation={2}
-                  src={r({xs: mySelfWideImg, lg: mySelfHeightImg})}
-                  square
-                />
+                {/* Defer rendering because of responsive capacities */}
+                <NoSsr>
+                  <MyselfImgPaper
+                    elevation={2}
+                    src={myselfSrc}
+                    square
+                  />
+                </NoSsr>
               </Grid>
             </ImgGrid>
 

@@ -1,39 +1,54 @@
 import { useTheme } from '@mui/material'
 import { useMediaQueries } from '@react-hook/media-query'
 import { Breakpoint } from '@mui/system'
-import { findLast } from 'lodash'
+
+const simplifyMq = (mq: string) => (
+  mq.replace(/@media/g, '').trim()
+)
 
 type MediaQueryMatches = Record<Breakpoint, boolean>
 const useMediaQueryMatches = () => {
   const theme = useTheme()
 
   const mqs = useMediaQueries({
-    xs: theme.breakpoints.up('xs'),
-    sm: theme.breakpoints.up('sm'),
-    md: theme.breakpoints.up('md'),
-    lg: theme.breakpoints.up('lg'),
-    xl: theme.breakpoints.up('xl')
+    xs: simplifyMq(theme.breakpoints.up('xs')),
+    sm: simplifyMq(theme.breakpoints.up('sm')),
+    md: simplifyMq(theme.breakpoints.up('md')),
+    lg: simplifyMq(theme.breakpoints.up('lg')),
+    xl: simplifyMq(theme.breakpoints.up('xl'))
   })
 
   return mqs.matches
 }
 
 type ResponsiveValues<ValueT> = Partial<Record<Breakpoint, ValueT>>
-const useResponsive = () => {
-  const theme = useTheme()
 
+const useResponsive = () => {
   const matches = useMediaQueryMatches()
 
-  return <P, DefaultT = typeof undefined>(
-    responsiveValues: ResponsiveValues<P>,
-    defaultValue?: DefaultT,
+  return <
+    ValueT,
+    DefaultValueT extends ValueT | null
+  > (
+    responsiveValues: ResponsiveValues<ValueT>,
+    defaultValue?: DefaultValueT
+  ): ValueT | (
+    typeof defaultValue extends (null | undefined)
+      ? (DefaultValueT | null)
+      : DefaultValueT
   ) => {
-    const match = findLast(
-      theme.breakpoints.keys,
-      (bp) => matches[bp] && responsiveValues[bp] != null,
-    )
+    const lastMatchingValue = (Object
+      .entries(matches) as [Breakpoint, boolean][])
+      .reverse()
+      .filter(([, match]) => match)
+      .map(([breakpoint]) => responsiveValues[breakpoint])
+      .find(matchingValue => matchingValue != null)
 
-    return match ? responsiveValues[match] : defaultValue
+    return (lastMatchingValue ?? defaultValue ?? null) as ValueT | (
+      typeof defaultValue extends (null | undefined)
+        ? (DefaultValueT | null)
+        : DefaultValueT
+    )
   }
 }
 
