@@ -1,7 +1,7 @@
-declare module "axios/lib/core/buildFullPath" {
+declare module 'axios/lib/core/buildFullPath' {
   const buildFullPath: (
     baseURL: string | undefined | null,
-    requestedURL: string
-  ) => string;
-  export default buildFullPath;
+    requestedURL: string,
+  ) => string
+  export default buildFullPath
 }

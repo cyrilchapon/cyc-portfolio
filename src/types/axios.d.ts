@@ -1,7 +1,7 @@
-import "axios";
+import 'axios'
 
-declare module "axios" {
+declare module 'axios' {
   interface AxiosRequestConfig {
-    callbackParamName?: string;
+    callbackParamName?: string
   }
 }

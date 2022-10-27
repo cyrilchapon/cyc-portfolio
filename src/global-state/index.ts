@@ -1,24 +1,24 @@
-import { createGlobalState } from "react-hooks-global-state";
+import { createGlobalState } from 'react-hooks-global-state'
 
 interface SubscribeDialogState {
-  open?: boolean;
-  loading: boolean;
-  error: Error | null;
+  open?: boolean
+  loading: boolean
+  error: Error | null
 }
 
 interface MeetingDialogState {
-  open?: boolean;
+  open?: boolean
 }
 
 interface SnackbarState {
-  open: boolean;
-  message: string;
+  open: boolean
+  message: string
 }
 
 interface GlobalState {
-  subscribeDialog: SubscribeDialogState;
-  meetingDialog: MeetingDialogState;
-  snackbar: SnackbarState;
+  subscribeDialog: SubscribeDialogState
+  meetingDialog: MeetingDialogState
+  snackbar: SnackbarState
 }
 
 const initialState: GlobalState = {
@@ -32,11 +32,11 @@ const initialState: GlobalState = {
   },
   snackbar: {
     open: false,
-    message: "",
+    message: '',
   },
-};
+}
 
 const { useGlobalState, getGlobalState, setGlobalState } =
-  createGlobalState(initialState);
+  createGlobalState(initialState)
 
-export { useGlobalState, getGlobalState, setGlobalState };
+export { useGlobalState, getGlobalState, setGlobalState }

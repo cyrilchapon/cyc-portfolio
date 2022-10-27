@@ -1,2 +1,2 @@
-export * from "./terminal-strings";
-export * from "./services";
+export * from './terminal-strings'
+export * from './services'

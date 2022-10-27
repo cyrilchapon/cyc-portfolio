@@ -6,7 +6,7 @@ interface FontAwesomeSvgIconProps extends SvgIconProps {
   icon: IconDefinition
 }
 
-const FontAwesomeSvgIcon = React.forwardRef<typeof SvgIcon, FontAwesomeSvgIconProps>((props, ref) => {
+const FontAwesomeSvgIcon = React.forwardRef<typeof SvgIcon, FontAwesomeSvgIconProps>(function _FontAwesomeSvgIcon (props, ref) {
   const {
     icon,
     ...restProps
@@ -17,6 +17,7 @@ const FontAwesomeSvgIcon = React.forwardRef<typeof SvgIcon, FontAwesomeSvgIconPr
   } = icon
 
   return (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     <SvgIcon ref={ref} viewBox={`0 0 ${width} ${height}`} component={undefined as any} {...restProps}>
       {typeof svgPathData === 'string' ? (
         <path d={svgPathData} />
@@ -29,7 +30,7 @@ const FontAwesomeSvgIcon = React.forwardRef<typeof SvgIcon, FontAwesomeSvgIconPr
          * @see https://fontawesome.com/how-to-use/on-the-web/styling/duotone-icons#changing-opacity
          */
         svgPathData.map((d, i) => (
-          <path style={{ opacity: i === 0 ? 0.4 : 1 }} d={d} />
+          <path key={i} style={{ opacity: i === 0 ? 0.4 : 1 }} d={d} />
         ))
       )}
     </SvgIcon>

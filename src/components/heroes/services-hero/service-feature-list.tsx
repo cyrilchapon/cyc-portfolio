@@ -1,7 +1,7 @@
 import { ServiceFeature } from '$constants'
 import { List, ListItemProps, ListProps } from '@mui/material'
 import { FunctionComponent } from 'react'
-import { ServiceFeatureListItem, ServiceFeatureListItemBaseProps } from './service-feature-list-item'
+import { ServiceFeatureListItem } from './service-feature-list-item'
 
 interface ServiceFeatureListProps extends ListProps {
   features: ServiceFeature[]

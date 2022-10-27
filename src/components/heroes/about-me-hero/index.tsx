@@ -75,18 +75,18 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
 
                 <BodyParagraphTypography variant='body1' component='div'>
                   <p>
-                    Évoluant depuis une douzaine d'années dans le milieu de la tech
-                    en environnement Startup, j’ai exercé en tant que Tech Lead &amp; CTO.
+                    Évoluant depuis une douzaine d&apos;années dans le milieu de la tech
+                    en environnement Startup, j&apos;ai exercé en tant que Tech Lead &amp; CTO.
                   </p>
 
                   <p>
-                    Je suis aujourd'hui <strong>CEO et co-founder d'Homère</strong>,
+                    Je suis aujourd&apos;hui <strong>CEO et co-founder d&apos;Homère</strong>,
                     le site de fringues écologiques et de qualité pour homme, au format Marketplace.
                   </p>
 
                   <p>
                     Je fais aussi de temps en temps du consulting en <strong>stratégie Business</strong>, <strong>Produit</strong> et <strong>Technique</strong> —
-                    quand le sujet m'intéresse.
+                    quand le sujet m&apos;intéresse.
                   </p>
                 </BodyParagraphTypography>
               </Grid>
