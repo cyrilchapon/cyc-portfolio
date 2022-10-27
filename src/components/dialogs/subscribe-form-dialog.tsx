@@ -13,6 +13,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { FormBox } from '$components/boxes/form-box'
+import { FontAwesomeSvgIcon } from '$components/icons/font-awesome-svg-icon'
 
 export type SubscribeFormDialogCancelReason =
   | 'backdropClick'
@@ -29,7 +30,7 @@ const NoSpamIconButton = styled(IconButton)(({ theme }) => ({
   color: theme.palette.text.disabled
 }))
 
-const NoSpamSvgIcon = styled(IconButton)(({ theme }) => ({
+const NoSpamSvgIcon = styled(FontAwesomeSvgIcon)(({ theme }) => ({
   fontSize: theme.typography.body1.fontSize
 }))
 
