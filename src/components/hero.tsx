@@ -1,19 +1,17 @@
-import { Box, BoxProps, Theme } from '@mui/material'
-import { makeStyles } from '@mui/styles'
-import { FunctionComponent } from 'react'
+import { Box, BoxProps, styled, Theme } from '@mui/material'
 import { mapValues, omit } from 'lodash'
-import { maybePxToPx, PropsCssFunc } from '$styles'
-import clsx from 'clsx'
+import { maybePxToPx } from '$styles'
+import { CSSProperties } from '@mui/styled-engine'
 
 export interface HeroProps extends BoxProps {
   escapeHeader?: boolean
 }
 
 interface WithMinHeight {
-  minHeight: any
+  minHeight: number | string
 }
 
-export const getPaddingTop = (theme: Theme): PropsCssFunc<HeroProps> => ({ escapeHeader }) => (
+export const getPaddingTop = (theme: Theme) => (escapeHeader: boolean): CSSProperties => (
   (escapeHeader ?? false)
     ? {
       paddingTop: `calc(${maybePxToPx(theme.spacing(4))} + ${maybePxToPx(theme.mixins.toolbar.minHeight)})`,
@@ -29,30 +27,13 @@ export const getPaddingTop = (theme: Theme): PropsCssFunc<HeroProps> => ({ escap
     }
 )
 
-const useStyles = makeStyles<Theme, HeroProps, 'hero'>((theme) => {
-  return {
-    hero: (props) => ({
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      minHeight: `100vh`,
-      paddingBottom: theme.spacing(4),
-      ...getPaddingTop(theme)(props)
-    })
-  }
-})
-
-export const Hero: FunctionComponent<HeroProps> = (props) => {
-  const {
-    escapeHeader,
-    className,
-    ...restProps
-  } = props
-
-  const classes = useStyles({ escapeHeader })
-
-  return <Box
-    {...restProps}
-    className={clsx(classes.hero, className)}
-  />
-}
+export const Hero = styled(Box, {
+  shouldForwardProp: p => p !== 'escapeHeader'
+})<HeroProps>(({ theme, escapeHeader }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  minHeight: `100vh`,
+  paddingBottom: theme.spacing(4),
+  ...getPaddingTop(theme)(escapeHeader ?? false)
+}))

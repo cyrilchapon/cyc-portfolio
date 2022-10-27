@@ -1,42 +1,26 @@
-import { Typography, TypographyProps } from '@mui/material'
-import { makeStyles } from '@mui/styles'
-import { Theme } from '$styles'
-import clsx from 'clsx'
+import { styled, Typography, TypographyProps } from '@mui/material'
 import { FunctionComponent } from 'react'
 
-const useStyles = makeStyles<Theme>((theme) => ({
-  subtitle: {
-    textAlign: 'center',
-    color: theme.palette.text.primary,
-    // fontSize: theme.typography.h4.fontSize,
-    lineHeight: 1.5,
-    '&:before': {
-      content: 'initial'
-    }
-  },
-  subtitleStrong: {
-    fontWeight: theme.typography.variants.sansSerif.fontWeightBold
+const SubtitleTypography = styled(Typography)<TypographyProps<'div', { component: 'div' }>>(({ theme }) => ({
+  textAlign: 'center',
+  color: theme.palette.text.primary,
+  // fontSize: theme.typography.h4.fontSize,
+  lineHeight: 1.5,
+  '&:before': {
+    content: 'initial'
   }
 }))
 
 export const IntroSubtitle: FunctionComponent<TypographyProps<'div'>> = (props) => {
-  const classes = useStyles()
-
-  const {
-    className,
-    ...typographyProps
-  } = props
-
   return (
-    <Typography
+    <SubtitleTypography
       variant='subtitle1'
-      {...typographyProps}
-      className={clsx(classes.subtitle, className)}
+      {...props}
       component='div'
     >
       CEO &amp; founder @ Homère
       <br />
       Consultant Stratégie Produit
-    </Typography>
+    </SubtitleTypography>
   )
 }

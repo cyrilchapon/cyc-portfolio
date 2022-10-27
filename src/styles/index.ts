@@ -1,5 +1,3 @@
-import { CreateCSSProperties } from "@mui/styles";
-
 export * from "./theme";
 export * from "./media-query";
 export * from "./font";

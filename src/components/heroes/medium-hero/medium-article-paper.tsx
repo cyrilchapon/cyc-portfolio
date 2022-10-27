@@ -1,7 +1,5 @@
 import { ImgPaper } from '$components/papers/img-paper'
-import { Chip, Grid, Link, PaperProps, Typography } from '@mui/material'
-import { makeStyles } from '@mui/styles'
-import { Theme } from '$styles'
+import { Chip, Grid, Link, PaperProps, styled, Typography, TypographyProps } from '@mui/material'
 import { Interweave, ALLOWED_TAG_LIST, TransformCallback } from 'interweave'
 import { DateTime } from 'luxon'
 import { FunctionComponent } from 'react'
@@ -24,38 +22,41 @@ const formatDate = (date: Date) => {
   return formattedDateString
 }
 
-const articleBodyTransformer = (classes: ReturnType<typeof useStyles>): TransformCallback => (node, children) => {
+const ArticleBodyParagraph = styled('p')(() => ({
+  '&:first-child': {
+    marginTop: 0
+  },
+  '&:last-child': {
+    marginBottom: 0
+  }
+}))
+
+const articleBodyTransformer: TransformCallback = (node, children) => {
   if ((/^p$/i).test(node.tagName)) {
-    return <p className={classes.articleBodyParagraph}>{children}</p>
+    return <ArticleBodyParagraph>{children}</ArticleBodyParagraph>
   }
 }
-const useStyles = makeStyles<Theme>(theme => ({
-  img: {
-    width: 'auto',
-    maxWidth: '100%',
-    height: 'auto'
+
+const FitHeightImgPaper = styled(ImgPaper)(() => ({
+  width: 'auto',
+  maxWidth: '100%',
+  height: 'auto'
+}))
+
+const ArticleDescriptionTypography = styled(Typography)<TypographyProps<'div', { component: 'div' }>>(() => ({
+  textAlign: 'left',
+  maxLines: 2
+}))
+
+const ArticleDateTypography = styled(Typography)<TypographyProps<'span', { component: 'span' }>>(() => ({
+  '&:before': {
+    content: '""'
   },
-  articleDescriptionTypography: {
-    textAlign: 'left',
-    maxLines: 2
-  },
-  articleBodyParagraph: {
-    '&:first-child': {
-      marginTop: 0
-    },
-    '&:last-child': {
-      marginBottom: 0
-    }
-  },
-  articleDate: {
-    '&:before': {
-      content: '""'
-    },
-    fontStyle: 'italic'
-  },
-  articleReadmore: {
-    fontWeight: theme.typography.variants[theme.typography.variantsMapping.body1].fontWeightBold
-  }
+  fontStyle: 'italic'
+}))
+
+const ArticleReadmoreLink = styled(Link)(({ theme }) => ({
+  fontWeight: theme.typography.variants[theme.typography.variantsMapping.body1].fontWeightBold
 }))
 
 interface MediumArticlePaperProps extends PaperProps {
@@ -68,16 +69,13 @@ const MediumArticlePaper: FunctionComponent<MediumArticlePaperProps> = (props) =
     ...paperProps
   } = props
 
-  const classes = useStyles()
-
   return (
     <BaseMediumArticlePaper
       {...paperProps}
     >
       <Grid container spacing={4} alignItems='center'>
         <Grid item xs={12} sm={4}>
-          <ImgPaper
-            className={classes.img}
+          <FitHeightImgPaper
             // elevation={2}
             src={article.thumbnail}
             variant='outlined'
@@ -114,24 +112,24 @@ const MediumArticlePaper: FunctionComponent<MediumArticlePaperProps> = (props) =
           </Grid>
 
           <Grid item>
-            <Typography component='div' variant='body2' className={classes.articleDescriptionTypography}>
+            <ArticleDescriptionTypography component='div' variant='body2'>
               <Interweave
                 allowList={ALLOWED_TAG_LIST.filter(tag => (
                   !['a'].includes(tag)
                 ))}
-                transform={articleBodyTransformer(classes)}
+                transform={articleBodyTransformer}
                 content={clipContent(article.description)}
               />
-              <Link href={article.link} variant='body2' className={classes.articleReadmore}>
+              <ArticleReadmoreLink href={article.link} variant='body2'>
                 &gt; Lire la suite
-              </Link>
-            </Typography>
+              </ArticleReadmoreLink>
+            </ArticleDescriptionTypography>
           </Grid>
 
           <Grid item>
-            <Typography variant='subtitle2' component='span' className={classes.articleDate}>
+            <ArticleDateTypography variant='subtitle2' component='span'>
               {formatDate(article.pubDate)}
-            </Typography>
+            </ArticleDateTypography>
           </Grid>
         </Grid>
       </Grid>

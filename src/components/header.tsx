@@ -1,58 +1,57 @@
 // import { snapChild, SnapChildProps } from '$styles'
 import * as React from 'react'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
-import { AppBar, AppBarProps, IconButton, IconButtonProps, Slide, Toolbar, Typography, useScrollTrigger, useTheme } from '@mui/material'
-import { makeStyles } from '@mui/styles'
-import { removePx, Theme } from '$styles'
+import { AppBar, AppBarProps, IconButton, IconButtonProps, Slide, styled, Toolbar, Typography, TypographyProps, useScrollTrigger, useTheme } from '@mui/material'
+import { removePx } from '$styles'
 import { FunctionComponent } from 'react'
 import { FontAwesomeSvgIcon } from './icons/font-awesome-svg-icon'
 import { MaltSvgIcon } from './icons/malt-svg-icon'
 import { useNavbarHeight } from '$styles'
 
-const useSocialButtonStyles = makeStyles<Theme>((theme) => ({
-  socialIcon: {
-    '& + &': {
-      marginLeft: theme.spacing(2)
-    }
+const IconButtonA: FunctionComponent<IconButtonProps<'a'>> = (props) => (
+  <IconButton
+    component='a'
+    {...props}
+  />
+)
+
+const MargedIconButton = styled(IconButtonA)(({ theme }) => ({
+  '& + &': {
+    marginLeft: theme.spacing(2)
   }
 }))
 
-const SocialIconButton: FunctionComponent<IconButtonProps<'a'>> = (props) => {
-  const classes = useSocialButtonStyles()
+const SocialIconButton: FunctionComponent<IconButtonProps<'a'>> = (props) => (
+  <MargedIconButton
+    edge='end'
+    color='inherit'
+    {...props}
+  />
+)
 
-  return (
-    <IconButton
-      component='a'
-      edge='end'
-      color='inherit'
-      className={classes.socialIcon}
-      {...props}
-    />
-  )
-}
-
-type WithScrollTrigger<T extends Record<string, unknown> = Record<string, unknown>> = T & {
+type ScrollAwareAppBarProps = AppBarProps<'header', {
   scrolled: boolean
-}
+}>
 
-const useStyles = makeStyles<
-  Theme,
-  WithScrollTrigger,
-  'root' | 'menuButton' | 'title'
->((theme) => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: props => props.scrolled ? theme.palette.background.header : 'transparent',
-    backdropFilter: props => props.scrolled ? 'blur(4px)' : 'none'
-  },
-  menuButton: {
-    marginRight: theme.spacing(2)
-  },
-  title: {
-    flexGrow: 1,
-    fontFamily: theme.typography.variants.sansSerif.fontFamily,
-    fontWeight: theme.typography.variants.sansSerif.fontWeightMedium
-  }
+const ScrollAwareAppBar = styled(AppBar, {
+  shouldForwardProp: p => p !== 'scrolled'
+})<ScrollAwareAppBarProps>(({ theme, scrolled }) => ({
+  flexGrow: 1,
+  backgroundColor: scrolled ? theme.palette.background.header : 'transparent',
+  backdropFilter: scrolled ? 'blur(4px)' : 'none'
+}))
+
+const DivTypography: FunctionComponent<TypographyProps<'div'>> = (props) => (
+  <Typography
+    component='div'
+    {...props}
+  />
+)
+
+const TitleTypography = styled(DivTypography)(({ theme }) => ({
+  flexGrow: 1,
+  fontFamily: theme.typography.variants.sansSerif.fontFamily,
+  fontWeight: theme.typography.variants.sansSerif.fontWeightMedium
 }))
 
 export const Header: FunctionComponent<AppBarProps> = (props) => {
@@ -75,22 +74,20 @@ export const Header: FunctionComponent<AppBarProps> = (props) => {
     threshold: (navbarHeight ?? smallSpacing) + bigSpacing
   })
 
-  const classes = useStyles({ ...props, scrolled: scrolledOverNavbar })
-
   const appBar = (
-    <AppBar
-      className={classes.root}
+    <ScrollAwareAppBar
       elevation={scrolledOverNavbar ? 4 : 0}
       position={scrolledOverNavbar ? 'fixed': 'absolute'}
+      scrolled={scrolledOverNavbar}
       {...props}
     >
       <Toolbar>
         {/* <IconButton edge='start' className={classes.menuButton} color='inherit' aria-label='menu'>
           <FontAwesomeSvgIcon icon={faBars} />
         </IconButton> */}
-        <Typography variant='h5' component='div' className={classes.title}>
+        <TitleTypography variant='h5'>
           Cyril CHAPON
-        </Typography>
+        </TitleTypography>
 
         <SocialIconButton href='https://www.linkedin.com/in/cchapon' target='_blank'>
           <FontAwesomeSvgIcon icon={faLinkedin} />
@@ -112,7 +109,7 @@ export const Header: FunctionComponent<AppBarProps> = (props) => {
           <FontAwesomeSvgIcon icon={faDev} />
         </SocialIconButton> */}
       </Toolbar>
-    </AppBar>
+    </ScrollAwareAppBar>
   )
 
   return (

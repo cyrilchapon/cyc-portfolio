@@ -1,22 +1,26 @@
 // Polyfill document for interweave
-import { polyfill } from 'interweave-ssr'
-polyfill()
+import { polyfill as interweavePolyfill } from 'interweave-ssr'
+interweavePolyfill()
 
 import React from 'react'
-import { ServerStyleSheets } from '@mui/styles'
-import _Document, {
+import Document, {
   Html,
   Head,
   Main,
   NextScript,
-  DocumentInitialProps,
   DocumentContext
 } from 'next/document'
 import { linksGenerator } from '$components/html-head'
+import { createEmotionCache } from '$styles/emotion-cache'
+import createEmotionServer from '@emotion/server/create-instance'
+import { CustomAppType } from './_app'
+import { AppType, Enhancer } from 'next/dist/shared/lib/utils'
 
-export const SERVER_STYLESHEET_ID = 'jss-serverside'
+type CustomDocumentProps = {
+  emotionStyleTags: JSX.Element[]
+}
 
-class Document extends _Document {
+class CustomDocument extends Document<CustomDocumentProps> {
   static async getInitialProps (ctx: DocumentContext) {
     // Resolution order
     //
@@ -40,28 +44,33 @@ class Document extends _Document {
     // 3. app.render
     // 4. page.render
 
-    // Render app and page and get the context of the page with collected side effects.
-    const sheets = new ServerStyleSheets({
-      id: SERVER_STYLESHEET_ID
-    })
-
     const originalRenderPage = ctx.renderPage
+    const cache = createEmotionCache()
+    const { extractCriticalToChunks } = createEmotionServer(cache)
+  
+    const appEnhancer: Enhancer<CustomAppType> = (CustomApp) => function EnhancedApp(props) {
+      return <CustomApp emotionCache={cache} {...props} />
+    }
 
-    ctx.renderPage = () => (
+    ctx.renderPage = () =>
       originalRenderPage({
-        enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
+        enhanceApp: appEnhancer as Enhancer<AppType>
       })
-    )
-
-    const initialProps = await _Document.getInitialProps(ctx)
-
+  
+    const initialProps = await Document.getInitialProps(ctx)
+    const emotionStyles = extractCriticalToChunks(initialProps.html)
+    const emotionStyleTags = emotionStyles.styles.map((style) => (
+      <style
+        data-emotion={`${style.key} ${style.ids.join(' ')}`}
+        key={style.key}
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: style.css }}
+      />
+    ))
+  
     return {
       ...initialProps,
-      // Styles fragment is rendered after the app and page rendering finish.
-      styles: [
-        ...React.Children.toArray(initialProps.styles),
-        sheets.getStyleElement()
-      ]
+      emotionStyleTags,
     }
   }
 
@@ -69,6 +78,7 @@ class Document extends _Document {
     return (
       <Html>
         <Head>
+          {this.props.emotionStyleTags}
           {linksGenerator()}
         </Head>
 
@@ -81,4 +91,4 @@ class Document extends _Document {
   }
 }
 
-export default Document
+export default CustomDocument

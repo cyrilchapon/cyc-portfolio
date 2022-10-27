@@ -2,40 +2,29 @@ import { Hero, HeroProps } from '$components/hero'
 import { ContactPaper } from './about-me-contact-paper'
 import { ImgPaper } from '$components/papers/img-paper'
 import { useResponsive } from '$styles/media-query'
-import { Button, Container, Grid, GridSpacing, ThemeProvider, Typography } from '@mui/material'
-import { makeStyles } from '@mui/styles'
-import { Theme } from '$styles'
-import { Breakpoint } from '@mui/system'
-import { FunctionComponent, useState } from 'react'
-import { themes } from '$styles'
-import { SubscribeFormDialog } from '$components/dialogs/subscribe-form-dialog'
+import { Button, Container, Grid, styled, Typography, TypographyProps } from '@mui/material'
+import { FunctionComponent } from 'react'
 import { useGlobalState } from '$global-state'
 
-const useStyles = makeStyles<Theme>(theme => ({
-  imgGridItem: {
-    [theme.breakpoints.up('lg')]: {
-      alignItems: 'flex-start'
-    }
-  },
-  img: {
-    width: 'auto',
-    maxWidth: '100%',
-    height: 'auto'
-  },
-  darkTypography: {
-    color: theme.palette.text.paper.semi
-  },
-  semiDarkTypography: {
-    color: theme.palette.text.paper.secondary
-  },
-  bodyParagraph: {
-    textAlign: 'justify',
-    // '& > p:first-of-type': {
-    //   marginTop: 0
-    // },
-    '& > p:last-of-type': {
-      marginBottom: 0
-    }
+const ImgGrid = styled(Grid)(({ theme }) => ({
+  [theme.breakpoints.up('lg')]: {
+    alignItems: 'flex-start'
+  }
+}))
+
+const MyselfImgPaper = styled(ImgPaper)(() => ({
+  width: 'auto',
+  maxWidth: '100%',
+  height: 'auto'
+}))
+
+const BodyParagraphTypography = styled(Typography)<TypographyProps<'div', { component: 'div' }>>(() => ({
+  textAlign: 'justify',
+  // '& > p:first-of-type': {
+  //   marginTop: 0
+  // },
+  '& > p:last-of-type': {
+    marginBottom: 0
   }
 }))
 
@@ -44,8 +33,6 @@ const mySelfWideImg = 'https://images.prismic.io/cyc-portfolio/8876ba7e-bdf6-4d4
 
 export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
   const [ , setSubscribeDialogState ] = useGlobalState('subscribeDialog')
-
-  const classes = useStyles()
   const r = useResponsive()
 
   return (
@@ -60,20 +47,18 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
               lg: 8
             }}
           >
-            <Grid
+            <ImgGrid
               item xs={12} lg={4}
               container direction='column' justifyContent='center' alignItems='center'
-              className={classes.imgGridItem}
             >
               <Grid item>
-                <ImgPaper
-                  className={classes.img}
+                <MyselfImgPaper
                   elevation={2}
                   src={r({xs: mySelfWideImg, lg: mySelfHeightImg})}
                   square
                 />
               </Grid>
-            </Grid>
+            </ImgGrid>
 
             <Grid
               item xs={12} lg={6}
@@ -88,7 +73,7 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
                   Découvrez mon profil
                 </Typography>
 
-                <Typography variant='body1' component='div' className={classes.bodyParagraph}>
+                <BodyParagraphTypography variant='body1' component='div'>
                   <p>
                     Évoluant depuis une douzaine d'années dans le milieu de la tech
                     en environnement Startup, j’ai exercé en tant que Tech Lead &amp; CTO.
@@ -103,7 +88,7 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
                     Je fais aussi de temps en temps du consulting en <strong>stratégie Business</strong>, <strong>Produit</strong> et <strong>Technique</strong> —
                     quand le sujet m'intéresse.
                   </p>
-                </Typography>
+                </BodyParagraphTypography>
               </Grid>
 
               <Grid item xs={12} sm={10} lg={12}>

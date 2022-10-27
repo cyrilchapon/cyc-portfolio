@@ -1,18 +1,14 @@
-import { Typography } from '@mui/material'
-import { makeStyles } from '@mui/styles'
-import { Theme } from '$styles'
+import { styled, Typography, TypographyProps } from '@mui/material'
 import { visuallyHidden } from '@mui/utils'
 import Typed from 'react-typed'
 import { FunctionComponent } from 'react'
 import { TerminalPaperBase, TerminalPaperBaseProps } from '$components/papers/terminal-paper'
 
-const useStyles = makeStyles<Theme>((theme) => ({
-  terminalTypo: {
-    color: theme.palette.text.secondary,
-    fontWeight: theme.typography.variants.mono.fontWeightMedium,
-    fontFamily: theme.typography.variants.mono.fontFamily,
-    fontSize: theme.typography.variants.mono.fontSize
-  }
+const TerminalTypography = styled(Typography)<TypographyProps<'div', { component: 'div' }>>(({ theme }) => ({
+  color: theme.palette.text.secondary,
+  fontWeight: theme.typography.variants.mono.fontWeightMedium,
+  fontFamily: theme.typography.variants.mono.fontFamily,
+  fontSize: theme.typography.variants.mono.fontSize
 }))
 
 interface TerminalPaperProps extends TerminalPaperBaseProps {
@@ -20,8 +16,6 @@ interface TerminalPaperProps extends TerminalPaperBaseProps {
 }
 
 export const TerminalPaper: FunctionComponent<TerminalPaperProps> = (props) => {
-  const classes = useStyles()
-
   const {
     strings,
     ...terminalPaperBaseProps
@@ -29,7 +23,7 @@ export const TerminalPaper: FunctionComponent<TerminalPaperProps> = (props) => {
 
   return (
     <TerminalPaperBase initialLines={2} {...terminalPaperBaseProps}>
-      <Typography component='div' className={classes.terminalTypo}>
+      <TerminalTypography component='div'>
         &gt;{' '}
           {strings.length > 0 && (
             <Typography
@@ -47,7 +41,7 @@ export const TerminalPaper: FunctionComponent<TerminalPaperProps> = (props) => {
             typeSpeed={40}
             loop
           />
-      </Typography>
+      </TerminalTypography>
     </TerminalPaperBase>
   )
 }

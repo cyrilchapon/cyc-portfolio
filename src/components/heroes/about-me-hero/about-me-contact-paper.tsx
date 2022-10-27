@@ -1,11 +1,8 @@
 import { FontAwesomeSvgIcon } from '$components/icons/font-awesome-svg-icon'
-import { MaltSvgIcon } from '$components/icons/malt-svg-icon'
 import { ListItemLink } from '$components/lists/list-item-link'
-import { faGithub, faLinkedin, faMediumM } from '@fortawesome/free-brands-svg-icons'
-import { faCalendarDay, faEnvelope, faPhoneAlt, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { faCalendarDay, faUser } from '@fortawesome/free-solid-svg-icons'
 import { Grid, Link, List, ListItem, ListItemIcon, ListItemText, Paper, PaperProps } from '@mui/material'
-import { makeStyles } from '@mui/styles'
-import clsx from 'clsx'
 import { FunctionComponent } from 'react'
 
 const getAge = (birthday: Date) => {

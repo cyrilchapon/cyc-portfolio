@@ -6,10 +6,7 @@ import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
-import { IconButton, InputAdornment, LinearProgress, Typography } from '@mui/material'
-import { makeStyles } from '@mui/styles'
-import { Theme } from '$styles'
-import { FontAwesomeSvgIcon } from '$components/icons/font-awesome-svg-icon'
+import { IconButton, InputAdornment, LinearProgress, styled, Typography } from '@mui/material'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { Tooltip } from '$components/tooltip'
 import { useForm, SubmitHandler } from 'react-hook-form'
@@ -28,32 +25,34 @@ export interface SubscribeFormDialogProps extends Omit<DialogProps, 'onClose' | 
   loading: boolean
 }
 
-const useStyles = makeStyles<Theme>(theme => ({
-  noSpamIcon: {
-    fontSize: theme.typography.body1.fontSize
+const NoSpamIconButton = styled(IconButton)(({ theme }) => ({
+  color: theme.palette.text.disabled
+}))
+
+const NoSpamSvgIcon = styled(IconButton)(({ theme }) => ({
+  fontSize: theme.typography.body1.fontSize
+}))
+
+const ButtonWrapper = styled('div')(({ theme }) => ({
+  position: 'relative',
+  borderRadius: theme.shape.borderRadius,
+  overflow: 'hidden'
+}))
+
+const ButtonProgress = styled(LinearProgress)(() => ({
+  position: 'absolute',
+  left: 0,
+  right: 0,
+  bottom: 0,
+  height: 2
+}))
+
+const GenericTextField = styled(TextField)(({ theme }) => ({
+  '&:not(:last-child)': {
+    marginBottom: theme.spacing(1)
   },
-  noSpamIconButton: {
-    color: theme.palette.text.disabled
-  },
-  buttonWrapper: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    overflow: 'hidden'
-  },
-  buttonProgress: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    height: 2
-  },
-  textField: {
-    '&:not(:last-child)': {
-      marginBottom: theme.spacing(1)
-    },
-    '&:not(:first-child)': {
-      marginTop: theme.spacing(1),
-    }
+  '&:not(:first-child)': {
+    marginTop: theme.spacing(1),
   }
 }))
 
@@ -83,8 +82,6 @@ const subscribeFormSchema: yup.SchemaOf<SubscribeFormData> = yup.object({
 type CancelHandler = (event: React.BaseSyntheticEvent, reason: SubscribeFormDialogCancelReason) => void
 
 export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = (props) => {
-  const classes = useStyles()
-
   const {
     onCancel,
     onSubmit,
@@ -138,7 +135,7 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
             Laissez moi vos coordonnées, je vous recontacte au plus vite 🙂
           </DialogContentText>
 
-          <TextField
+          <GenericTextField
             // margin='dense'
             id='subscribe-form-firstname'
             color='secondary'
@@ -155,10 +152,9 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
             inputRef={firstnameRef}
             {...firstnameProps}
             error={formState.touchedFields.firstname && !!formState.errors.firstname}
-            className={classes.textField}
           />
 
-          <TextField
+          <GenericTextField
             // margin='dense'
             id='subscribe-form-lastname'
             color='secondary'
@@ -175,10 +171,9 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
             inputRef={lastnameRef}
             {...lastnameProps}
             error={formState.touchedFields.lastname && !!formState.errors.lastname}
-            className={classes.textField}
           />
 
-          <TextField
+          <GenericTextField
             // margin='dense'
             id='subscribe-form-email'
             color='secondary'
@@ -193,9 +188,9 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
                   <Tooltip
                     title="Pas d'inquiétude, je spam pas"
                   >
-                    <IconButton color='inherit' disableRipple size='small' className={classes.noSpamIconButton}>
-                      <FontAwesomeSvgIcon icon={faInfoCircle} className={classes.noSpamIcon} />
-                    </IconButton>
+                    <NoSpamIconButton color='inherit' disableRipple size='small'>
+                      <NoSpamSvgIcon icon={faInfoCircle} />
+                    </NoSpamIconButton>
                   </Tooltip>
                 </InputAdornment>
               )
@@ -208,12 +203,11 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
             inputRef={emailRef}
             {...emailProps}
             error={formState.touchedFields.email && !!formState.errors.email}
-            className={classes.textField}
           />
         </DialogContent>
 
         <DialogActions>
-          <div className={classes.buttonWrapper}>
+          <ButtonWrapper>
             <Button
               type='submit'
               color='primary'
@@ -227,8 +221,8 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
               C&apos;est parti
             </Button>
 
-            {loading && <LinearProgress className={classes.buttonProgress} variant='indeterminate' />}
-          </div>
+            {loading && <ButtonProgress variant='indeterminate' />}
+          </ButtonWrapper>
         </DialogActions>
       </FormBox>
     </Dialog>

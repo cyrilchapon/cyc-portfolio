@@ -1,18 +1,10 @@
 import { AspectRatioSkeleton } from '$components/aspect-ratio-squeleton'
 import { Grid, Paper, PaperProps } from '@mui/material'
-import { makeStyles } from '@mui/styles'
-import { Theme } from '$styles'
 import { Skeleton } from '@mui/lab'
 import { FunctionComponent } from 'react'
 import { BaseMediumArticlePaper } from './base-medium-article-paper'
 
-const useStyles = makeStyles<Theme>(theme => ({
-
-}))
-
 const FakeArticlePaper: FunctionComponent<PaperProps> = (props) => {
-  const classes = useStyles()
-
   return (
     <BaseMediumArticlePaper
       {...props}

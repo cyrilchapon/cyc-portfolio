@@ -1,39 +1,26 @@
-import { Paper, PaperProps, Theme } from '@mui/material'
-import { makeStyles } from '@mui/styles'
-import clsx from 'clsx'
+import { Paper, PaperProps, styled } from '@mui/material'
 import { FunctionComponent } from 'react'
 
 interface TerminalPaperBaseProps extends PaperProps {
   initialLines?: number
 }
 
-const useStyles = makeStyles<Theme, TerminalPaperBaseProps, 'paper'>((theme) => ({
-  paper: {
-    padding: theme.spacing(1),
-    height: props => (
-      theme.spacing(
-        (theme.typography.subtitle1.lineHeight as number) * (props.initialLines ?? 1) * 2
-      ) + theme.spacing(2)
-    ),
-    backgroundColor: theme.palette.background.terminal
-  }
+const _TerminalPaper = styled(Paper, {
+  shouldForwardProp: p => p !== 'initialLines'
+})<TerminalPaperBaseProps>(({ theme, initialLines }) => ({
+  padding: theme.spacing(1),
+  height: 
+    theme.spacing(
+      (theme.typography.subtitle1.lineHeight as number) * (initialLines ?? 1) * 2
+    ) + theme.spacing(2),
+  backgroundColor: theme.palette.background.terminal
 }))
 
-
 const TerminalPaperBase: FunctionComponent<TerminalPaperBaseProps> = (props) => {
-  const classes = useStyles(props)
-
-  const {
-    className,
-    initialLines,
-    ...restProps
-  } = props
-
   return (
-    <Paper
+    <_TerminalPaper
       variant='outlined'
-      className={clsx(className, classes.paper)}
-      {...restProps}
+      {...props}
     />
   )
 }

@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useCallback } from 'react'
 import Dialog, { DialogProps } from '@mui/material/Dialog'
-import { ColorObject, decomposeColor, hslToRgb, recomposeColor, rgbToHex, useTheme } from '@mui/material'
-import { makeStyles } from '@mui/styles'
+import { ColorObject, decomposeColor, hslToRgb, recomposeColor, rgbToHex, styled, useTheme } from '@mui/material'
 import { InlineWidget } from 'react-calendly'
 
 export type MeetingDialogCancelReason =
@@ -13,8 +12,8 @@ export interface MeetingDialogProps extends Omit<DialogProps, 'onClose'> {
   loading: boolean
 }
 
-const useStyles = makeStyles(() => ({
-  dialogPaper: {
+const _Dialog = styled(Dialog)(() => ({
+  '.MuiDialog-paper': {
     minHeight: 'calc(100% - 64px)',
     height: 'calc(100% - 64px)'
   }
@@ -73,7 +72,6 @@ const getHex = (color: ColorObject | string, removeHash = false): string => {
 }
 
 export const MeetingDialog: FunctionComponent<MeetingDialogProps> = (props) => {
-  const classes = useStyles()
   const theme = useTheme()
 
   const primary = getHex(theme.palette.primary.main, true)
@@ -91,13 +89,12 @@ export const MeetingDialog: FunctionComponent<MeetingDialogProps> = (props) => {
   )
 
   return (
-    <Dialog
+    <_Dialog
       {...dialogProps}
       fullWidth
       maxWidth='sm'
       onClose={handleCancel}
       aria-labelledby='form-dialog-title'
-      classes={{ paper: classes.dialogPaper }}
     >
       <InlineWidget
         url={`https://calendly.com/cyril-chapon/e-coffee?hide_gdpr_banner=1`}
@@ -109,6 +106,6 @@ export const MeetingDialog: FunctionComponent<MeetingDialogProps> = (props) => {
           hideEventTypeDetails: true
         }}
       />
-    </Dialog>
+    </_Dialog>
   )
 }

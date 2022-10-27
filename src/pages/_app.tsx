@@ -4,17 +4,19 @@ import { createThemes, ThemesServiceContext } from '$styles'
 import { CssBaseline, ThemeProvider, useMediaQuery } from '@mui/material'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import { SERVER_STYLESHEET_ID } from './_document'
+import { createEmotionCache } from '$styles/emotion-cache'
+import { CacheProvider, EmotionCache } from '@emotion/react'
 
-// import { GlobalStyles, StyledNormalize, theme } from '$styles'
+// Client-side cache, shared for the whole session of the user in the browser.
+const clientSideEmotionCache = createEmotionCache()
 
-const App = ({ Component, pageProps }: AppProps) => {
-  React.useEffect(() => {
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector(`#${SERVER_STYLESHEET_ID}`)
-    jssStyles?.parentElement?.removeChild(jssStyles)
-  }, [])
+interface CustomAppProps extends AppProps {
+  emotionCache?: EmotionCache
+}
 
+export type CustomAppType = typeof CustomApp
+
+const CustomApp = ({ Component, pageProps, emotionCache = clientSideEmotionCache }: CustomAppProps) => {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
 
   const themes = useMemo(
@@ -24,19 +26,21 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   return (
     <>
-      <Head>
-        {metasGenerator()}
-      </Head>
+      <CacheProvider value={emotionCache}>
+        <Head>
+          {metasGenerator()}
+        </Head>
 
-      <ThemesServiceContext.Provider value={themes}>
-        <ThemeProvider theme={themes.root}>
-          <CssBaseline />
+        <ThemesServiceContext.Provider value={themes}>
+          <ThemeProvider theme={themes.root}>
+            <CssBaseline />
 
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </ThemesServiceContext.Provider>
+            <Component {...pageProps} />
+          </ThemeProvider>
+        </ThemesServiceContext.Provider>
+      </CacheProvider>
     </>
   )
 }
 
-export default App
+export default CustomApp

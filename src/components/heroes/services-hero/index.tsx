@@ -1,20 +1,15 @@
 import { Hero, HeroProps } from '$components/hero'
-import { Button, Container, Grid, Typography } from '@mui/material'
-import { makeStyles } from '@mui/styles'
+import { Button, Container, Grid, styled, Typography } from '@mui/material'
 import { FunctionComponent } from 'react'
 import { ServicePaper } from './service-paper'
 import { services } from '$constants'
 import { useGlobalState } from '$global-state'
 
-const useStyles = makeStyles(theme => ({
-  buttonGridItem: {
-    textAlign: 'center'
-  }
+const ButtonGridItem = styled(Grid)(() => ({
+  textAlign: 'center'
 }))
 
 export const ServicesHero: FunctionComponent<HeroProps> = (props) => {
-  const classes = useStyles()
-
   const [ , setMeetingDialogState ] = useGlobalState('meetingDialog')
 
   return (
@@ -47,7 +42,7 @@ export const ServicesHero: FunctionComponent<HeroProps> = (props) => {
 
           <Grid item xs={12}>
             <Grid container direction='row' justifyContent='center' spacing={2}>
-              <Grid item xs={12} sm='auto' className={classes.buttonGridItem}>
+              <ButtonGridItem item xs={12} sm='auto'>
                 <Button
                   onClick={() => setMeetingDialogState(prevState => ({
                     ...prevState,
@@ -60,9 +55,9 @@ export const ServicesHero: FunctionComponent<HeroProps> = (props) => {
                 >
                   Prendre rendez-vous
                 </Button>
-              </Grid>
+              </ButtonGridItem>
 
-              <Grid item xs={12} sm='auto' className={classes.buttonGridItem}>
+              <ButtonGridItem item xs={12} sm='auto'>
                 <Button
                   href='https://www.malt.fr/project/new?freelanceId=5f7cfd793a399f2641be0ce0&amp;viewId=5fbfd99ec994b74bc573bb54'
                   variant='contained'
@@ -71,7 +66,7 @@ export const ServicesHero: FunctionComponent<HeroProps> = (props) => {
                 >
                   Devis gratuit
                 </Button>
-              </Grid>
+              </ButtonGridItem>
             </Grid>
           </Grid>
         </Grid>
