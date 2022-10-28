@@ -1,6 +1,6 @@
 import { Hero, HeroProps } from '$components/hero'
 import { Button, Container, Grid, Typography } from '@mui/material'
-import { FunctionComponent } from 'react'
+import { forwardRef, ForwardRefExoticComponent } from 'react'
 import { MediumFeed } from 'types/medium-feed'
 import { FakeArticlePaper } from './fake-article-paper'
 import { MediumArticlePaper } from './medium-article-paper'
@@ -11,7 +11,7 @@ interface MediumHeroProps extends HeroProps {
   articlesCount?: number
 }
 
-export const MediumHero: FunctionComponent<MediumHeroProps> = (props) => {
+export const MediumHero: ForwardRefExoticComponent<MediumHeroProps> = forwardRef((props, ref) => {
   const {
     articlesCount: _articlesCount,
     mediumFeed,
@@ -21,7 +21,7 @@ export const MediumHero: FunctionComponent<MediumHeroProps> = (props) => {
   const articlesCount = _articlesCount ?? 2
 
   return (
-    <Hero bgcolor='background.default' {...heroProps}>
+    <Hero bgcolor='background.default' ref={ref} {...heroProps}>
       <Container>
         <Grid container direction='column' spacing={4}>
           <Grid item>
@@ -79,4 +79,4 @@ export const MediumHero: FunctionComponent<MediumHeroProps> = (props) => {
       </Container>
     </Hero>
   )
-}
+})

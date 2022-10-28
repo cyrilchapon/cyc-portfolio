@@ -3,7 +3,7 @@ import { ContactPaper } from './about-me-contact-paper'
 import { ImgPaper } from '$components/papers/img-paper'
 import { useResponsive } from '$styles/media-query'
 import { Button, Container, Grid, NoSsr, styled, Typography, TypographyProps } from '@mui/material'
-import { FunctionComponent } from 'react'
+import { forwardRef, ForwardRefExoticComponent } from 'react'
 import { useGlobalState } from '$global-state'
 
 const ImgGrid = styled(Grid)(({ theme }) => ({
@@ -31,7 +31,7 @@ const BodyParagraphTypography = styled(Typography)<TypographyProps<'div', { comp
 const mySelfHeightImg = 'https://images.prismic.io/cyc-portfolio/8876ba7e-bdf6-4d48-894c-a993ca3a9b9f_moi.png?auto=compress,format&ar=2:3&fit=crop&crop=faces,center'
 const mySelfWideImg = 'https://images.prismic.io/cyc-portfolio/8876ba7e-bdf6-4d48-894c-a993ca3a9b9f_moi.png?auto=compress,format&ar=4:2&fit=crop&crop=faces,center'
 
-export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
+export const AboutMeHero: ForwardRefExoticComponent<HeroProps> = forwardRef((props, ref) => {
   const [ , setSubscribeDialogState ] = useGlobalState('subscribeDialog')
   const r = useResponsive()
 
@@ -42,7 +42,7 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
 
   return (
     <>
-      <Hero bgcolor='background.default' {...props}>
+      <Hero bgcolor='background.default' ref={ref} {...props}>
         <Container>
           <Grid
             container direction='row' justifyContent='center'
@@ -128,4 +128,4 @@ export const AboutMeHero: FunctionComponent<HeroProps> = (props) => {
       </Hero>
     </>
   )
-}
+})

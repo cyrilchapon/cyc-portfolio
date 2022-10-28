@@ -1,15 +1,15 @@
 import { Hero, HeroProps } from '$components/hero'
 import { terminalStrings } from '$constants'
 import { Container, Grid } from '@mui/material'
-import { FunctionComponent } from 'react'
+import { forwardRef, ForwardRefExoticComponent } from 'react'
 import { IntroAvatar } from './intro-avatar'
 import { IntroSubtitle } from './intro-subtitle'
 import { TerminalPaper } from './intro-terminal-paper'
 import { IntroTitle } from './intro-title'
 
-export const IntroHero: FunctionComponent<HeroProps> = (props) => {
+export const IntroHero: ForwardRefExoticComponent<HeroProps> = forwardRef((props, ref) => {
   return (
-    <Hero bgcolor='background.intro' {...props}>
+    <Hero bgcolor='background.intro' ref={ref} {...props}>
       <Container>
         <Grid container justifyContent='center'>
           <Grid
@@ -43,4 +43,4 @@ export const IntroHero: FunctionComponent<HeroProps> = (props) => {
       </Container>
     </Hero>
   )
-}
+})

@@ -10,18 +10,46 @@ import { GridTesterHero } from '$components/heroes/grid-tester-hero'
 import { ServicesHero } from '$components/heroes/services-hero'
 import { MediumHero } from '$components/heroes/medium-hero'
 import { HomereHero } from '$components/heroes/homere-hero'
-import { ThemeProvider } from '@mui/material'
+import { styled, ThemeProvider } from '@mui/material'
 import { MailchimpSubscribeFormDialog } from '$components/dialogs/mailchimp-subscribe-form-dialog'
 import { browserEnv } from '$env'
 import { ConnectedSnackbar as Snackbar } from '$components/snackbar'
 import { GetStaticProps, NextPage } from 'next'
 import Axios from 'axios'
-import { deflateMediumFeed, inflateMediumFeed, parseMediumFeed, RawMediumFeed, SerializableMediumFeed } from 'types/medium-feed'
+import {
+  deflateMediumFeed,
+  inflateMediumFeed,
+  parseMediumFeed,
+  RawMediumFeed,
+  SerializableMediumFeed,
+} from 'types/medium-feed'
 import { CalendlyMeetingDialog } from '$components/dialogs/calendly-meeting-dialog'
-import { ThemesServiceContext } from '$styles'
+import { Themes, ThemesServiceContext } from '$styles'
+import { MainFab, MainFabProps } from '$components/fab'
+import { IntersectionOptions, useLastInView } from 'hooks/use-last-in-view'
 
 interface HomeProps {
   serializableMediumFeed: SerializableMediumFeed
+}
+
+export type HeroType = 'intro' | 'about' | 'homere' | 'services' | 'medium'
+export const heroThemes: Record<HeroType, keyof Themes> = {
+  intro: 'root',
+  about: 'primary',
+  homere: 'homere',
+  services: 'light',
+  medium: 'dark',
+}
+
+const PositionedMainFab = styled(MainFab)<MainFabProps>(({ theme }) => ({
+  position: 'fixed',
+  bottom: theme.spacing(8),
+  right: theme.spacing(8),
+}))
+
+const inViewObserverOptions: IntersectionOptions = {
+  threshold: 0,
+  rootMargin: '-20% 0% -20% 0%',
 }
 
 const Home: NextPage<HomeProps> = (props) => {
@@ -29,10 +57,32 @@ const Home: NextPage<HomeProps> = (props) => {
 
   const mediumFeed = inflateMediumFeed(props.serializableMediumFeed)
 
+  const [
+    heroInView,
+    {
+      intro: [introRef],
+      about: [aboutRef],
+      homere: [homereRef],
+      services: [servicesRef],
+      medium: [mediumRef],
+    },
+  ] = useLastInView<HeroType>({
+    intro: inViewObserverOptions,
+    about: inViewObserverOptions,
+    homere: inViewObserverOptions,
+    services: inViewObserverOptions,
+    medium: inViewObserverOptions,
+  })
+
+  const themeKeyInView: keyof Themes =
+    heroInView != null ? heroThemes[heroInView] : 'root'
+
   return (
     <>
       <Head>
-        <title>Cyril CHAPON — Consultant stratégie produit &amp; CTO en freelance</title>
+        <title>
+          Cyril CHAPON — Consultant stratégie produit &amp; CTO en freelance
+        </title>
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
 
@@ -41,23 +91,26 @@ const Home: NextPage<HomeProps> = (props) => {
       <Header />
 
       <Main>
-        <IntroHero id='intro' escapeHeader />
-
-        <ThemeProvider theme={themes.primary}>
-          <AboutMeHero id='a-propos-de-moi' escapeHeader />
+        <ThemeProvider theme={themes[heroThemes.intro]}>
+          <IntroHero ref={introRef} id="intro" escapeHeader />
         </ThemeProvider>
 
-        <ThemeProvider theme={themes.homere}>
-          <HomereHero id='homere' />
+        <ThemeProvider theme={themes[heroThemes.about]}>
+          <AboutMeHero ref={aboutRef} id="a-propos-de-moi" escapeHeader />
         </ThemeProvider>
 
-        <ThemeProvider theme={themes.light}>
-          <ServicesHero id='mes-services' escapeHeader />
+        <ThemeProvider theme={themes[heroThemes.homere]}>
+          <HomereHero ref={homereRef} id="homere" />
         </ThemeProvider>
 
-        <ThemeProvider theme={themes.dark}>
+        <ThemeProvider theme={themes[heroThemes.services]}>
+          <ServicesHero ref={servicesRef} id="mes-services" escapeHeader />
+        </ThemeProvider>
+
+        <ThemeProvider theme={themes[heroThemes.medium]}>
           <MediumHero
-            id='mes-articles'
+            ref={mediumRef}
+            id="mes-articles"
             mediumFeed={mediumFeed}
             escapeHeader
           />
@@ -92,6 +145,13 @@ const Home: NextPage<HomeProps> = (props) => {
           <CalendlyMeetingDialog />
           <Snackbar />
         </ThemeProvider>
+
+        <ThemeProvider theme={themes.root}>
+          <PositionedMainFab
+            currentHeroInView={heroInView}
+            currentThemeKey={themeKeyInView}
+          />
+        </ThemeProvider>
       </Main>
     </>
   )
@@ -101,14 +161,14 @@ const rss2jsonUrl = 'https://api.rss2json.com/v1/api.json'
 const rss2jsonRssUrlQs = 'rss_url'
 const mediumFeedUrl = 'https://medium.com/feed/@cyril-chpn'
 
-const mediumJsonFeedUrl = `${rss2jsonUrl}?${rss2jsonRssUrlQs}=${encodeURIComponent(mediumFeedUrl)}`
+const mediumJsonFeedUrl = `${rss2jsonUrl}?${rss2jsonRssUrlQs}=${encodeURIComponent(
+  mediumFeedUrl,
+)}`
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const {
-    data: rawMediumFeed
-  } = await Axios.request<RawMediumFeed>({
+  const { data: rawMediumFeed } = await Axios.request<RawMediumFeed>({
     url: mediumJsonFeedUrl,
-    method: 'GET'
+    method: 'GET',
   })
 
   const mediumFeed = parseMediumFeed(rawMediumFeed)
@@ -116,8 +176,8 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
 
   return {
     props: {
-      serializableMediumFeed
-    }
+      serializableMediumFeed,
+    },
   }
 }
 

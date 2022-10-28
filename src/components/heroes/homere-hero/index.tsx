@@ -1,7 +1,7 @@
 import { getPaddingTop, Hero, HeroProps } from '$components/hero'
 // import { ContactPaper } from './about-me-contact-paper'
 import { Box, Button, Grid, Link, styled, Typography, TypographyProps } from '@mui/material'
-import { FunctionComponent } from 'react'
+import { forwardRef, ForwardRefExoticComponent } from 'react'
 
 const FullHeightHero = styled(Hero)(() => ({
   paddingTop: 0,
@@ -73,9 +73,9 @@ const BodyParagraph = styled(Typography)<TypographyProps<'div', { component: 'di
 const mySelfHeightImg = 'https://images.prismic.io/cyc-portfolio/b2e8a189-5978-468f-b079-5acb0de925d6_IMG_7680_eff41a08-ea2e-4c54-972a-d918e68ad608_2000x.jpeg?auto=compress,format'
 // const mySelfWideImg = 'https://images.prismic.io/cyc-portfolio/8876ba7e-bdf6-4d48-894c-a993ca3a9b9f_moi.png?auto=compress,format&ar=4:2&fit=crop&crop=faces,center'
 
-export const HomereHero: FunctionComponent<HeroProps> = (props) => {
+export const HomereHero: ForwardRefExoticComponent<HeroProps> = forwardRef((props, ref) => {
   return (
-    <FullHeightHero bgcolor='background.default' {...props}>
+    <FullHeightHero bgcolor='background.default' ref={ref} {...props}>
       {/* <Container> */}
         <Grid
           flex={1}
@@ -153,4 +153,4 @@ export const HomereHero: FunctionComponent<HeroProps> = (props) => {
       {/* </Container> */}
     </FullHeightHero>
   )
-}
+})

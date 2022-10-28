@@ -1,6 +1,6 @@
 import { Hero, HeroProps } from '$components/hero'
 import { Button, Container, Grid, styled, Typography } from '@mui/material'
-import { FunctionComponent } from 'react'
+import { forwardRef, ForwardRefExoticComponent } from 'react'
 import { ServicePaper } from './service-paper'
 import { services } from '$constants'
 import { useGlobalState } from '$global-state'
@@ -9,11 +9,11 @@ const ButtonGridItem = styled(Grid)(() => ({
   textAlign: 'center'
 }))
 
-export const ServicesHero: FunctionComponent<HeroProps> = (props) => {
+export const ServicesHero: ForwardRefExoticComponent<HeroProps> = forwardRef((props, ref) => {
   const [ , setMeetingDialogState ] = useGlobalState('meetingDialog')
 
   return (
-    <Hero bgcolor='background.default' {...props}>
+    <Hero bgcolor='background.default' ref={ref} {...props}>
       <Container>
         <Grid container direction='column' spacing={4}>
           <Grid item>
@@ -73,4 +73,4 @@ export const ServicesHero: FunctionComponent<HeroProps> = (props) => {
       </Container>
     </Hero>
   )
-}
+})
