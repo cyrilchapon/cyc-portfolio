@@ -30,8 +30,7 @@ type FabType =
   | 'goToMedium'
   | 'goToLinkedIn'
 
-const heroesFabTypes: Record<HeroType, FabType> = {
-  intro: 'goToLinkedIn',
+const heroesFabTypes: Partial<Record<HeroType, FabType>> = {
   about: 'contactMe',
   homere: 'goToHomere',
   services: 'bookAMeeting',
@@ -61,7 +60,7 @@ export const MainFab: React.FunctionComponent<MainFabProps> = ({
 }) => {
   const themes = React.useContext(ThemesServiceContext)
 
-  const currentFabType: FabType = currentHeroInView != null ? heroesFabTypes[currentHeroInView] : 'contactMe'
+  const currentFabType: FabType | null = (currentHeroInView != null ? heroesFabTypes[currentHeroInView] : null) ?? null
 
   const transitionDuration = {
     enter: themes.root.transitions.duration.shortest,
@@ -113,7 +112,12 @@ export const MainFab: React.FunctionComponent<MainFabProps> = ({
   return (
     <>
       {(Object.entries(heroThemes) as [HeroType, keyof Themes][]).map(([heroType, themeKey]) => {
-        const fabType = heroesFabTypes[heroType]
+        const fabType = heroesFabTypes[heroType] ?? null
+
+        if (fabType == null) {
+          return null
+        }
+
         const { icon, ...fabProps } = fabsProps[fabType]
 
         const isActiveFab = currentFabType === fabType && currentThemeKey === themeKey
