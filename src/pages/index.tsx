@@ -43,8 +43,12 @@ export const heroThemes: Record<HeroType, keyof Themes> = {
 
 const PositionedMainFab = styled(MainFab)<MainFabProps>(({ theme }) => ({
   position: 'fixed',
-  bottom: theme.spacing(8),
-  right: theme.spacing(8),
+  bottom: theme.spacing(4),
+  right: theme.spacing(4),
+  [theme.breakpoints.up('lg')]: {
+    bottom: theme.spacing(8),
+    right: theme.spacing(8),
+  }
 }))
 
 const inViewObserverOptions: IntersectionOptions = {

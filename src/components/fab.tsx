@@ -105,7 +105,7 @@ export const MainFab: React.FunctionComponent<MainFabProps> = ({
     goToLinkedIn: {
       component: 'a',
       icon: <FontAwesomeSvgIcon icon={faLinkedinIn} fontSize='small' sx={{}} />,
-      href: 'https://cyril-chpn.medium.com',
+      href: 'https://www.linkedin.com/in/cchapon',
       target: '_blank'
     }
   }
