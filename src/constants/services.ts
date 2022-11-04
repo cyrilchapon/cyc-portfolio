@@ -1,10 +1,7 @@
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import TimelineIcon from '@mui/icons-material/Timeline'
 import { SvgIcon } from '@mui/material'
-import {
-  faLaptopCode,
-  faUserNinja,
-} from '@fortawesome/free-solid-svg-icons'
+import { faLaptopCode, faUserNinja } from '@fortawesome/free-solid-svg-icons'
 import urls from './urls'
 
 export type ServiceIconType = 'material' | 'font-awesome'

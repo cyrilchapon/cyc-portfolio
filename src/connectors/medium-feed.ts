@@ -110,12 +110,14 @@ const _parseMediumDate = (dateString: string) => {
   return date
 }
 
-const _composeDescriptionFromContent = (limit = 1000) => (content: string) =>
-  textClip(content, limit, {
-    html: true,
-    breakWords: false,
-    imageWeight: 0,
-  })
+const _composeDescriptionFromContent =
+  (limit = 1000) =>
+  (content: string) =>
+    textClip(content, limit, {
+      html: true,
+      breakWords: false,
+      imageWeight: 0,
+    })
 
 const _splitMediumImg = (imgSrc: string) => {
   const imgPattern =

@@ -5,7 +5,8 @@ const THRESHOLD = 0
 export type ScrollDirection = 'up' | 'down'
 
 const useScrollDirection = () => {
-  const [scrollDirection, setScrollDirection] = React.useState<ScrollDirection>('up')
+  const [scrollDirection, setScrollDirection] =
+    React.useState<ScrollDirection>('up')
 
   const blocking = React.useRef(false)
   const prevScrollY = React.useRef(0)

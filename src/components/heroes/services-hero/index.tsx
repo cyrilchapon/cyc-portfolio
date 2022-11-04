@@ -2,7 +2,7 @@ import { Hero, HeroProps } from '$components/hero'
 import { Button, Container, Grid, styled, Typography } from '@mui/material'
 import { forwardRef, ForwardRefExoticComponent } from 'react'
 import { ServicePaper } from './service-paper'
-import { services, urls } from '$constants'
+import { services } from '$constants'
 import { useGlobalState } from '$global-state'
 
 const ButtonGridItem = styled(Grid)(() => ({

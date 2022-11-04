@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "tsc": "tsc",
+    "tsc": "tsc --noEmit",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
