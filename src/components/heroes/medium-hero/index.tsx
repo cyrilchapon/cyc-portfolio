@@ -1,4 +1,5 @@
 import { Hero, HeroProps } from '$components/hero'
+import { urls } from '$constants'
 import { Button, Container, Grid, Typography } from '@mui/material'
 import { forwardRef, ForwardRefExoticComponent } from 'react'
 import { MediumFeed } from 'types/medium-feed'
@@ -26,7 +27,7 @@ export const MediumHero: ForwardRefExoticComponent<MediumHeroProps> = forwardRef
         <Grid container direction='column' spacing={4}>
           <Grid item>
             <Typography variant='h3' component='h2'>
-              Mes articles
+              Articles
             </Typography>
 
             <Typography variant='subtitle1' gutterBottom>
@@ -67,7 +68,7 @@ export const MediumHero: ForwardRefExoticComponent<MediumHeroProps> = forwardRef
           >
             <Grid item>
               <Button
-                href='https://cyril-chpn.medium.com'
+                href={urls.medium}
                 variant='outlined'
                 size='large'
               >

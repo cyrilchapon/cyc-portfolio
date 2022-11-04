@@ -20,7 +20,7 @@ export const IntroSubtitle: FunctionComponent<TypographyProps<'div'>> = (props) 
     >
       CEO &amp; founder @ Homère
       <br />
-      Consultant Stratégie Produit
+      CTO indépendant
     </SubtitleTypography>
   )
 }

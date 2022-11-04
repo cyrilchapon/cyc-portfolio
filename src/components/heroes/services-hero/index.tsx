@@ -2,7 +2,7 @@ import { Hero, HeroProps } from '$components/hero'
 import { Button, Container, Grid, styled, Typography } from '@mui/material'
 import { forwardRef, ForwardRefExoticComponent } from 'react'
 import { ServicePaper } from './service-paper'
-import { services } from '$constants'
+import { services, urls } from '$constants'
 import { useGlobalState } from '$global-state'
 
 const ButtonGridItem = styled(Grid)(() => ({
@@ -18,7 +18,7 @@ export const ServicesHero: ForwardRefExoticComponent<HeroProps> = forwardRef((pr
         <Grid container direction='column' spacing={4}>
           <Grid item>
             <Typography variant='h3' component='h2'>
-              Mes services
+              Services
             </Typography>
 
             <Typography variant='subtitle1' gutterBottom>
@@ -48,7 +48,7 @@ export const ServicesHero: ForwardRefExoticComponent<HeroProps> = forwardRef((pr
                     ...prevState,
                     open: true
                   }))}
-                  variant='outlined'
+                  variant='contained'
                   color='primary'
                   size='large'
                   disableTouchRipple
@@ -57,16 +57,16 @@ export const ServicesHero: ForwardRefExoticComponent<HeroProps> = forwardRef((pr
                 </Button>
               </ButtonGridItem>
 
-              <ButtonGridItem item xs={12} sm='auto'>
+              {/* <ButtonGridItem item xs={12} sm='auto'>
                 <Button
-                  href='https://www.malt.fr/project/new?freelanceId=5f7cfd793a399f2641be0ce0&amp;viewId=5fbfd99ec994b74bc573bb54'
+                  href={urls.maltQuote}
                   variant='contained'
                   color='primary'
                   size='large'
                 >
                   Devis gratuit
                 </Button>
-              </ButtonGridItem>
+              </ButtonGridItem> */}
             </Grid>
           </Grid>
         </Grid>

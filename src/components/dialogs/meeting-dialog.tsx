@@ -2,6 +2,7 @@ import React, { FunctionComponent, useCallback } from 'react'
 import Dialog, { DialogProps } from '@mui/material/Dialog'
 import { ColorObject, decomposeColor, hslToRgb, recomposeColor, rgbToHex, styled, useTheme } from '@mui/material'
 import { InlineWidget } from 'react-calendly'
+import { urls } from '$constants'
 
 export type MeetingDialogCancelReason =
   | 'backdropClick'
@@ -97,7 +98,7 @@ export const MeetingDialog: FunctionComponent<MeetingDialogProps> = (props) => {
       aria-labelledby='form-dialog-title'
     >
       <InlineWidget
-        url={`https://calendly.com/cyril-chapon/e-coffee?hide_gdpr_banner=1`}
+        url={`${urls.calendly}?hide_gdpr_banner=1`}
         styles={{ height: '100%', minHeight: '100%', flexGrow: 1 }}
         pageSettings={{
           backgroundColor: background,

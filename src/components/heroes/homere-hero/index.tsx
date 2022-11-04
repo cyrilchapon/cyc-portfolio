@@ -1,4 +1,5 @@
 import { getPaddingTop, Hero, HeroProps } from '$components/hero'
+import { urls } from '$constants'
 // import { ContactPaper } from './about-me-contact-paper'
 import { Box, Button, Grid, Link, styled, Typography, TypographyProps } from '@mui/material'
 import { forwardRef, ForwardRefExoticComponent } from 'react'
@@ -17,7 +18,7 @@ const ImgGridContainer = styled(Grid)(({ theme }) => ({
 }))
 
 const ImgGridItem = styled(Grid)(() => ({
-  backgroundImage: `url(${mySelfHeightImg})`,
+  backgroundImage: `url(${homereImg})`,
   backgroundSize: 'cover',
 }))
 
@@ -26,7 +27,7 @@ const ParagraphGridContainer = styled(Grid)(({ theme }) => ({
   ...getPaddingTop(theme)(true),
   minHeight: '100vh',
   [theme.breakpoints.down('lg')]: {
-    background: `url(${mySelfHeightImg})`,
+    background: `url(${homereImg})`,
     position: 'relative',
     '&::before': {
       content: '""',
@@ -70,8 +71,7 @@ const BodyParagraph = styled(Typography)<TypographyProps<'div', { component: 'di
   }
 }))
 
-const mySelfHeightImg = 'https://images.prismic.io/cyc-portfolio/b2e8a189-5978-468f-b079-5acb0de925d6_IMG_7680_eff41a08-ea2e-4c54-972a-d918e68ad608_2000x.jpeg?auto=compress,format'
-// const mySelfWideImg = 'https://images.prismic.io/cyc-portfolio/8876ba7e-bdf6-4d48-894c-a993ca3a9b9f_moi.png?auto=compress,format&ar=4:2&fit=crop&crop=faces,center'
+const homereImg = 'https://images.prismic.io/cyc-portfolio/b2e8a189-5978-468f-b079-5acb0de925d6_IMG_7680_eff41a08-ea2e-4c54-972a-d918e68ad608_2000x.jpeg?auto=compress,format'
 
 export const HomereHero: ForwardRefExoticComponent<HeroProps> = forwardRef((props, ref) => {
   return (
@@ -95,17 +95,17 @@ export const HomereHero: ForwardRefExoticComponent<HeroProps> = forwardRef((prop
                 container direction='column' spacing={8}
               >
                 <Grid item>
-                  <Typography variant='h3' component='h2'>
+                  <Typography variant='h3' component='h2' textAlign={{ xs: 'center', lg: 'left' }}>
                     Homère
                   </Typography>
 
-                  <Typography variant='subtitle1' gutterBottom>
+                  <Typography variant='subtitle1' gutterBottom textAlign={{ xs: 'center', lg: 'left' }}>
                     Mon projet de coeur
                   </Typography>
 
-                  <BodyParagraph variant='body1' component='div'>
+                  <BodyParagraph variant='body1' component='div' textAlign={{ xs: 'justify', lg: 'left' }}>
                     <p>
-                      Depuis fin 2020, avec mon associé <Link href="https://www.linkedin.com/in/marc-antoine-calzada" target='_blank'>Marc-Antoine CALZADA</Link> nous avons lancé la Marketplace <strong><Link href="https://www.homere.shop" target="_blank">Homère Shop</Link></strong>.
+                      Depuis fin 2020, avec mon associé <Link href={urls.linkedInMarco} target='_blank'>Marc-Antoine CALZADA</Link> nous avons lancé la Marketplace <strong><Link href={urls.homere} target="_blank">Homère Shop</Link></strong>.
                       J&apos;en suis aujourd&apos;hui le CEO.
                     </p>
 
@@ -128,7 +128,7 @@ export const HomereHero: ForwardRefExoticComponent<HeroProps> = forwardRef((prop
                     item xs='auto' lg={12}
                   >
                     <Button
-                      href='https://www.homere.shop'
+                      href={urls.homere}
                       variant='contained'
                       size='large'
                     >

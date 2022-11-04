@@ -33,7 +33,7 @@ const smallCapsStyles: TypographyStyleOptions = {
 
 const baseBackgroundImageId = `cyc-portfolio/d944fbaf-afb6-4b59-83bb-d137de9e24c5_ali-kazal-7b39feeIMO0-unsplash.jpg`
 const baseBackgroundImage = `https://images.prismic.io/${baseBackgroundImageId}`
-const loadingBackgroundImage = `${baseBackgroundImage}?w=600&auto=compress,format,enhance&q=10&fit=crop&blend-color=000000&blend-mode=normal&blend-alpha=95`
+const loadingBackgroundImage = `${baseBackgroundImage}?w=400&auto=compress,format,enhance&q=10&fit=crop&blend-color=000000&blend-mode=normal&blend-alpha=95`
 const backgroundImage = `${baseBackgroundImage}?w=1920&auto=compress,format,enhance&q=80&fit=crop&blend-color=000000&blend-mode=normal&blend-alpha=95`
 
 const getTypographyOptions = (palette: Palette): TypographyOptions => ({
@@ -150,6 +150,9 @@ const darkThemeTokens = (mode: PaletteMode): ThemeOptions => ({
       main: '#1BB16D',
       // main: '#FFFFFF'
     },
+    neutral: {
+      main: mode === 'light' ? '#FFFFFF' : 'rgba(255, 255, 255, 0.8)',
+    },
     background: {
       default: '#1A1A1A',
       intro: 'transparent',
@@ -195,6 +198,9 @@ const lightThemeTokens = (mode: PaletteMode): ThemeOptions => ({
           secondary: {
             main: '#1BB16D',
           },
+          neutral: {
+            main: 'rgba(0, 0, 0, 0.87)',
+          },
           background: {
             default: 'rgb(250, 250, 250)',
             intro: customLight.background.intro,
@@ -215,7 +221,7 @@ const lightThemeTokens = (mode: PaletteMode): ThemeOptions => ({
             },
           },
         }
-      : darkThemeTokens(mode).palette),
+      : darkThemeTokens('dark').palette),
   },
   typography: getTypographyOptions,
 })
@@ -238,6 +244,9 @@ const primaryThemeTokens = (mode: PaletteMode): ThemeOptions => ({
             main: '#1BB16D',
             // main: '#FFFFFF'
           },
+          neutral: {
+            main: '#FFFFFF',
+          },
           background: {
             default: '#E02F58',
             intro: 'transparent',
@@ -255,14 +264,14 @@ const primaryThemeTokens = (mode: PaletteMode): ThemeOptions => ({
             secondary: 'rgba(255, 255, 255, 0.7)',
             disabled: 'rgba(255, 255, 255, 0.5)',
             paper: {
-              primary: 'rgba(0, 0, 0, 0.87)',
-              semi: 'rgba(0, 0, 0, 0.7)',
-              secondary: 'rgba(0, 0, 0, 0.54)',
-              disabled: 'rgba(0, 0, 0, 0.38)',
+              primary: '#FFFFFF',
+              semi: 'rgba(255, 255, 255, 0.9)',
+              secondary: 'rgba(255, 255, 255, 0.7)',
+              disabled: 'rgba(255, 255, 255, 0.5)',
             },
           },
         }
-      : darkThemeTokens(mode).palette),
+      : darkThemeTokens('dark').palette),
   },
   typography: getTypographyOptions,
 })
@@ -285,6 +294,9 @@ const homereThemeTokens = (mode: PaletteMode): ThemeOptions => ({
             main: '#1BB16D',
             // main: '#FFFFFF'
           },
+          neutral: {
+            main: '#FFFFFF',
+          },
           background: {
             default: '#00483f',
             intro: 'transparent',
@@ -306,7 +318,7 @@ const homereThemeTokens = (mode: PaletteMode): ThemeOptions => ({
             },
           },
         }
-      : darkThemeTokens(mode).palette),
+      : darkThemeTokens('dark').palette),
   },
   typography: getTypographyOptions,
 })

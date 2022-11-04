@@ -1,5 +1,6 @@
 import { FontAwesomeSvgIcon } from '$components/icons/font-awesome-svg-icon'
 import { ListItemLink } from '$components/lists/list-item-link'
+import { urls } from '$constants'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { faCalendarDay, faUser } from '@fortawesome/free-solid-svg-icons'
 import { Grid, Link, List, ListItem, ListItemIcon, ListItemText, Paper, PaperProps } from '@mui/material'
@@ -58,7 +59,7 @@ const ContactPaper: FunctionComponent<PaperProps> = (props) => {
 
         <Grid item xs={12} sm={6}>
           <List>
-            {/* <ListItem component={Link} href='https://cyril-chpn.medium.com' color='inherit'>
+            {/* <ListItem component={Link} href={urls.medium} color='inherit'>
               <ListItemIcon>
                 <FontAwesomeSvgIcon fontSize='small' icon={faMediumM} />
               </ListItemIcon>
@@ -66,7 +67,7 @@ const ContactPaper: FunctionComponent<PaperProps> = (props) => {
               <ListItemLink secondary='Medium' primary={<strong>@cyril-chpn</strong>} />
             </ListItem> */}
 
-            <ListItem component={Link} href='https://www.linkedin.com/in/cchapon' color='inherit'>
+            <ListItem component={Link} href={urls.linkedIn} color='inherit'>
               <ListItemIcon>
                 <FontAwesomeSvgIcon fontSize='medium' icon={faLinkedin} />
               </ListItemIcon>
@@ -74,7 +75,7 @@ const ContactPaper: FunctionComponent<PaperProps> = (props) => {
               <ListItemLink secondary='LinkedIn' primary={<strong>cchapon</strong>} />
             </ListItem>
 
-            <ListItem component={Link} href='https://github.com/cyrilchapon' color='inherit'>
+            <ListItem component={Link} href={urls.github} color='inherit'>
               <ListItemIcon>
                 <FontAwesomeSvgIcon fontSize='medium' icon={faGithub} />
               </ListItemIcon>
@@ -82,7 +83,7 @@ const ContactPaper: FunctionComponent<PaperProps> = (props) => {
               <ListItemLink secondary='Github' primary={<strong>cyrilchapon</strong>} />
             </ListItem>
 
-            {/* <ListItem component={Link} href='https://www.malt.fr/profile/cyrilchapon' color='inherit'>
+            {/* <ListItem component={Link} href={urls.malt} color='inherit'>
               <ListItemIcon>
                 <MaltSvgIcon fontSize='small' />
               </ListItemIcon>

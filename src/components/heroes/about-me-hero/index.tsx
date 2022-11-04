@@ -28,8 +28,8 @@ const BodyParagraphTypography = styled(Typography)<TypographyProps<'div', { comp
   }
 }))
 
-const mySelfHeightImg = 'https://images.prismic.io/cyc-portfolio/8876ba7e-bdf6-4d48-894c-a993ca3a9b9f_moi.png?auto=compress,format&ar=2:3&fit=crop&crop=faces,center'
-const mySelfWideImg = 'https://images.prismic.io/cyc-portfolio/8876ba7e-bdf6-4d48-894c-a993ca3a9b9f_moi.png?auto=compress,format&ar=4:2&fit=crop&crop=faces,center'
+const mySelfHeightImg = 'https://images.prismic.io/cyc-portfolio/8876ba7e-bdf6-4d48-894c-a993ca3a9b9f_moi.png?auto=compress,format&ar=2:3&fit=crop&crop=faces,center&w=600'
+const mySelfWideImg = 'https://images.prismic.io/cyc-portfolio/8876ba7e-bdf6-4d48-894c-a993ca3a9b9f_moi.png?auto=compress,format&ar=4:2&fit=crop&crop=faces,center&w=1200'
 
 export const AboutMeHero: ForwardRefExoticComponent<HeroProps> = forwardRef((props, ref) => {
   const [ , setSubscribeDialogState ] = useGlobalState('subscribeDialog')
@@ -73,15 +73,15 @@ export const AboutMeHero: ForwardRefExoticComponent<HeroProps> = forwardRef((pro
               container direction='row' spacing={4} justifyContent='center'
             >
               <Grid item xs={12}>
-                <Typography variant='h3' component='h2'>
-                  À propos de moi
+                <Typography variant='h3' component='h2' textAlign={{ xs: 'center', lg: 'left' }}>
+                  À propos
                 </Typography>
 
-                <Typography variant='subtitle1' gutterBottom>
+                <Typography variant='subtitle1' gutterBottom textAlign={{ xs: 'center', lg: 'left' }}>
                   Découvrez mon profil
                 </Typography>
 
-                <BodyParagraphTypography variant='body1' component='div'>
+                <BodyParagraphTypography variant='body1' component='div' textAlign={{ xs: 'justify', lg: 'left' }}>
                   <p>
                     Évoluant depuis une douzaine d&apos;années dans le milieu de la tech
                     en environnement Startup, j&apos;ai exercé en tant que Tech Lead &amp; CTO.

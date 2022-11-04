@@ -7,6 +7,7 @@ import { useGlobalState } from '$global-state'
 import { faCalendarDay, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { Themes, ThemesServiceContext } from '$styles'
 import HomereSvg from '../constants/homere-favicon-homr-black.svg'
+import { urls } from '$constants'
 
 const HomereIcon: React.FunctionComponent<SvgIconProps> = (props) => (
   <SvgIcon
@@ -32,6 +33,7 @@ type FabType =
 
 const heroesFabTypes: Partial<Record<HeroType, FabType>> = {
   about: 'contactMe',
+  resume: 'goToLinkedIn',
   homere: 'goToHomere',
   services: 'bookAMeeting',
   medium: 'goToMedium'
@@ -40,6 +42,7 @@ const heroesFabTypes: Partial<Record<HeroType, FabType>> = {
 const heroesRootColor: Record<HeroType, PropTypes.Color | 'success' | 'error' | 'info' | 'warning'> = {
   intro: 'primary',
   about: 'default',
+  resume: 'default',
   homere: 'default',
   services: 'primary',
   medium: 'default'
@@ -92,19 +95,19 @@ export const MainFab: React.FunctionComponent<MainFabProps> = ({
     goToHomere: {
       component: 'a',
       icon: <HomereIcon sx={{}} />,
-      href: 'https://www.homere.shop',
+      href: urls.homere,
       target: '_blank'
     },
     goToMedium: {
       component: 'a',
       icon: <FontAwesomeSvgIcon icon={faMedium} fontSize='small' sx={{}} />,
-      href: 'https://cyril-chpn.medium.com',
+      href: urls.medium,
       target: '_blank'
     },
     goToLinkedIn: {
       component: 'a',
       icon: <FontAwesomeSvgIcon icon={faLinkedinIn} fontSize='small' sx={{}} />,
-      href: 'https://www.linkedin.com/in/cchapon',
+      href: urls.linkedIn,
       target: '_blank'
     }
   }

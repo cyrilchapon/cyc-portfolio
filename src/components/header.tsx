@@ -7,6 +7,7 @@ import { FunctionComponent } from 'react'
 import { FontAwesomeSvgIcon } from './icons/font-awesome-svg-icon'
 import { MaltSvgIcon } from './icons/malt-svg-icon'
 import { useNavbarHeight } from '$styles'
+import { urls } from '$constants'
 
 const IconButtonA: FunctionComponent<IconButtonProps<'a'>> = (props) => (
   <IconButton
@@ -89,23 +90,23 @@ export const Header: FunctionComponent<AppBarProps> = (props) => {
           Cyril CHAPON
         </TitleTypography>
 
-        <SocialIconButton href='https://www.linkedin.com/in/cchapon' target='_blank'>
+        <SocialIconButton href={urls.linkedIn} target='_blank'>
           <FontAwesomeSvgIcon icon={faLinkedin} />
         </SocialIconButton>
 
-        <SocialIconButton href='https://www.malt.fr/profile/cyrilchapon' target='_blank'>
+        <SocialIconButton href={urls.malt} target='_blank'>
           <MaltSvgIcon />
         </SocialIconButton>
 
-        <SocialIconButton href='https://github.com/cyrilchapon' target='_blank'>
+        <SocialIconButton href={urls.github} target='_blank'>
           <FontAwesomeSvgIcon icon={faGithub} />
         </SocialIconButton>
 
-        {/* <SocialIconButton href='https://cyril-chpn.medium.com' target='_blank'>
+        {/* <SocialIconButton href={urls.medium} target='_blank'>
           <FontAwesomeSvgIcon icon={faMediumM} />
         </SocialIconButton>
 
-        <SocialIconButton href='https://dev.to/cyrilchapon' target='_blank'>
+        <SocialIconButton href={urls.devTo} target='_blank'>
           <FontAwesomeSvgIcon icon={faDev} />
         </SocialIconButton> */}
       </Toolbar>

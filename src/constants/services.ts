@@ -5,6 +5,7 @@ import {
   faLaptopCode,
   faUserNinja,
 } from '@fortawesome/free-solid-svg-icons'
+import urls from './urls'
 
 export type ServiceIconType = 'material' | 'font-awesome'
 
@@ -90,7 +91,7 @@ adaptées au contexte et évolutives.
 Sélection pragmatique des **outils SAAS**
 et **technologies** les plus pertinentes.
 
-[En savoir plus](https://stackshare.io/cyril_chpn)
+[En savoir plus](${urls.stackshare})
         `,
       },
       {
@@ -148,7 +149,7 @@ pédagogie et **code-reviews**,
 **Backend** & **frontend**, stockage de la donnée
 build & deploy. Automatisation.
 
-[En savoir plus](https://stackshare.io/cyril_chpn)
+[En savoir plus](${urls.stackshare})
         `,
       },
     ],

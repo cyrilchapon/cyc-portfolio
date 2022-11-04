@@ -27,15 +27,18 @@ import { CalendlyMeetingDialog } from '$components/dialogs/calendly-meeting-dial
 import { Themes, ThemesServiceContext } from '$styles'
 import { MainFab, MainFabProps } from '$components/fab'
 import { IntersectionOptions, useLastInView } from 'hooks/use-last-in-view'
+import { ResumeHero } from '$components/heroes/resume-hero'
+import { urls } from '$constants'
 
 interface HomeProps {
   serializableMediumFeed: SerializableMediumFeed
 }
 
-export type HeroType = 'intro' | 'about' | 'homere' | 'services' | 'medium'
+export type HeroType = 'intro' | 'about' | 'resume' | 'homere' | 'services' | 'medium'
 export const heroThemes: Record<HeroType, keyof Themes> = {
   intro: 'root',
   about: 'primary',
+  resume: 'dark',
   homere: 'homere',
   services: 'light',
   medium: 'dark',
@@ -66,6 +69,7 @@ const Home: NextPage<HomeProps> = (props) => {
     {
       intro: [introRef],
       about: [aboutRef],
+      resume: [resumeRef],
       homere: [homereRef],
       services: [servicesRef],
       medium: [mediumRef],
@@ -73,6 +77,7 @@ const Home: NextPage<HomeProps> = (props) => {
   ] = useLastInView<HeroType>({
     intro: inViewObserverOptions,
     about: inViewObserverOptions,
+    resume: inViewObserverOptions,
     homere: inViewObserverOptions,
     services: inViewObserverOptions,
     medium: inViewObserverOptions,
@@ -101,6 +106,10 @@ const Home: NextPage<HomeProps> = (props) => {
 
         <ThemeProvider theme={themes[heroThemes.about]}>
           <AboutMeHero ref={aboutRef} id="a-propos-de-moi" escapeHeader />
+        </ThemeProvider>
+
+        <ThemeProvider theme={themes[heroThemes.resume]}>
+          <ResumeHero ref={resumeRef} id="mon-parcours" escapeHeader />
         </ThemeProvider>
 
         <ThemeProvider theme={themes[heroThemes.homere]}>
@@ -163,7 +172,7 @@ const Home: NextPage<HomeProps> = (props) => {
 
 const rss2jsonUrl = 'https://api.rss2json.com/v1/api.json'
 const rss2jsonRssUrlQs = 'rss_url'
-const mediumFeedUrl = 'https://medium.com/feed/@cyril-chpn'
+const mediumFeedUrl = urls.mediumFeed
 
 const mediumJsonFeedUrl = `${rss2jsonUrl}?${rss2jsonRssUrlQs}=${encodeURIComponent(
   mediumFeedUrl,

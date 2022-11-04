@@ -20,10 +20,12 @@ declare module '@mui/material/styles/createPalette' {
 
   interface Palette {
     strongerTonalOffset: StrongerTonalOffset
+    neutral: Palette['primary']
   }
 
   interface PaletteOptions {
     strongerTonalOffset?: StrongerTonalOffset
+    neutral?: PaletteOptions['primary']
   }
 
   export type SimpleTypeText = Omit<TypeText, 'paper'>
@@ -65,5 +67,11 @@ declare module '@mui/material/styles/createMuiTheme' {
 
   interface ThemeOptions {
     typographyOptions?: TypographyOptions
+  }
+}
+
+declare module '@mui/material/Button' {
+  interface ButtonPropsColorOverrides {
+    neutral: true
   }
 }
