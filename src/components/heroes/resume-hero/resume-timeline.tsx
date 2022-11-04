@@ -46,8 +46,8 @@ const experiences: Experience[] = [
       link: urls.algar
     },
     timelapse: {
-      from: DateTime.fromISO('2020-11').toJSDate(),
-      to: DateTime.fromISO('2017-11').toJSDate(),
+      from: DateTime.fromISO('2017-11').toJSDate(),
+      to: DateTime.fromISO('2020-11').toJSDate(),
     }
   },
   {
@@ -57,8 +57,8 @@ const experiences: Experience[] = [
       link: urls.citymagine
     },
     timelapse: {
-      from: DateTime.fromISO('2017-10').toJSDate(),
-      to: DateTime.fromISO('2016-09').toJSDate(),
+      from: DateTime.fromISO('2016-09').toJSDate(),
+      to: DateTime.fromISO('2017-10').toJSDate(),
     }
   },
   {
@@ -68,8 +68,8 @@ const experiences: Experience[] = [
       link: urls.cesi
     },
     timelapse: {
-      from: DateTime.fromISO('2016-07').toJSDate(),
-      to: DateTime.fromISO('2016-01').toJSDate(),
+      from: DateTime.fromISO('2016-01').toJSDate(),
+      to: DateTime.fromISO('2016-07').toJSDate(),
     }
   },
   // {
@@ -79,8 +79,8 @@ const experiences: Experience[] = [
   //     link: urls.everysens
   //   },
   //   timelapse: {
-  //     from: DateTime.fromISO('2015-10').toJSDate(),
-  //     to: DateTime.fromISO('2015-08').toJSDate(),
+  //     from: DateTime.fromISO('2015-08').toJSDate(),
+  //     to: DateTime.fromISO('2015-10').toJSDate(),
   //   }
   // },
   {
@@ -90,8 +90,8 @@ const experiences: Experience[] = [
       link: urls.etineo
     },
     timelapse: {
-      from: DateTime.fromISO('2015-07').toJSDate(),
-      to: DateTime.fromISO('2011-06').toJSDate(),
+      from: DateTime.fromISO('2011-06').toJSDate(),
+      to: DateTime.fromISO('2015-07').toJSDate(),
     }
   }
 ]
