@@ -2,7 +2,7 @@ import { Hero, HeroProps } from '$components/hero'
 import { urls } from '$constants'
 import { Button, Container, Grid, Typography } from '@mui/material'
 import { forwardRef, ForwardRefExoticComponent } from 'react'
-import { MediumFeed } from 'types/medium-feed'
+import { MediumFeed } from '../../../connectors/medium-feed'
 import { FakeArticlePaper } from './fake-article-paper'
 import { MediumArticlePaper } from './medium-article-paper'
 

@@ -1,6 +1,5 @@
 import { DateTime } from 'luxon'
 import textClip from 'text-clipper'
-// import escapeHtml from 'escape-html'
 import stripTags from 'striptags'
 import { omit } from 'lodash'
 

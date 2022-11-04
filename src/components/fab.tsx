@@ -1,5 +1,5 @@
 import { Fab, FabProps, PropTypes, SvgIcon, SvgIconProps, Zoom } from '@mui/material'
-import { heroThemes, HeroType } from 'pages'
+import { heroThemes, HeroType } from '../pages'
 import * as React from 'react'
 import { FontAwesomeSvgIcon } from './icons/font-awesome-svg-icon'
 import { faLinkedinIn, faMedium } from '@fortawesome/free-brands-svg-icons'

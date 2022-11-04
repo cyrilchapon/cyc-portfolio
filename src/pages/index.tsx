@@ -22,11 +22,11 @@ import {
   parseMediumFeed,
   RawMediumFeed,
   SerializableMediumFeed,
-} from 'types/medium-feed'
+} from '../connectors/medium-feed'
 import { CalendlyMeetingDialog } from '$components/dialogs/calendly-meeting-dialog'
 import { Themes, ThemesServiceContext } from '$styles'
 import { MainFab, MainFabProps } from '$components/fab'
-import { IntersectionOptions, useLastInView } from 'hooks/use-last-in-view'
+import { IntersectionOptions, useLastInView } from '../hooks/use-last-in-view'
 import { ResumeHero } from '$components/heroes/resume-hero'
 import { urls } from '$constants'
 

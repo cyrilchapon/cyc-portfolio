@@ -4,7 +4,7 @@ import { Interweave, ALLOWED_TAG_LIST, TransformCallback } from 'interweave'
 import { DateTime } from 'luxon'
 import { FunctionComponent } from 'react'
 import textClip from 'text-clipper'
-import { MediumArticle } from 'types/medium-feed'
+import { MediumArticle } from '../../../connectors/medium-feed'
 import { BaseMediumArticlePaper } from './base-medium-article-paper'
 
 const clipContent = (content: string) => {
