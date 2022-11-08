@@ -5,6 +5,8 @@ interface BrowserEnv {
   NEXT_PUBLIC_MAILCHIMP_HOST: string
   NEXT_PUBLIC_MAILCHIMP_USER_ID: string
   NEXT_PUBLIC_MAILCHIMP_FORM_ID: string
+  NEXT_PUBLIC_CALCOM_USER: string
+  NEXT_PUBLIC_CALCOM_EVENT: string
 }
 
 const getBrowserEnv = () => {
@@ -13,6 +15,8 @@ const getBrowserEnv = () => {
     NEXT_PUBLIC_MAILCHIMP_HOST: process.env.NEXT_PUBLIC_MAILCHIMP_HOST,
     NEXT_PUBLIC_MAILCHIMP_USER_ID: process.env.NEXT_PUBLIC_MAILCHIMP_USER_ID,
     NEXT_PUBLIC_MAILCHIMP_FORM_ID: process.env.NEXT_PUBLIC_MAILCHIMP_FORM_ID,
+    NEXT_PUBLIC_CALCOM_USER: process.env.NEXT_PUBLIC_CALCOM_USER,
+    NEXT_PUBLIC_CALCOM_EVENT: process.env.NEXT_PUBLIC_CALCOM_EVENT,
   }
 
   const cleanedEnv = cleanEnv<BrowserEnv>(env, {
@@ -22,6 +26,8 @@ const getBrowserEnv = () => {
     NEXT_PUBLIC_MAILCHIMP_HOST: host(),
     NEXT_PUBLIC_MAILCHIMP_USER_ID: str(),
     NEXT_PUBLIC_MAILCHIMP_FORM_ID: str(),
+    NEXT_PUBLIC_CALCOM_USER: str(),
+    NEXT_PUBLIC_CALCOM_EVENT: str(),
   })
 
   return { ...cleanedEnv } as BrowserEnv

@@ -23,7 +23,7 @@ import {
   RawMediumFeed,
   SerializableMediumFeed,
 } from '../connectors/medium-feed'
-import { CalendlyMeetingDialog } from '$components/dialogs/calendly-meeting-dialog'
+import { CalComMeetingDialog } from '$components/dialogs/calcom-meeting-dialog'
 import { Themes, ThemesServiceContext } from '$styles'
 import { MainFab, MainFabProps } from '$components/fab'
 import { IntersectionOptions, useLastInView } from '../hooks/use-last-in-view'
@@ -155,7 +155,7 @@ const Home: NextPage<HomeProps> = (props) => {
 
         <ThemeProvider theme={themes.light}>
           <MailchimpSubscribeFormDialog />
-          <CalendlyMeetingDialog />
+          <CalComMeetingDialog />
           <Snackbar />
         </ThemeProvider>
 

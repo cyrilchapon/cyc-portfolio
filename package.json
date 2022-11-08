@@ -16,6 +16,7 @@
     "format": "prettier --write \"src/**/*.ts\""
   },
   "dependencies": {
+    "@calcom/embed-react": "^1.0.9",
     "@emotion/react": "^11.10.5",
     "@emotion/server": "^11.10.0",
     "@emotion/styled": "^11.10.5",

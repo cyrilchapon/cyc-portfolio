@@ -14,7 +14,6 @@ const urls = {
   cesi: 'https://www.cesi.fr',
   everysens: 'https://www.everysens.com',
   etineo: 'https://etineo.com',
-  calendly: 'https://calendly.com/cyril-chapon/e-coffee',
   stackshare: 'https://stackshare.io/cyril_chpn',
 }
 

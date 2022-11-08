@@ -49,7 +49,7 @@ const DivTypography: FunctionComponent<TypographyProps<'div'>> = (props) => (
   />
 )
 
-const TitleTypography = styled(DivTypography)(({ theme }) => ({
+export const TitleTypography = styled(DivTypography)(({ theme }) => ({
   flexGrow: 1,
   fontFamily: theme.typography.variants.sansSerif.fontFamily,
   fontWeight: theme.typography.variants.sansSerif.fontWeightMedium
