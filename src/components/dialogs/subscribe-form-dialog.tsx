@@ -59,8 +59,8 @@ const GenericTextField = styled(TextField)(({ theme }) => ({
 
 export interface SubscribeFormData {
   email: string
-  firstname: string
-  lastname: string
+  firstName: string
+  lastName: string
 }
 
 const subscribeFormSchema: yup.SchemaOf<SubscribeFormData> = yup.object({
@@ -68,12 +68,12 @@ const subscribeFormSchema: yup.SchemaOf<SubscribeFormData> = yup.object({
     .string()
     .required('Il me faut votre e-mail !')
     .email(`On ne dirait pas un e-mail valide...`),
-  firstname: yup
+  firstName: yup
     .string()
     .required(`J'ai besoin de votre prénom`)
     .min(3, `Un peu court, non ?`)
     .max(50, `Un poil trop long, non ?`),
-  lastname: yup
+  lastName: yup
     .string()
     .required(`J'ai besoin de votre nom`)
     .min(3, `Un peu court, non ?`)
@@ -106,8 +106,8 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
     [onCancel]
   )
 
-  const { ref: firstnameRef, ...firstnameProps } = register('firstname')
-  const { ref: lastnameRef, ...lastnameProps } = register('lastname')
+  const { ref: firstNameRef, ...firstNameProps } = register('firstName')
+  const { ref: lastNameRef, ...lastNameProps } = register('lastName')
   const { ref: emailRef, ...emailProps } = register('email')
 
   return (
@@ -146,13 +146,13 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
             variant='standard'
             fullWidth
             helperText={
-              formState.touchedFields.firstname
-                ? formState.errors.firstname?.message
+              formState.touchedFields.firstName
+                ? formState.errors.firstName?.message
                 : null
             }
-            inputRef={firstnameRef}
-            {...firstnameProps}
-            error={formState.touchedFields.firstname && !!formState.errors.firstname}
+            inputRef={firstNameRef}
+            {...firstNameProps}
+            error={formState.touchedFields.firstName && !!formState.errors.firstName}
           />
 
           <GenericTextField
@@ -165,13 +165,13 @@ export const SubscribeFormDialog: FunctionComponent<SubscribeFormDialogProps> = 
             variant='standard'
             fullWidth
             helperText={
-              formState.touchedFields.lastname
-                ? formState.errors.lastname?.message
+              formState.touchedFields.lastName
+                ? formState.errors.lastName?.message
                 : null
             }
-            inputRef={lastnameRef}
-            {...lastnameProps}
-            error={formState.touchedFields.lastname && !!formState.errors.lastname}
+            inputRef={lastNameRef}
+            {...lastNameProps}
+            error={formState.touchedFields.lastName && !!formState.errors.lastName}
           />
 
           <GenericTextField

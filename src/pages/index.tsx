@@ -11,7 +11,7 @@ import { ServicesHero } from '$components/heroes/services-hero'
 import { MediumHero } from '$components/heroes/medium-hero'
 import { HomereHero } from '$components/heroes/homere-hero'
 import { styled, ThemeProvider } from '@mui/material'
-import { MailchimpSubscribeFormDialog } from '$components/dialogs/mailchimp-subscribe-form-dialog'
+import { ApiSubscribeFormDialog } from '$components/dialogs/api-subscribe-form-dialog'
 import { browserEnv } from '$env'
 import { ConnectedSnackbar as Snackbar } from '$components/snackbar'
 import { GetStaticProps, NextPage } from 'next'
@@ -154,7 +154,7 @@ const Home: NextPage<HomeProps> = (props) => {
         )}
 
         <ThemeProvider theme={themes.light}>
-          <MailchimpSubscribeFormDialog />
+          <ApiSubscribeFormDialog />
           <CalComMeetingDialog />
           <Snackbar />
         </ThemeProvider>

@@ -28,7 +28,7 @@ const monoMuiFontDefinition = composeMuiFontDefinition(FONTS.mono)
 
 const smallCapsStyles: TypographyStyleOptions = {
   textTransform: 'lowercase',
-  fontVariant: 'small-caps',
+  fontVariant: 'all-small-caps',
 }
 
 const baseBackgroundImageId = `cyc-portfolio/d944fbaf-afb6-4b59-83bb-d137de9e24c5_ali-kazal-7b39feeIMO0-unsplash.jpg`

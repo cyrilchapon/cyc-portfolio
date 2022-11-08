@@ -1,14 +1,14 @@
 import { useGlobalState } from '$global-state'
 import { FunctionComponent, useCallback } from 'react'
 import { SubscribeFormDialog, SubscribeFormDialogProps, SubscribeFormData } from './subscribe-form-dialog'
-import { mailchimpAxios } from '$connectors'
+import { apiAxios, postContact } from '$connectors/api-axios'
 
-type MailchimpSubscribeFormDialogProps = Omit<
+type ApiSubscribeFormDialogProps = Omit<
   SubscribeFormDialogProps,
   'onCancel' | 'onSubmit' | 'loading' | 'open'
 >
 
-export const MailchimpSubscribeFormDialog: FunctionComponent<MailchimpSubscribeFormDialogProps> = (props) => {
+export const ApiSubscribeFormDialog: FunctionComponent<ApiSubscribeFormDialogProps> = (props) => {
   const {
     ...subscribeFormProps
   } = props
@@ -30,7 +30,7 @@ export const MailchimpSubscribeFormDialog: FunctionComponent<MailchimpSubscribeF
     }))
 
     try {
-      await mailchimpAxios.subscribe(formData)
+      await postContact(apiAxios)(formData)
 
       setSnackbarState(prevState => ({
         ...prevState,
