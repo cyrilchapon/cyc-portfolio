@@ -1,3 +1,3 @@
 export const captchaActions = {
-  contact: 'contact'
+  contact: 'contact',
 } as const

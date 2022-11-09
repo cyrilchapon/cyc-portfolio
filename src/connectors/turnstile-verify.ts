@@ -55,7 +55,4 @@ export const _verifyTurnstile =
 export const verifyTurnstile =
   (axios: AxiosInstance = turnstileAxios) =>
   async (challenge: string) =>
-    _verifyTurnstile(axios)(serverEnv.TURNSTILE_PRIVATE_KEY)(
-      challenge,
-    )
-
+    _verifyTurnstile(axios)(serverEnv.TURNSTILE_PRIVATE_KEY)(challenge)

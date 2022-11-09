@@ -1,7 +1,4 @@
-import {
-  turnstileAxios,
-  verifyTurnstile
-} from '$connectors/turnstile-verify'
+import { turnstileAxios, verifyTurnstile } from '$connectors/turnstile-verify'
 import { captchaActions } from '$constants/captcha'
 import axios from 'axios'
 import type { NextApiHandler } from 'next'
@@ -48,24 +45,30 @@ export const contact: NextApiHandler<
 
   const parsedReq = _parsedReq.data
 
-  const captchaResult = await verifyTurnstile(turnstileAxios)(parsedReq.headers['x-turnstile'])
+  const captchaResult = await verifyTurnstile(turnstileAxios)(
+    parsedReq.headers['x-turnstile'],
+  )
 
   if (!captchaResult.success) {
-    const err = new z.ZodError<ContactRequest>([{
-      code: z.ZodIssueCode.custom,
-      message: captchaResult['error-codes'].join(', '),
-      path: ['header', 'x-turnstile']
-    }])
+    const err = new z.ZodError<ContactRequest>([
+      {
+        code: z.ZodIssueCode.custom,
+        message: captchaResult['error-codes'].join(', '),
+        path: ['header', 'x-turnstile'],
+      },
+    ])
     res.status(401).json(err)
     return
   }
 
-  if(captchaResult.action !== captchaActions.contact) {
-    const err = new z.ZodError<ContactRequest>([{
-      code: z.ZodIssueCode.custom,
-      message: `Invalid action ${captchaResult.action}`,
-      path: ['header', 'x-turnstile']
-    }])
+  if (captchaResult.action !== captchaActions.contact) {
+    const err = new z.ZodError<ContactRequest>([
+      {
+        code: z.ZodIssueCode.custom,
+        message: `Invalid action ${captchaResult.action}`,
+        path: ['header', 'x-turnstile'],
+      },
+    ])
     res.status(403).json(err)
     return
   }
