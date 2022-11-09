@@ -6,6 +6,8 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { createEmotionCache } from '$styles/emotion-cache'
 import { CacheProvider, EmotionCache } from '@emotion/react'
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
+import { browserEnv } from '../env/index'
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
@@ -26,19 +28,21 @@ const CustomApp = ({ Component, pageProps, emotionCache = clientSideEmotionCache
 
   return (
     <>
-      <CacheProvider value={emotionCache}>
-        <Head>
-          {metasGenerator()}
-        </Head>
+      <GoogleReCaptchaProvider reCaptchaKey={browserEnv.NEXT_PUBLIC_RECAPTCHA_V3_PUBLIC_KEY}>
+        <CacheProvider value={emotionCache}>
+          <Head>
+            {metasGenerator()}
+          </Head>
 
-        <ThemesServiceContext.Provider value={themes}>
-          <ThemeProvider theme={themes.root}>
-            <CssBaseline />
+          <ThemesServiceContext.Provider value={themes}>
+            <ThemeProvider theme={themes.root}>
+              <CssBaseline />
 
-            <Component {...pageProps} />
-          </ThemeProvider>
-        </ThemesServiceContext.Provider>
-      </CacheProvider>
+              <Component {...pageProps} />
+            </ThemeProvider>
+          </ThemesServiceContext.Provider>
+        </CacheProvider>
+      </GoogleReCaptchaProvider>
     </>
   )
 }

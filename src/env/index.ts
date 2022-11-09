@@ -4,6 +4,9 @@ interface BrowserEnv {
   NODE_ENV: NodeJS.ProcessEnv['NODE_ENV']
   NEXT_PUBLIC_CALCOM_USER: string
   NEXT_PUBLIC_CALCOM_EVENT: string
+  NEXT_PUBLIC_RECAPTCHA_V2_PUBLIC_KEY: string
+  NEXT_PUBLIC_RECAPTCHA_V3_PUBLIC_KEY: string
+  NEXT_PUBLIC_TURNSTILE_PUBLIC_KEY: string
 }
 
 const getBrowserEnv = () => {
@@ -11,6 +14,12 @@ const getBrowserEnv = () => {
     NODE_ENV: process.env.NODE_ENV,
     NEXT_PUBLIC_CALCOM_USER: process.env.NEXT_PUBLIC_CALCOM_USER,
     NEXT_PUBLIC_CALCOM_EVENT: process.env.NEXT_PUBLIC_CALCOM_EVENT,
+    NEXT_PUBLIC_RECAPTCHA_V2_PUBLIC_KEY:
+      process.env.NEXT_PUBLIC_RECAPTCHA_V2_PUBLIC_KEY,
+    NEXT_PUBLIC_RECAPTCHA_V3_PUBLIC_KEY:
+      process.env.NEXT_PUBLIC_RECAPTCHA_V3_PUBLIC_KEY,
+    NEXT_PUBLIC_TURNSTILE_PUBLIC_KEY:
+      process.env.NEXT_PUBLIC_TURNSTILE_PUBLIC_KEY,
   }
 
   const cleanedEnv = cleanEnv<BrowserEnv>(env, {
@@ -19,6 +28,9 @@ const getBrowserEnv = () => {
     }) as ValidatorSpec<NodeJS.ProcessEnv['NODE_ENV']>,
     NEXT_PUBLIC_CALCOM_USER: str(),
     NEXT_PUBLIC_CALCOM_EVENT: str(),
+    NEXT_PUBLIC_RECAPTCHA_V2_PUBLIC_KEY: str(),
+    NEXT_PUBLIC_RECAPTCHA_V3_PUBLIC_KEY: str(),
+    NEXT_PUBLIC_TURNSTILE_PUBLIC_KEY: str(),
   })
 
   return { ...cleanedEnv } as BrowserEnv

@@ -50,8 +50,8 @@ const getTypographyOptions = (palette: Palette): TypographyOptions => ({
     h2: 'serif',
     h3: 'serif',
     h4: 'serif',
-    h5: 'serif',
-    h6: 'serif',
+    h5: 'sansSerif',
+    h6: 'sansSerif',
     subtitle1: 'sansSerif',
     subtitle2: 'sansSerif',
     button: 'sansSerif',
@@ -89,14 +89,14 @@ const getTypographyOptions = (palette: Palette): TypographyOptions => ({
     // ...smallCapsStyles
   },
   h5: {
-    fontFamily: composeStack(FONTS.serif),
-    fontWeight: FONTS.serif.weights.bold,
+    fontFamily: composeStack(FONTS.sansSerif),
+    fontWeight: FONTS.sansSerif.weights.bold,
     color: palette.text.semi,
     // ...smallCapsStyles
   },
   h6: {
-    fontFamily: composeStack(FONTS.serif),
-    fontWeight: FONTS.serif.weights.bold,
+    fontFamily: composeStack(FONTS.sansSerif),
+    fontWeight: FONTS.sansSerif.weights.bold,
     color: palette.text.semi,
     ...smallCapsStyles,
   },
@@ -328,6 +328,10 @@ const rootThemeTokens = (mode: PaletteMode): ThemeOptions => ({
   components: {
     MuiCssBaseline: {
       styleOverrides: {
+        '.grecaptcha-badge': { 
+          visibility: 'hidden',
+          pointerEvents: 'none'
+        },
         body: {
           backgroundImage: `url('${backgroundImage}'), url('${loadingBackgroundImage}')`,
           // Fallback
