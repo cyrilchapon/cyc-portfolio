@@ -38,11 +38,11 @@ export type TurnstileVerifyResponseBody =
 
 export const _verifyTurnstile =
   (axios: AxiosInstance = turnstileAxios) =>
-  (recaptchaSecret: string) =>
-  async (recaptchaChallenge: string) => {
+  (secret: string) =>
+  async (challenge: string) => {
     const input: TurnstileVerifyRequestBody = {
-      secret: recaptchaSecret,
-      response: recaptchaChallenge,
+      secret: secret,
+      response: challenge,
     }
 
     const { data: output } = await axios.post<TurnstileVerifyResponseBody>(
@@ -54,8 +54,8 @@ export const _verifyTurnstile =
 
 export const verifyTurnstile =
   (axios: AxiosInstance = turnstileAxios) =>
-  async (recaptchaChallenge: string) =>
+  async (challenge: string) =>
     _verifyTurnstile(axios)(serverEnv.TURNSTILE_PRIVATE_KEY)(
-      recaptchaChallenge,
+      challenge,
     )
 

@@ -328,10 +328,6 @@ const rootThemeTokens = (mode: PaletteMode): ThemeOptions => ({
   components: {
     MuiCssBaseline: {
       styleOverrides: {
-        '.grecaptcha-badge': { 
-          visibility: 'hidden',
-          pointerEvents: 'none'
-        },
         body: {
           backgroundImage: `url('${backgroundImage}'), url('${loadingBackgroundImage}')`,
           // Fallback

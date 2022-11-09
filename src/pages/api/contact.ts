@@ -2,7 +2,7 @@ import {
   turnstileAxios,
   verifyTurnstile
 } from '$connectors/turnstile-verify'
-import { captchaActions } from '$constants/recaptcha'
+import { captchaActions } from '$constants/captcha'
 import axios from 'axios'
 import type { NextApiHandler } from 'next'
 import { z } from 'zod'
@@ -54,7 +54,7 @@ export const contact: NextApiHandler<
     const err = new z.ZodError<ContactRequest>([{
       code: z.ZodIssueCode.custom,
       message: captchaResult['error-codes'].join(', '),
-      path: ['header', 'recaptcha']
+      path: ['header', 'x-turnstile']
     }])
     res.status(401).json(err)
     return
@@ -64,7 +64,7 @@ export const contact: NextApiHandler<
     const err = new z.ZodError<ContactRequest>([{
       code: z.ZodIssueCode.custom,
       message: `Invalid action ${captchaResult.action}`,
-      path: ['header', 'recaptcha']
+      path: ['header', 'x-turnstile']
     }])
     res.status(403).json(err)
     return

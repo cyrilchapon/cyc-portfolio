@@ -22,9 +22,8 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { FormBox } from '$components/boxes/form-box'
 import { FontAwesomeSvgIcon } from '$components/icons/font-awesome-svg-icon'
-import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 import { Stack } from '@mui/system'
-import { captchaActions } from '$constants/recaptcha'
+import { captchaActions } from '$constants/captcha'
 import { Turnstile } from '@marsidev/react-turnstile'
 import { browserEnv } from '$env'
 
@@ -102,11 +101,7 @@ type CancelHandler = (
 export const SubscribeFormDialog: FunctionComponent<
   SubscribeFormDialogProps
 > = (props) => {
-  const { onCancel, onSubmit, loading: _loading, ...dialogProps } = props
-
-  const { executeRecaptcha } = useGoogleReCaptcha()
-
-  const loading = _loading || executeRecaptcha == null
+  const { onCancel, onSubmit, loading, ...dialogProps } = props
 
   const {
     register,
@@ -298,32 +293,6 @@ export const SubscribeFormDialog: FunctionComponent<
               error={formState.touchedFields.email && !!formState.errors.email}
             />
 
-            {/* <FormGroup>
-              <FormControlLabel
-                control={
-                  <Controller
-                    control={control}
-                    name="recaptcha"
-                    defaultValue=""
-                    render={({ field }) => (
-                      <Checkbox
-                        color="info"
-                        disabled={executeRecaptcha == null}
-                        checked={field.value !== ''}
-                        onChange={handleRecaptchaVerify}
-                        // inputRef={recaptchaRef}
-                      />
-                    )}
-                  />
-                }
-                label="Je suis un humain *"
-              />
-              {!!formState.errors.recaptcha ? (
-                <FormHelperText>
-                  {formState.errors.recaptcha?.message}
-                </FormHelperText>
-              ) : null}
-            </FormGroup> */}
             <FormGroup>
               <FormLabel sx={{ mb: 1 }} required>Je ne suis pas un robot</FormLabel>
 
