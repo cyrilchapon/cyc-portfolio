@@ -6,6 +6,7 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { createEmotionCache } from '$styles/emotion-cache'
 import { CacheProvider, EmotionCache } from '@emotion/react'
+import { CalProvider } from 'contextes/cal'
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
@@ -35,7 +36,9 @@ const CustomApp = ({ Component, pageProps, emotionCache = clientSideEmotionCache
           <ThemeProvider theme={themes.root}>
             <CssBaseline />
 
-            <Component {...pageProps} />
+            <CalProvider>
+              <Component {...pageProps} />
+            </CalProvider>
           </ThemeProvider>
         </ThemesServiceContext.Provider>
       </CacheProvider>

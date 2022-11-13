@@ -4,9 +4,9 @@ import { browserEnv } from '$env'
 import CloseIcon from '@mui/icons-material/Close'
 import { MeetingDialogProps } from './meeting-dialog'
 import { useGlobalState } from '$global-state'
-import Cal from '@calcom/embed-react'
 import { TitleTypography } from '$components/header'
-import { useCalcomAction } from 'hooks/use-calcom-action'
+import { useCalAction } from 'hooks/use-cal-action'
+import Cal from '$components/cal'
 
 export const CalComMeetingDialog: FunctionComponent<MeetingDialogProps> = (
   props,
@@ -29,7 +29,7 @@ export const CalComMeetingDialog: FunctionComponent<MeetingDialogProps> = (
     }))
   }, [setMeetingDialogState, setSnackbarState])
 
-  useCalcomAction('bookingSuccessful', handleSubmit)
+  useCalAction('bookingSuccessful', handleSubmit)
 
   const handleCancel = useCallback(async () => {
     setMeetingDialogState((prevState) => ({

@@ -1,3 +1,5 @@
+import { browserEnv } from "$env"
+
 const urls = {
   homere: 'https://www.homere.shop',
   medium: 'https://cyril-chpn.medium.com',
@@ -15,6 +17,7 @@ const urls = {
   everysens: 'https://www.everysens.com',
   etineo: 'https://etineo.com',
   stackshare: 'https://stackshare.io/cyril_chpn',
+  calcom: `https://cal.com/${browserEnv.NEXT_PUBLIC_CALCOM_USER}/${browserEnv.NEXT_PUBLIC_CALCOM_EVENT}`
 }
 
 export default urls
