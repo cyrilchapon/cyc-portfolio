@@ -29,6 +29,7 @@
     "@mui/lab": "^5.0.0-alpha.106",
     "@mui/material": "^5.10.12",
     "@mui/system": "^5.10.12",
+    "@next/font": "^13.0.6",
     "@react-hook/media-query": "^1.1.1",
     "@svgr/webpack": "^6.5.1",
     "axios": "^0.27.2",

@@ -158,7 +158,7 @@ const ResumeTimeline: FunctionComponent<ResumeTimelineProps> = (props) => {
               variant="body2"
               sx={{
                 mt: 1.7,
-                fontWeight: theme.typography.variants.mono.fontWeightMedium,
+                fontWeight: theme.typography.variants.mono.fontWeightRegular,
                 fontFamily: theme.typography.variants.mono.fontFamily,
                 // fontSize: theme.typography.variants.mono.fontSize,
               }}

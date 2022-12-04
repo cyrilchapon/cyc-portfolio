@@ -6,16 +6,15 @@ import {
   TypographyStyleOptions,
 } from '@mui/material/styles/createTypography'
 import { createMuiCustomTheme, customLight } from './custom-theme'
-import { composeStack, FontDefinition, FONTS } from './font'
+import { FontDefinition, FONTS } from './font'
 import { createContext } from 'react'
 
 const composeMuiFontDefinition = (fontDefinition: FontDefinition) => ({
-  fontFamily: composeStack(fontDefinition),
+  fontFamily: fontDefinition.style.fontFamily,
   fontWeightLight: fontDefinition.weights.light,
   fontWeightRegular: fontDefinition.weights.regular,
   fontWeightMedium: fontDefinition.weights.medium,
   fontWeightBold: fontDefinition.weights.bold,
-  fontGender: fontDefinition.gender,
 })
 
 const sansSerifMuiFontDefinition = composeMuiFontDefinition(FONTS.sansSerif)
@@ -65,43 +64,43 @@ const getTypographyOptions = (palette: Palette): TypographyOptions => ({
     color: palette.text.primary,
   },
   h1: {
-    fontFamily: composeStack(FONTS.serif),
+    fontFamily: FONTS.serif.style.fontFamily,
     fontWeight: FONTS.serif.weights.regular,
     color: palette.text.semi,
     // ...smallCapsStyles
   },
   h2: {
-    fontFamily: composeStack(FONTS.serif),
+    fontFamily: FONTS.serif.style.fontFamily,
     fontWeight: FONTS.serif.weights.medium,
     color: palette.text.semi,
     // ...smallCapsStyles
   },
   h3: {
-    fontFamily: composeStack(FONTS.serif),
+    fontFamily: FONTS.serif.style.fontFamily,
     fontWeight: FONTS.serif.weights.bold,
     color: palette.text.semi,
     // ...smallCapsStyles
   },
   h4: {
-    fontFamily: composeStack(FONTS.serif),
+    fontFamily: FONTS.serif.style.fontFamily,
     fontWeight: FONTS.serif.weights.bold,
     color: palette.text.semi,
     // ...smallCapsStyles
   },
   h5: {
-    fontFamily: composeStack(FONTS.sansSerif),
+    fontFamily: FONTS.sansSerif.style.fontFamily,
     fontWeight: FONTS.sansSerif.weights.bold,
     color: palette.text.semi,
     // ...smallCapsStyles
   },
   h6: {
-    fontFamily: composeStack(FONTS.sansSerif),
+    fontFamily: FONTS.sansSerif.style.fontFamily,
     fontWeight: FONTS.sansSerif.weights.bold,
     color: palette.text.semi,
     ...smallCapsStyles,
   },
   subtitle1: {
-    fontFamily: composeStack(FONTS.sansSerif),
+    fontFamily: FONTS.sansSerif.style.fontFamily,
     fontWeight: FONTS.sansSerif.weights.medium,
     fontSize: 24,
     color: palette.text.secondary,
@@ -113,7 +112,7 @@ const getTypographyOptions = (palette: Palette): TypographyOptions => ({
     },
   },
   subtitle2: {
-    fontFamily: composeStack(FONTS.sansSerif),
+    fontFamily: FONTS.sansSerif.style.fontFamily,
     fontWeight: FONTS.sansSerif.weights.medium,
     fontSize: 16,
     color: palette.text.secondary,
@@ -122,7 +121,7 @@ const getTypographyOptions = (palette: Palette): TypographyOptions => ({
     },
   },
   button: {
-    fontFamily: composeStack(FONTS.sansSerif),
+    fontFamily: FONTS.sansSerif.style.fontFamily,
     fontWeight: FONTS.sansSerif.weights.bold,
     color: palette.text.primary,
   },

@@ -6,7 +6,7 @@ import { TerminalPaperBase, TerminalPaperBaseProps } from '$components/papers/te
 
 const TerminalTypography = styled(Typography)<TypographyProps<'div', { component: 'div' }>>(({ theme }) => ({
   color: theme.palette.text.secondary,
-  fontWeight: theme.typography.variants.mono.fontWeightMedium,
+  fontWeight: theme.typography.variants.mono.fontWeightRegular,
   fontFamily: theme.typography.variants.mono.fontFamily,
   fontSize: theme.typography.variants.mono.fontSize
 }))
