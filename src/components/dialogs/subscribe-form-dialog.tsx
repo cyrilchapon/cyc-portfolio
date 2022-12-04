@@ -108,7 +108,6 @@ export const SubscribeFormDialog: FunctionComponent<
     handleSubmit: internalHandleSubmit,
     formState,
     setValue,
-    getValues,
     control,
   } = useForm<SubscribeFormData>({
     mode: 'onChange',
