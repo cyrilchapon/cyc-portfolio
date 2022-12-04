@@ -171,15 +171,12 @@ export const SubscribeFormDialog: FunctionComponent<
   }, [setValue])
 
   // const handleReset = useCallback(() => {
-  //   console.log('reset')
   //   setValue('captcha', '', {
   //     shouldValidate: true,
   //     shouldDirty: true,
   //     shouldTouch: true,
   //   })
   // }, [setValue])
-
-  console.log(getValues())
 
   return (
     <Dialog
