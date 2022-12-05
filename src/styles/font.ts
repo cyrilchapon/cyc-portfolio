@@ -36,12 +36,8 @@ type FontDefinition = NextFont & {
   }
 }
 
-const fontDefinitions: {
-  andadaPro: FontDefinition
-  redHatText: FontDefinition
-  redHatMono: FontDefinition
-} = {
-  andadaPro: {
+export const FONTS: Record<FontGender, FontDefinition> = {
+  serif: {
     ...andadaPro,
     weights: {
       light: 300,
@@ -50,7 +46,7 @@ const fontDefinitions: {
       bold: 650,
     },
   },
-  redHatText: {
+  sansSerif: {
     ...redHatText,
     weights: {
       light: 280,
@@ -59,7 +55,7 @@ const fontDefinitions: {
       bold: 600,
     },
   },
-  redHatMono: {
+  mono: {
     ...redHatMono,
     weights: {
       light: 300,
@@ -68,16 +64,6 @@ const fontDefinitions: {
       bold: 700,
     },
   },
-}
-
-const serif = fontDefinitions.andadaPro
-const sansSerif = fontDefinitions.redHatText
-const mono = fontDefinitions.redHatMono
-
-export const FONTS: Record<FontGender, FontDefinition> = {
-  serif,
-  sansSerif,
-  mono,
 }
 
 export type { FontGender, FontDefinition }

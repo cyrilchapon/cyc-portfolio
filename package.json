@@ -35,7 +35,6 @@
     "axios": "^0.27.2",
     "axios-jsonp": "^1.0.4",
     "envalid": "^7.3.1",
-    "font-stack": "^1.0.0",
     "interweave": "^13.0.0",
     "lodash": "^4.17.21",
     "luxon": "^3.1.0",
