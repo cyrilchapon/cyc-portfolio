@@ -1,4 +1,3 @@
-// import { snapChild, SnapChildProps } from '$styles'
 import * as React from 'react'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { AppBar, AppBarProps, IconButton, IconButtonProps, Slide, styled, Toolbar, Typography, TypographyProps, useScrollTrigger, useTheme } from '@mui/material'
