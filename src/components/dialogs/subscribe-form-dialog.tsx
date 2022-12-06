@@ -308,6 +308,9 @@ export const SubscribeFormDialog: FunctionComponent<
                 <MuiTelInput
                   {...field}
                   defaultCountry='FR'
+                  preferredCountries={['FR', 'BE', 'CH']}
+                  continents={['EU']}
+                  forceCallingCode
                   color="info"
                   label="Téléphone"
                   variant="filled"
