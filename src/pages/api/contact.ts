@@ -1,6 +1,7 @@
 import { turnstileAxios, verifyTurnstile } from '$connectors/turnstile-verify'
 import { captchaActions } from '$constants/captcha'
 import axios from 'axios'
+import { matchIsValidTel } from 'mui-tel-input'
 import type { NextApiHandler } from 'next'
 import { z } from 'zod'
 import { serverEnv } from '../../env/server'
@@ -16,6 +17,7 @@ const contactRequestBody = z
     firstName: z.string().min(3).max(30),
     lastName: z.string().min(3).max(30),
     email: z.string().email(),
+    phone: z.string().refine(val => matchIsValidTel(val), { message: 'Invalid phone number' }),
   })
   .strict()
 

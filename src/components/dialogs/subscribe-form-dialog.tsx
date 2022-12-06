@@ -26,6 +26,7 @@ import { Stack } from '@mui/system'
 import { captchaActions } from '$constants/captcha'
 import { Turnstile } from '@marsidev/react-turnstile'
 import { browserEnv } from '$env'
+import { matchIsValidTel, MuiTelInput } from 'mui-tel-input'
 
 export type SubscribeFormDialogCancelReason =
   | 'backdropClick'
@@ -62,10 +63,10 @@ const ButtonProgress = styled(LinearProgress)(() => ({
 }))
 
 const TurnstileControl = styled(Turnstile)(() => ({
-  'iframe': {
+  iframe: {
     // width: '100% !important'
-    margin: '-2px'
-  }
+    margin: '-2px',
+  },
 }))
 
 export interface SubscribeFormData {
@@ -73,6 +74,7 @@ export interface SubscribeFormData {
   firstName: string
   lastName: string
   captcha: string
+  phone: string
 }
 
 const subscribeFormSchema: yup.SchemaOf<SubscribeFormData> = yup.object({
@@ -91,6 +93,14 @@ const subscribeFormSchema: yup.SchemaOf<SubscribeFormData> = yup.object({
     .min(3, `Un peu court, non ?`)
     .max(50, `Un poil trop long, non ?`),
   captcha: yup.string().required(`Veuillez vérifier votre humanité`),
+  phone: yup
+    .string()
+    .required(`De vive-voix c'est mieux non ?`)
+    .test(
+      'valid-phone',
+      `On ne dirait pas un téléphone valide...`,
+      (val) => matchIsValidTel(val ?? ''),
+    ),
 })
 
 type CancelHandler = (
@@ -115,6 +125,7 @@ export const SubscribeFormDialog: FunctionComponent<
     resolver: yupResolver(subscribeFormSchema),
     defaultValues: {
       email: '',
+      phone: '',
       firstName: '',
       lastName: '',
       captcha: '',
@@ -138,6 +149,7 @@ export const SubscribeFormDialog: FunctionComponent<
   const { ref: firstNameRef, ...firstNameProps } = register('firstName')
   const { ref: lastNameRef, ...lastNameProps } = register('lastName')
   const { ref: emailRef, ...emailProps } = register('email')
+  register('phone')
   register('captcha')
 
   const handleCaptchaVerify = useCallback(
@@ -289,8 +301,30 @@ export const SubscribeFormDialog: FunctionComponent<
               error={formState.touchedFields.email && !!formState.errors.email}
             />
 
+            <Controller
+              name="phone"
+              control={control}
+              render={({ field, fieldState }) => (
+                <MuiTelInput
+                  {...field}
+                  defaultCountry='FR'
+                  color="info"
+                  label="Téléphone"
+                  variant="filled"
+                  size="small"
+                  margin="none"
+                  fullWidth
+                  required
+                  helperText={fieldState.isTouched ? fieldState.error?.message : null}
+                  error={fieldState.isTouched && fieldState.error != null}
+                />
+              )}
+            />
+
             <FormGroup>
-              <FormLabel sx={{ mb: 1 }} required>Je ne suis pas un robot</FormLabel>
+              <FormLabel sx={{ mb: 1 }} required>
+                Je ne suis pas un robot
+              </FormLabel>
 
               <Controller
                 control={control}
