@@ -6,6 +6,7 @@ declare module '@mui/material/styles/createPalette' {
   interface TypeBackground {
     intro: string
     terminal: string
+    flowNode: string
     header: string
     tooltip: string
     paper: string

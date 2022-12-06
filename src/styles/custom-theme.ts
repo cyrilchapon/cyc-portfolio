@@ -13,6 +13,7 @@ import { mapValues } from 'lodash'
 interface CustomColors {
   intro: string
   terminal: string
+  flowNode: string
   header: string
   tooltip: string
 }
@@ -20,12 +21,14 @@ interface CustomColors {
 const defaultAdditionalBackgroundMapping: Record<PaletteMode, CustomColors> = {
   light: {
     terminal: colors.common.white,
+    flowNode: colors.common.white,
     intro: colors.grey[50],
     header: colors.grey[50],
     tooltip: colors.grey[50],
   },
   dark: {
     terminal: colors.common.black,
+    flowNode: colors.common.black,
     intro: '#303030',
     header: '#303030',
     tooltip: '#303030',
