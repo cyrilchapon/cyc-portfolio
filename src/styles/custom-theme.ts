@@ -14,6 +14,7 @@ interface CustomColors {
   intro: string
   terminal: string
   flowNode: string
+  flowEdgeIcon: string
   header: string
   tooltip: string
 }
@@ -22,6 +23,7 @@ const defaultAdditionalBackgroundMapping: Record<PaletteMode, CustomColors> = {
   light: {
     terminal: colors.common.white,
     flowNode: colors.common.white,
+    flowEdgeIcon: colors.common.white,
     intro: colors.grey[50],
     header: colors.grey[50],
     tooltip: colors.grey[50],
@@ -29,6 +31,7 @@ const defaultAdditionalBackgroundMapping: Record<PaletteMode, CustomColors> = {
   dark: {
     terminal: colors.common.black,
     flowNode: colors.common.black,
+    flowEdgeIcon: colors.common.black,
     intro: '#303030',
     header: '#303030',
     tooltip: '#303030',

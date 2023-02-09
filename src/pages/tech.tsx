@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { Header } from '$components/header'
 import { Main } from '$components/main'
 import { NextPage } from 'next'
+import { DeployHero } from '$components/heroes/deploy-hero'
 import { ArchiHero } from '$components/heroes/archi-hero'
 
 const Tech: NextPage = () => {
@@ -18,6 +19,7 @@ const Tech: NextPage = () => {
       <Header />
 
       <Main>
+        <DeployHero id="deploy" escapeHeader />
         <ArchiHero id="archi" escapeHeader />
       </Main>
     </>

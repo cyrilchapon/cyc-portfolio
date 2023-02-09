@@ -29,7 +29,7 @@ const ReactFlowGrid = styled(Grid)(({ theme }) => ({
   },
 }))
 
-export const ArchiHero: ForwardRefExoticComponent<HeroProps> = forwardRef(
+export const DeployHero: ForwardRefExoticComponent<HeroProps> = forwardRef(
   (props, ref) => {
     const innerRef = useForwardedRef(ref)
 
@@ -83,12 +83,9 @@ export const ArchiHero: ForwardRefExoticComponent<HeroProps> = forwardRef(
                   </p>
 
                   <p>
-                    J'utilise ici <em>Github</em> pour <strong>stocker</strong>{' '}
-                    le code source, et <em>Vercel</em> pour{' '}
-                    <strong>héberger</strong> le site final. Je me sert d'un
-                    ensemble de "hooks" pour auto-<strong>déployer</strong>,
-                    quand un évènement est détecté (nouvelle version du code,
-                    nouvel article <em>Medium</em>, etc.)
+                    J'utilise ici un ensemble d'outils pour automatiser le build
+                    et le deploy. Survolez les éléments du diagramme pour en
+                    apprendre davantages !
                   </p>
                 </Typography>
               </PanelPaper>

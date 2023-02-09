@@ -151,12 +151,14 @@ const darkThemeTokens = (mode: PaletteMode): ThemeOptions => ({
     },
     neutral: {
       main: mode === 'light' ? '#FFFFFF' : 'rgba(255, 255, 255, 0.8)',
+      contrastText: '#000000'
     },
     background: {
       default: '#1A1A1A',
       intro: 'transparent',
       terminal: alpha('#0A0A0A', 0.5),
       flowNode: alpha('#0A0A0A', 0.5),
+      flowEdgeIcon: alpha('#0A0A0A', 0.5),
       header: alpha('#000000', 0.8),
       tooltip: alpha('#FFFFFF', 0.85),
       paper: '#0A0A0A',
@@ -206,6 +208,7 @@ const lightThemeTokens = (mode: PaletteMode): ThemeOptions => ({
             intro: customLight.background.intro,
             terminal: customLight.background.terminal,
             flowNode: customLight.background.flowNode,
+            flowEdgeIcon: customLight.background.flowEdgeIcon,
             header: alpha('#000000', 0.8),
             tooltip: alpha('#000000', 0.85),
           },
@@ -253,6 +256,7 @@ const primaryThemeTokens = (mode: PaletteMode): ThemeOptions => ({
             intro: 'transparent',
             terminal: alpha('#0A0A0A', 0.5),
             flowNode: alpha('#0A0A0A', 0.5),
+            flowEdgeIcon: alpha('#0A0A0A', 0.5),
             header: alpha('#000000', 0.8),
             paper: '#b32546',
             tooltip: alpha('#000000', 0.85),
@@ -304,6 +308,7 @@ const homereThemeTokens = (mode: PaletteMode): ThemeOptions => ({
             intro: 'transparent',
             terminal: alpha('#0A0A0A', 0.5),
             flowNode: alpha('#0A0A0A', 0.5),
+            flowEdgeIcon: alpha('#0A0A0A', 0.5),
             header: alpha('#000000', 0.8),
             paper: '#b32546',
             tooltip: alpha('#000000', 0.85),

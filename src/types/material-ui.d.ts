@@ -7,6 +7,7 @@ declare module '@mui/material/styles/createPalette' {
     intro: string
     terminal: string
     flowNode: string
+    flowEdgeIcon: string
     header: string
     tooltip: string
     paper: string

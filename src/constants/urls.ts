@@ -10,6 +10,7 @@ const urls = {
   maltQuote:
     'https://www.malt.fr/project/new?freelanceId=5f7cfd793a399f2641be0ce0&amp;viewId=5fbfd99ec994b74bc573bb54',
   github: 'https://github.com/cyrilchapon',
+  githubRepo: 'https://github.com/cyrilchapon/cyc-portfolio',
   devTo: 'https://dev.to/cyrilchapon',
   algar: 'https://www.algar.co',
   citymagine: 'https://citymagine.com',
