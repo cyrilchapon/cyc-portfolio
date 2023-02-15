@@ -18,7 +18,7 @@ const clipContent = (content: string) => {
 
 const formatDate = (date: Date) => {
   const dateTime = DateTime.fromJSDate(date)
-  const formattedDateString = dateTime.toLocaleString(DateTime.DATE_FULL)
+  const formattedDateString = dateTime.toLocaleString(DateTime.DATE_FULL, { locale: 'fr-FR' })
   return formattedDateString
 }
 
