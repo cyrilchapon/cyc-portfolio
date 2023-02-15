@@ -80,7 +80,6 @@ export const useCalAction = <
   callback: C,
 ) => {
   const calApi = useCalApi()
-  console.log(calApi)
 
   useEffect(() => {
     if (calApi == null) {
