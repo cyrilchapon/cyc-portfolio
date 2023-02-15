@@ -119,9 +119,9 @@ const _composeDescriptionFromContent =
       imageWeight: 0,
     })
 
-const _splitMediumImg = (imgSrc: string) => {
+const _splitMediumThumbnail = (imgSrc: string) => {
   const imgPattern =
-    /(?:https?:)?\/\/(?<host>cdn-images-\d+\.medium\.com|miro\.medium\.com)\/[a-zA-Z0-9-]+\/[a-zA-Z0-9-]+\/(?<id>\d+\*[a-zA-Z0-9-]+)/
+    /^(?:https?:)?\/\/(?<host>cdn-images-\d+\.medium\.com)\/.+\/(?<id>[^/]+)$/
   const {
     groups: { host, id },
   } = imgPattern.exec(imgSrc) as WithGroups<'host' | 'id'>
@@ -129,19 +129,19 @@ const _splitMediumImg = (imgSrc: string) => {
   return host != null && id != null ? { host, id } : null
 }
 
-const _composeMediumImg =
+const _composeMediumThumbnail =
   (size: number) =>
   ({ host, id }: { host: string; id: string }) =>
     `https://${host}/max/${size}/${id}`
 
-const _parseMediumImg = (size: number) => (imgSrc: string) => {
-  const imgAttrs = _splitMediumImg(imgSrc)
+const _parseMediumThumbnail = (size: number) => (imgSrc: string) => {
+  const imgAttrs = _splitMediumThumbnail(imgSrc)
 
   if (imgAttrs == null) {
     return imgSrc
   }
 
-  const adaptedMediumImg = _composeMediumImg(size)(imgAttrs)
+  const adaptedMediumImg = _composeMediumThumbnail(size)(imgAttrs)
 
   return adaptedMediumImg
 }
@@ -161,7 +161,7 @@ const parseMediumFeedArticle = (
     description: _composeDescriptionFromContent(options.descriptionMaxLength)(
       content,
     ),
-    thumbnail: _parseMediumImg(options.imgWidth)(rawItem.thumbnail),
+    thumbnail: _parseMediumThumbnail(options.imgWidth)(rawItem.thumbnail),
   }
 }
 
