@@ -10,7 +10,7 @@ export const IntroAvatar: FunctionComponent<AvatarProps<typeof Paper>> = (props)
   return (
     <MyAvatar
       alt='Cyril CHAPON'
-      src='https://images.prismic.io/cyc-portfolio/f8c1c291-008c-45c6-96c4-7136ddd67e17_A4CC30B2-1A70-4052-98CF-07F07F17B092.jpg?auto=compress,format&w=500'
+      src='https://images.prismic.io/cyc-portfolio/9c31b03f-6845-44b5-8a44-d2321c5d183e_IMG_4897_compressed.jpg?auto=compress,format&w=500'
       elevation={2}
       {...props}
       component={Paper}

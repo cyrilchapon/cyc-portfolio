@@ -69,7 +69,7 @@ définition des **process** et standards, **automatisation**.
     ],
   },
   {
-    title: '2. Gestion tech.',
+    title: '2. Stratégie tech.',
     icon: {
       type: 'font-awesome',
       icon: faUserNinja,
@@ -111,26 +111,18 @@ adaptés aux projets.
     ],
   },
   {
-    title: '3. Implémentation',
+    title: '3. Opérationnel',
     icon: {
       type: 'font-awesome',
       icon: faLaptopCode,
     },
     features: [
       {
-        name: 'Product Ownership',
+        name: 'Dev. fullstack',
         description: `
-**Gestion de produit**, découpage
-et **spécification** des sprints
-jusqu'aux user-stories,
-arbitrages et reviews.
-        `,
-      },
-      {
-        name: 'Scrum Mastering',
-        description: `
-**Gestion de projet** technique, facilitation
-et **évangélisation** des pratiques agile.
+**Backend** & **frontend**, stockage de la donnée. Build & deploy. Automatisation.
+
+[En savoir plus](${urls.stackshare})
         `,
       },
       {
@@ -141,12 +133,19 @@ pédagogie et **code-reviews**,
         `,
       },
       {
-        name: 'Développement logiciel',
+        name: 'Scrum Mastering',
         description: `
-**Backend** & **frontend**, stockage de la donnée
-build & deploy. Automatisation.
-
-[En savoir plus](${urls.stackshare})
+**Gestion de projet** technique, facilitation
+et **évangélisation** des pratiques agile.
+        `,
+      },
+      {
+        name: 'Product Ownership',
+        description: `
+**Gestion de produit**, découpage
+et **spécification** des sprints
+jusqu'aux user-stories,
+arbitrages et reviews.
         `,
       },
     ],

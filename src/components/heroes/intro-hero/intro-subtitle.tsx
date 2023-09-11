@@ -18,9 +18,7 @@ export const IntroSubtitle: FunctionComponent<TypographyProps<'div'>> = (props) 
       {...props}
       component='div'
     >
-      CEO &amp; founder @ Homère
-      <br />
-      CTO indépendant
+      <strong>CTO</strong> &amp; <strong>CPO</strong> as a service
     </SubtitleTypography>
   )
 }

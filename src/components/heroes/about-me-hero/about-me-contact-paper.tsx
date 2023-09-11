@@ -1,22 +1,18 @@
 import { FontAwesomeSvgIcon } from '$components/icons/font-awesome-svg-icon'
 import { ListItemLink } from '$components/lists/list-item-link'
-import { urls } from '$constants'
+import { birthDay, urls } from '$constants'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { faCalendarDay, faUser } from '@fortawesome/free-solid-svg-icons'
 import { Grid, Link, List, ListItem, ListItemIcon, ListItemText, Paper, PaperProps } from '@mui/material'
+import { useYearDuration } from 'hooks/use-duration'
 import { FunctionComponent } from 'react'
-
-const getAge = (birthday: Date) => {
-  const ageDate = new Date(Date.now() - birthday.getTime())
-  return Math.abs(ageDate.getUTCFullYear() - 1970)
-}
-
-const birthDay = new Date(Date.parse('1991-01-04T00:00:00+01:00'))
 
 const ContactPaper: FunctionComponent<PaperProps> = (props) => { 
   const {
     ...paperProps
   } = props
+
+  const myselfAge = useYearDuration(birthDay)
 
   return (
     <Paper {...paperProps}>
@@ -36,7 +32,7 @@ const ContactPaper: FunctionComponent<PaperProps> = (props) => {
                 <FontAwesomeSvgIcon fontSize='small' icon={faCalendarDay} />
               </ListItemIcon>
 
-              <ListItemText secondary='Age' primary={<strong>{getAge(birthDay)} ans</strong>} />
+              <ListItemText secondary='Age' primary={<strong>{myselfAge} ans</strong>} />
             </ListItem>
 
             {/* <ListItem>

@@ -19,24 +19,24 @@ type Experience = {
 
 const experiences: Experience[] = [
   {
-    title: 'CEO / founder',
+    title: 'Freelance',
+    location: {
+      title: 'Straight To The Fit'
+    },
+    timelapse: {
+      from: DateTime.fromISO('2023-07').toJSDate(),
+      to: null
+    }
+  },
+  {
+    title: 'CEO / CPO',
     location: {
       title: 'Homère',
       link: urls.homere
     },
     timelapse: {
       from: DateTime.fromISO('2021-01').toJSDate(),
-      to: null
-    }
-  },
-  {
-    title: 'Freelance',
-    location: {
-      title: 'Straight To The Fit'
-    },
-    timelapse: {
-      from: DateTime.fromISO('2020-11').toJSDate(),
-      to: null
+      to: DateTime.fromISO('2023-06').toJSDate()
     }
   },
   {

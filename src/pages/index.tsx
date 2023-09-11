@@ -109,12 +109,12 @@ const Home: NextPage<HomeProps> = (props) => {
           <ResumeHero ref={resumeRef} id="mon-parcours" escapeHeader />
         </ThemeProvider>
 
-        <ThemeProvider theme={themes[heroThemes.homere]}>
-          <HomereHero ref={homereRef} id="homere" />
-        </ThemeProvider>
-
         <ThemeProvider theme={themes[heroThemes.services]}>
           <ServicesHero ref={servicesRef} id="mes-services" escapeHeader />
+        </ThemeProvider>
+
+        <ThemeProvider theme={themes[heroThemes.homere]}>
+          <HomereHero ref={homereRef} id="homere" />
         </ThemeProvider>
 
         <ThemeProvider theme={themes[heroThemes.medium]}>
