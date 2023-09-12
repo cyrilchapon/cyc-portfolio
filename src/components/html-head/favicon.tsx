@@ -1,4 +1,5 @@
-const faviconBaseUrl = 'https://images.prismic.io/cyc-portfolio/39cafa75-ee4a-4878-81bb-4f3e464df04a_avatar.png'
+// const faviconBaseUrl = 'https://images.prismic.io/cyc-portfolio/39cafa75-ee4a-4878-81bb-4f3e464df04a_avatar.png'
+const faviconBaseUrl = 'https://images.prismic.io/cyc-portfolio/2ef293dd-a58b-4a0c-9131-8afb5f2efe22_avatar-simple.png'
 
 // // For IE 9 and below. ICO should be 32x32 pixels in size
 // const ie9 = () => (
