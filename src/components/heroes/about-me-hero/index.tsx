@@ -15,6 +15,7 @@ import { forwardRef, ForwardRefExoticComponent } from 'react'
 import { useGlobalState } from '$global-state'
 import { useYearDuration } from 'hooks/use-duration'
 import { xpBirthDay } from '$constants'
+import EmailIcon from '@mui/icons-material/Email'
 
 const ImgGrid = styled(Grid)(({ theme }) => ({
   [theme.breakpoints.up('lg')]: {
@@ -116,7 +117,7 @@ export const AboutMeHero: ForwardRefExoticComponent<HeroProps> = forwardRef(
                     gutterBottom
                     textAlign={{ xs: 'center', lg: 'left' }}
                   >
-                    Découvrez mon profil
+                    Mon profil
                   </Typography>
 
                   <BodyParagraphTypography
@@ -125,10 +126,9 @@ export const AboutMeHero: ForwardRefExoticComponent<HeroProps> = forwardRef(
                     textAlign={{ xs: 'justify', lg: 'left' }}
                   >
                     <p>
-                      Évoluant depuis +{mselfXp} ans dans{' '}
-                      <em>la tech</em> en environnement Startup, je suis
-                      aujourd&apos;hui consultant CTO / CPO as-a-service et
-                      fullstack Developper.
+                      Évoluant depuis +{mselfXp} ans dans <em>la tech</em> en
+                      environnement Startup, je suis aujourd&apos;hui consultant
+                      CTO / CPO as-a-service et fullstack Developper.
                     </p>
 
                     <p>
@@ -162,8 +162,9 @@ export const AboutMeHero: ForwardRefExoticComponent<HeroProps> = forwardRef(
                       variant="contained"
                       size="large"
                       disableTouchRipple
+                      startIcon={<EmailIcon />}
                     >
-                      Me contacter
+                      Prendre contact
                     </Button>
                   </Grid>
                 </Grid>

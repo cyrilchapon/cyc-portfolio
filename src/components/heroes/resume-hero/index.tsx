@@ -6,6 +6,8 @@ import { Button, Container, Grid, NoSsr, styled, Typography, useTheme } from '@m
 import { forwardRef, ForwardRefExoticComponent } from 'react'
 import { timelineContentClasses } from '@mui/lab'
 import { urls } from '$constants'
+import { FontAwesomeSvgIcon } from '$components/icons/font-awesome-svg-icon'
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons'
 
 const ImgGrid = styled(Grid)(({ theme }) => ({
   [theme.breakpoints.up('lg')]: {
@@ -84,8 +86,9 @@ export const ResumeHero: ForwardRefExoticComponent<HeroProps> = forwardRef((prop
                     size='large'
                     color='neutral'
                     disableTouchRipple
+                    startIcon={ <FontAwesomeSvgIcon icon={faLinkedin} fontSize='small' /> }
                   >
-                    Découvrir
+                    Creuser un peu
                   </Button>
                 </Grid>
               </Grid>

@@ -1,4 +1,4 @@
-import { Fab, FabProps, PropTypes, SvgIcon, SvgIconProps, Zoom } from '@mui/material'
+import { Fab, FabProps, PropTypes, Zoom } from '@mui/material'
 import { heroThemes, HeroType } from '../pages'
 import * as React from 'react'
 import { FontAwesomeSvgIcon } from './icons/font-awesome-svg-icon'
@@ -6,17 +6,8 @@ import { faLinkedinIn, faMedium } from '@fortawesome/free-brands-svg-icons'
 import { useGlobalState } from '$global-state'
 import { faCalendarDay, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { Themes, ThemesServiceContext } from '$styles'
-import HomereSvg from '../constants/homere-favicon-homr-black.svg'
 import { urls } from '$constants'
-
-const HomereIcon: React.FunctionComponent<SvgIconProps> = (props) => (
-  <SvgIcon
-    {...props}
-    inheritViewBox
-    component={HomereSvg}
-    color='secondary'
-  />
-)
+import { HomereIcon } from './icons/homere-icon'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type MainFabProps = {

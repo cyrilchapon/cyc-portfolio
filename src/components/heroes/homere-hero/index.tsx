@@ -1,9 +1,11 @@
 import { getPaddingTop, Hero, HeroProps } from '$components/hero'
+import { HomereIcon } from '$components/icons/homere-icon'
 import { urls } from '$constants'
 // import { ContactPaper } from './about-me-contact-paper'
 import {
   Box,
   Button,
+  buttonClasses,
   Grid,
   Link,
   styled,
@@ -156,7 +158,17 @@ export const HomereHero: ForwardRefExoticComponent<HeroProps> = forwardRef(
 
                 <Grid item container justifyContent="center">
                   <Grid item xs="auto" lg={12}>
-                    <Button href={urls.homere} variant="contained" size="large">
+                    <Button
+                      href={urls.homere}
+                      variant="outlined"
+                      size="large"
+                      sx={{
+                        [`& .${buttonClasses.startIcon} > *:nth-of-type(1)`]: {
+                          fontSize: '1.2em',
+                        },
+                      }}
+                      startIcon={<HomereIcon fontSize='small' />}
+                    >
                       Découvrir Homère
                     </Button>
                   </Grid>

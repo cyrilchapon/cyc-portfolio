@@ -13,9 +13,15 @@ const ServiceTitleTypography = styled(Typography)<TypographyProps<'h3', { compon
   color: theme.palette.text.paper.semi
 }))
 
+const ServiceSubtitleTypography = styled(Typography)<TypographyProps<'p', { component: 'p' }>>(({ theme }) => ({
+  fontWeight: theme.typography.variants[theme.typography.variantsMapping.subtitle2].fontWeightMedium,
+  color: theme.palette.text.paper.secondary
+}))
+
 interface ServicePaperProps extends PaperProps {
   icon: ServiceIcon
   title: string
+  subtitle: string
   features: ServiceFeature[]
 }
 
@@ -25,6 +31,7 @@ export const ServicePaper: FunctionComponent<ServicePaperProps> = (props) => {
   const {
     icon,
     title,
+    subtitle,
     features,
     ...paperProps
   } = props
@@ -51,9 +58,15 @@ export const ServicePaper: FunctionComponent<ServicePaperProps> = (props) => {
         </Grid>
 
         <Grid item>
-          <ServiceTitleTypography variant='h4' component='h3'>
-            {title}
-          </ServiceTitleTypography>
+          <header>
+            <ServiceTitleTypography variant='h4' component='h3'>
+              {title}
+            </ServiceTitleTypography>
+
+            <ServiceSubtitleTypography variant='subtitle2' component='p'>
+              {subtitle}
+            </ServiceSubtitleTypography>
+          </header>
         </Grid>
 
         <Grid item>

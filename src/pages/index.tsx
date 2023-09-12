@@ -68,17 +68,17 @@ const Home: NextPage<HomeProps> = (props) => {
     {
       intro: [introRef],
       about: [aboutRef],
+      services: [servicesRef],
       resume: [resumeRef],
       homere: [homereRef],
-      services: [servicesRef],
       medium: [mediumRef],
     },
   ] = useLastInView<HeroType>({
     intro: inViewObserverOptions,
     about: inViewObserverOptions,
+    services: inViewObserverOptions,
     resume: inViewObserverOptions,
     homere: inViewObserverOptions,
-    services: inViewObserverOptions,
     medium: inViewObserverOptions,
   })
 
@@ -105,12 +105,12 @@ const Home: NextPage<HomeProps> = (props) => {
           <AboutMeHero ref={aboutRef} id="a-propos-de-moi" escapeHeader />
         </ThemeProvider>
 
-        <ThemeProvider theme={themes[heroThemes.resume]}>
-          <ResumeHero ref={resumeRef} id="mon-parcours" escapeHeader />
-        </ThemeProvider>
-
         <ThemeProvider theme={themes[heroThemes.services]}>
           <ServicesHero ref={servicesRef} id="mes-services" escapeHeader />
+        </ThemeProvider>
+
+        <ThemeProvider theme={themes[heroThemes.resume]}>
+          <ResumeHero ref={resumeRef} id="mon-parcours" escapeHeader />
         </ThemeProvider>
 
         <ThemeProvider theme={themes[heroThemes.homere]}>

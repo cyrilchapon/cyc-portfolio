@@ -2,6 +2,7 @@ import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import TimelineIcon from '@mui/icons-material/Timeline'
 import { SvgIcon } from '@mui/material'
 import { faLaptopCode, faUserNinja } from '@fortawesome/free-solid-svg-icons'
+import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import urls from './urls'
 
 export type ServiceIconType = 'material' | 'font-awesome'
@@ -25,51 +26,15 @@ export type ServiceFeature = {
 
 export interface Service {
   title: string
+  subtitle: string
   icon: ServiceIcon
   features: ServiceFeature[]
 }
 
 export const services: Service[] = [
   {
-    title: '1. Stratégie produit',
-    icon: {
-      type: 'material',
-      iconComponent: TimelineIcon,
-    },
-    features: [
-      {
-        name: 'Business modeling',
-        description: `
-Analyse et challenge de **Business Model**
-(Revenue Model & Distribution Model).
-        `,
-      },
-      {
-        name: 'Milestones',
-        description: `
-Définition des grands **objectifs**
-de développement Business et Marketing.
-        `,
-      },
-      {
-        name: 'Roadmap produit',
-        description: `
-Définition et **conception** des produits.
-**Découpage** en projets, **planification**
-synchronisée avec les objectifs.
-        `,
-      },
-      {
-        name: 'Scalabilité',
-        description: `
-Identification des **goulets**,
-définition des **process** et standards, **automatisation**.
-        `,
-      },
-    ],
-  },
-  {
-    title: '2. Stratégie tech.',
+    title: 'CTO as a service',
+    subtitle: 'Stratégie tech',
     icon: {
       type: 'font-awesome',
       icon: faUserNinja,
@@ -111,7 +76,47 @@ adaptés aux projets.
     ],
   },
   {
-    title: '3. Opérationnel',
+    title: 'CPO as a service',
+    subtitle: 'Stratégie produit',
+    icon: {
+      type: 'material',
+      iconComponent: PrecisionManufacturingIcon,
+    },
+    features: [
+      {
+        name: 'Business modeling',
+        description: `
+Analyse et challenge de **Business Model**
+(Revenue Model & Distribution Model).
+        `,
+      },
+      {
+        name: 'Milestones',
+        description: `
+Définition des grands **objectifs**
+de développement Business et Marketing.
+        `,
+      },
+      {
+        name: 'Roadmap produit',
+        description: `
+Définition et **conception** des produits.
+**Découpage** en projets, **planification**
+synchronisée avec les objectifs.
+        `,
+      },
+      {
+        name: 'Scalabilité',
+        description: `
+Identification des **goulets**,
+définition des **process** et standards, **automatisation**.
+        `,
+      },
+    ],
+  },
+  {
+    title: 'Tech lead',
+    subtitle: 'Opérationnel',
     icon: {
       type: 'font-awesome',
       icon: faLaptopCode,

@@ -1,10 +1,12 @@
 import { Hero, HeroProps } from '$components/hero'
-import { Button, Container, Grid, styled, Typography } from '@mui/material'
+import { Button, buttonClasses, Container, Grid, styled, Typography } from '@mui/material'
 import { forwardRef, ForwardRefExoticComponent } from 'react'
 import { ServicePaper } from './service-paper'
 import { services, urls } from '$constants'
 import { useGlobalState } from '$global-state'
 import { useCalApi } from 'contextes/cal'
+import { FontAwesomeSvgIcon } from '$components/icons/font-awesome-svg-icon'
+import { faCalendarDay } from '@fortawesome/free-solid-svg-icons'
 
 const ButtonGridItem = styled(Grid)(() => ({
   textAlign: 'center',
@@ -26,7 +28,7 @@ export const ServicesHero: ForwardRefExoticComponent<HeroProps> = forwardRef(
               </Typography>
 
               <Typography variant="subtitle1" gutterBottom>
-                Ce que je sais faire
+                Mon expertise
               </Typography>
             </Grid>
 
@@ -41,6 +43,7 @@ export const ServicesHero: ForwardRefExoticComponent<HeroProps> = forwardRef(
                   <Grid item xs={12} sm={6} lg={4} key={index}>
                     <ServicePaper
                       title={service.title}
+                      subtitle={service.subtitle}
                       icon={service.icon}
                       features={service.features}
                     />
@@ -71,6 +74,12 @@ export const ServicesHero: ForwardRefExoticComponent<HeroProps> = forwardRef(
                     color="primary"
                     size="large"
                     disableTouchRipple
+                    sx={{
+                      [`& .${buttonClasses.startIcon} > *:nth-of-type(1)`]: {
+                        fontSize: '1.2em',
+                      },
+                    }}
+                    startIcon={<FontAwesomeSvgIcon icon={faCalendarDay} />}
                   >
                     Prendre rendez-vous
                   </Button>

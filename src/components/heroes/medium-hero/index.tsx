@@ -1,10 +1,12 @@
 import { Hero, HeroProps } from '$components/hero'
 import { urls } from '$constants'
-import { Button, Container, Grid, Typography } from '@mui/material'
+import { Button, Container, Grid, Typography, buttonClasses } from '@mui/material'
 import { forwardRef, ForwardRefExoticComponent } from 'react'
 import { MediumFeed } from '../../../connectors/medium-feed'
 import { FakeArticlePaper } from './fake-article-paper'
 import { MediumArticlePaper } from './medium-article-paper'
+import { FontAwesomeSvgIcon } from '$components/icons/font-awesome-svg-icon'
+import { faMedium } from '@fortawesome/free-brands-svg-icons'
 
 
 interface MediumHeroProps extends HeroProps {
@@ -71,8 +73,14 @@ export const MediumHero: ForwardRefExoticComponent<MediumHeroProps> = forwardRef
                 href={urls.medium}
                 variant='outlined'
                 size='large'
+                sx={{
+                  [`& .${buttonClasses.startIcon} > *:nth-of-type(1)`]: {
+                    fontSize: '1.2em',
+                  },
+                }}
+                startIcon={ <FontAwesomeSvgIcon icon={faMedium} fontSize='small' /> }
               >
-                Découvrir
+                En lire d&apos;autres
               </Button>
             </Grid>
           </Grid>
